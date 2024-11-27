@@ -36,7 +36,7 @@ public class Personnages {
 
 
     Timer deplacement;
-    public void deplacementRight(Button right, Activity activity, int[][] positionGrid){
+    public int[][] deplacementRight(Button right, Activity activity, int[][] positionGrid){
         right.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -87,9 +87,10 @@ public class Personnages {
                 return true;
             }
         });
+        return positionGrid;
     }
 
-    public void deplacementLeft(Button left, Activity activity, int[][] positionGrid) {
+    public int[][] deplacementLeft(Button left, Activity activity, int[][] positionGrid) {
         left.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -139,9 +140,10 @@ public class Personnages {
                 return true;
             }
         });
+        return positionGrid;
     }
 
-    public void deplacementUp(Button up, Activity activity, int[][] positionGrid) {
+    public int[][] deplacementUp(Button up, Activity activity, int[][] positionGrid) {
         up.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -191,9 +193,10 @@ public class Personnages {
                 return true;
             }
         });
+        return positionGrid;
     }
 
-    public void deplacementDown(Button down, Activity activity, int[][] positionGrid) {
+    public int[][] deplacementDown(Button down, Activity activity, int[][] positionGrid) {
         down.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -243,6 +246,7 @@ public class Personnages {
                 return true;
             }
         });
+        return positionGrid;
     }
 
 }
