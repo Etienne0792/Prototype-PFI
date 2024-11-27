@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,16 +18,17 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import java.time.ZoneId;
+import java.util.GregorianCalendar;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class startingRoom extends AppCompatActivity {
 
-    final float GRID_SIZE = 350f;
-    float spawnY;
-    float spawnX;
+    final int GRID_SIZE = 385;
+    final int GRID_SECTIONS = 11;
     LinearLayout gameGrid;
-    ImageView hero;
     Button right;
     Button down;
     Button up;
@@ -34,9 +36,8 @@ public class startingRoom extends AppCompatActivity {
     Drawable idle;
     Drawable pas1;
     Drawable pas2;
-    TextView debug;
-
-    Timer deplacement;
+    ImageView activeView;
+    Personnages hero;
 
     @SuppressLint({"ClickableViewAccessibility", "UseCompatLoadingForDrawables"})
     @Override
@@ -44,187 +45,48 @@ public class startingRoom extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.starting_room);
+
+        gameGrid = findViewById(R.id.gameGrid);
+        idle = getDrawable(R.drawable.personnage);
+        pas1 = getDrawable(R.drawable.pas1);
+        pas2 = getDrawable(R.drawable.pas2);
+        activeView = findViewById(R.id.hero);
+
     }
 
-
-
-
-
-    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onStart() {
         super.onStart();
 
+        float density = getResources().getDisplayMetrics().density;
+        int gridSize = (int) (GRID_SIZE * density + 0.5f);
 
-            gameGrid = findViewById(R.id.gameGrid);
-            int[][] movementGrid = new int[gameGrid.getChildCount()*2][gameGrid.getChildCount()*2];
-            for(int i = 0; i < movementGrid.length; i++){
-                for(int j = 0; j < movementGrid[0].length; j++){
-                    if(i == 0 || i == movementGrid.length-1){
-                        movementGrid[i][j] = 1;
-                    }
-                    else if(j == 0 || j == movementGrid[0].length-1){
-                        movementGrid[i][j] = 1;
-                    }
-                    else{
-                        movementGrid[i][j] = 0;
-                    }
+        right = findViewById(R.id.right);
+        left = findViewById(R.id.left);
+        up = findViewById(R.id.up);
+        down = findViewById(R.id.down);
+
+        int[][] positionGrid = new int[GRID_SECTIONS][GRID_SECTIONS];
+        for ( int i = 0; i < positionGrid.length; i++){
+            for ( int j = 0; j < positionGrid.length; j++){
+                if(i == 0 || j == 0 || i == positionGrid.length - 1 || j == positionGrid.length - 1){
+                    positionGrid[i][j] = 1;
+                }
+                else{
+                    positionGrid[i][j] = 0;
                 }
             }
-
-            Personnages hero = new Personnages(getDrawable(R.drawable.personnage),getDrawable(R.drawable.pas1),getDrawable(R.drawable.pas2), findViewById(R.id.hero));
-
-
-
-            right = findViewById(R.id.right);
-            left = findViewById(R.id.left);
-            up = findViewById(R.id.up);
-            down = findViewById(R.id.down);
-
-            right.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    switch (event.getAction()) {
-                        case MotionEvent.ACTION_DOWN:
-                            deplacement = new Timer();
-                            TimerTask task = new TimerTask() {
-                                int compteur = 0;
-                                @Override
-                                public void run() {
-                                    runOnUiThread(hero.deplacement(Directions.droite));
-                                }
-                            };
-                            deplacement.schedule(task,0,50);
-                            break;
-                        case MotionEvent.ACTION_UP:
-                            hero.activeView.setImageResource(R.drawable.personnage);
-                            deplacement.cancel();
-                            break;
-                    }
-                    return true;
-                }
-            });
-            up.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    switch (event.getAction()) {
-                        case MotionEvent.ACTION_DOWN:
-                            deplacement = new Timer();
-                            TimerTask task = new TimerTask() {
-                                int compteur = 0;
-                                @Override
-                                public void run() {
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            hero.deplacement(Directions.haut);
-                                            if(compteur == 5){
-                                                hero.activeView.setImageResource(R.drawable.pas1);
-                                                compteur++;
-                                            }
-                                            else if(compteur == 10){
-                                                hero.activeView.setImageResource(R.drawable.pas2);
-                                                compteur = 0;
-                                            }
-                                            else{
-                                                compteur++;
-                                            }
-                                        }
-                                    });
-                                }
-                            };
-                            deplacement.schedule(task,0,50);
-                            break;
-                        case MotionEvent.ACTION_UP:
-                            hero.activeView.setImageResource(R.drawable.personnage);
-                            deplacement.cancel();
-                            break;
-                    }
-                    return true;
-                }
-            });
-            down.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    switch (event.getAction()) {
-                        case MotionEvent.ACTION_DOWN:
-                            deplacement = new Timer();
-                            TimerTask task = new TimerTask() {
-                                int compteur = 0;
-                                @Override
-                                public void run() {
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            hero.deplacement(Directions.bas);
-                                            if(compteur == 5){
-                                                hero.activeView.setImageResource(R.drawable.pas1);
-                                                compteur++;
-                                            }
-                                            else if(compteur == 10){
-                                                hero.activeView.setImageResource(R.drawable.pas2);
-                                                compteur = 0;
-                                            }
-                                            else{
-                                                compteur++;
-                                            }
-                                        }
-                                    });
-                                }
-                            };
-                            deplacement.schedule(task,0,50);
-                            break;
-                        case MotionEvent.ACTION_UP:
-                            hero.activeView.setImageResource(R.drawable.personnage);
-                            deplacement.cancel();
-                            break;
-                    }
-                    return true;
-                }
-            });
-            left.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    switch (event.getAction()) {
-                        case MotionEvent.ACTION_DOWN:
-                            deplacement = new Timer();
-                            TimerTask task = new TimerTask() {
-                                int compteur = 0;
-                                @Override
-                                public void run() {
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            hero.deplacement(Directions.gauche);
-                                            if(compteur == 5){
-                                                hero.activeView.setImageResource(R.drawable.pas1);
-                                                compteur++;
-                                            }
-                                            else if(compteur == 10){
-                                                hero.activeView.setImageResource(R.drawable.pas2);
-                                                compteur = 0;
-                                            }
-                                            else{
-                                                compteur++;
-                                            }
-                                        }
-                                    });
-                                }
-                            };
-                            deplacement.schedule(task,0,50);
-                            break;
-                        case MotionEvent.ACTION_UP:
-                            hero.activeView.setImageResource(R.drawable.personnage);
-                            deplacement.cancel();
-                            break;
-                    }
-                    return true;
-                }
-            });
         }
 
+        positionGrid[GRID_SECTIONS / 2][GRID_SECTIONS / 2] = 2;
+        positionGrid[GRID_SECTIONS / 2 -1][GRID_SECTIONS-1] = 0;
+        positionGrid[GRID_SECTIONS / 2][GRID_SECTIONS -1] = 0;
+        positionGrid[GRID_SECTIONS / 2 + 1][GRID_SECTIONS -1] = 0;
 
-
-
-    }
+        hero = new Personnages(idle,pas1,pas2,activeView, gridSize, GRID_SECTIONS, gameGrid);
+        hero.deplacementRight(right,this,positionGrid);
+        hero.deplacementLeft(left,this,positionGrid);
+        hero.deplacementUp(up,this,positionGrid);
+        hero.deplacementDown(down,this,positionGrid);
+    };
 }
