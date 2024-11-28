@@ -1171,14 +1171,4 @@
         app:layout_constraintTop_toTopOf="@+id/gameGrid"
         app:srcCompat="@drawable/personnage" />
 
-    <TextView
-        android:id="@+id/debug"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/gameGrid"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

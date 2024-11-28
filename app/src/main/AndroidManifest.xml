@@ -22,6 +22,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".startingRoom"></activity>
+        <activity android:name=".room1"></activity>
+        <activity android:name=".room5"></activity>
     </application>
 
 </manifest>
