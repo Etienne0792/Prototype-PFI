@@ -60,7 +60,7 @@ public class roomGeneration {
                 hero.activeView.setX(hero.activeView.getX() - gridSize/2f + 50);
                 break;
             case gauche:
-                positionGrid[gridSections/2][gridSections-2] = 2;
+                positionGrid[gridSections/2][gridSections-1] = 2;
                 hero.activeView.setX(hero.activeView.getX() + gridSize/2f - 50);
                 break;
             case haut:
@@ -68,7 +68,7 @@ public class roomGeneration {
                 hero.activeView.setY(hero.activeView.getY() - gridSize/2f - 50);
                 break;
             case bas:
-                positionGrid[gridSections -2][gridSections/2] = 2;
+                positionGrid[gridSections -1][gridSections/2] = 2;
                 hero.activeView.setY(hero.activeView.getY() + gridSize/2f + 50);
                 break;
             case centre:

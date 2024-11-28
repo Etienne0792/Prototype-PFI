@@ -168,7 +168,7 @@ public class GenericOnTouchListener implements View.OnTouchListener {
 
                                                         if(intent != null && positionGrid[i - 1][j] == 4){
                                                             intent.putExtra("hp", hero.pointDeVie);
-                                                            intent.putExtra("Directions", Directions.haut);
+                                                            intent.putExtra("Directions", Directions.bas);
                                                             activity.startActivity(intent);
                                                             activity.finish();
                                                         }
@@ -225,7 +225,7 @@ public class GenericOnTouchListener implements View.OnTouchListener {
 
                                                         if(intent != null && positionGrid[i + 1][j] == 6){
                                                             intent.putExtra("hp", hero.pointDeVie);
-                                                            intent.putExtra("Directions", Directions.bas);
+                                                            intent.putExtra("Directions", Directions.haut);
                                                             activity.startActivity(intent);
                                                             activity.finish();
                                                         }
