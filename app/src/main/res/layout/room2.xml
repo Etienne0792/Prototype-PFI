@@ -1,1089 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/gameGrid"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="36dp"
+        android:layout_width="385dp"
+        android:layout_height="385dp"
         android:background="#7E7E7E"
-        android:orientation="horizontal"
-        android:weightSum="11"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/col0"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <ImageView
+            android:id="@+id/imageView30"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:weightSum="11">
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.0909"
+            app:layout_constraintWidth_percent="0.35"
+            app:srcCompat="@drawable/mur" />
 
-            <ImageView
-                android:id="@+id/imageView514"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-
-            <ImageView
-                android:id="@+id/imageView506"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-
-            <ImageView
-                android:id="@+id/imageView507"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-
-            <ImageView
-                android:id="@+id/imageView508"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-
-            <ImageView
-                android:id="@+id/imageView509"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView510"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView511"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView512"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-
-            <ImageView
-                android:id="@+id/imageView534"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-
-            <ImageView
-                android:id="@+id/imageView513"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-
-            <ImageView
-                android:id="@+id/imageView505"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/col1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <ImageView
+            android:id="@+id/imageView33"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:weightSum="11">
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.0909"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintWidth_percent="0.35"
+            app:srcCompat="@drawable/mur" />
 
-            <ImageView
-                android:id="@+id/imageView514"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-
-            <ImageView
-                android:id="@+id/imageView524"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView506"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView507"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView508"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView509"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView510"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView511"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView512"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView513"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView505"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/col2"
+        <ImageView
+            android:id="@+id/imageView29"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:weightSum="11">
+            android:scaleType="fitXY"
+            app:layout_constraintHeight_percent="0.0909"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="5"
+            app:srcCompat="@drawable/mur" />
 
-            <ImageView
-                android:id="@+id/imageView515"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-
-            <ImageView
-                android:id="@+id/imageView506"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView507"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView508"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView533"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView509"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView510"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView511"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView512"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView513"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView505"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/col3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <ImageView
+            android:id="@+id/imageView28"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:weightSum="11">
+            android:scaleType="fitXY"
+            app:layout_constraintHeight_percent="0.35"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.0909"
+            app:srcCompat="@drawable/mur" />
 
-            <ImageView
-                android:id="@+id/imageView516"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-
-            <ImageView
-                android:id="@+id/imageView525"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView506"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView507"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView508"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView509"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView510"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView511"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView512"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView513"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView505"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/col4"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:weightSum="11">
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.35"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintWidth_percent="0.0909"
+            app:srcCompat="@drawable/mur" />
 
-            <ImageView
-                android:id="@+id/imageView517"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-
-            <ImageView
-                android:id="@+id/imageView526"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView506"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView507"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView508"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView509"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView510"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView511"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView512"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView513"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView505"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/col5"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <ImageView
+            android:id="@+id/imageView31"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:weightSum="11">
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.35"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.0909"
+            app:srcCompat="@drawable/mur" />
 
-            <ImageView
-                android:id="@+id/imageView518"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-
-            <ImageView
-                android:id="@+id/imageView527"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView506"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView507"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView508"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView509"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView510"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView511"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView512"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView513"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView505"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/col6"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <ImageView
+            android:id="@+id/imageView32"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:weightSum="11">
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.35"
+            app:layout_constraintWidth_percent="0.0909"
+            app:srcCompat="@drawable/mur" />
 
-            <ImageView
-                android:id="@+id/imageView519"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageView
-                android:id="@+id/imageView528"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
+    <Button
+        android:id="@+id/up6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="up"
+        app:layout_constraintEnd_toEndOf="@+id/gameGrid"
+        app:layout_constraintStart_toStartOf="@+id/gameGrid"
+        app:layout_constraintTop_toBottomOf="@+id/gameGrid" />
 
-            <ImageView
-                android:id="@+id/imageView506"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
+    <Button
+        android:id="@+id/down6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="down"
+        app:layout_constraintEnd_toStartOf="@+id/right6"
+        app:layout_constraintStart_toEndOf="@+id/left6"
+        app:layout_constraintTop_toBottomOf="@+id/left6" />
 
-            <ImageView
-                android:id="@+id/imageView507"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
+    <Button
+        android:id="@+id/right6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="right"
+        app:layout_constraintStart_toEndOf="@+id/up6"
+        app:layout_constraintTop_toBottomOf="@+id/up6" />
 
-            <ImageView
-                android:id="@+id/imageView508"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
+    <Button
+        android:id="@+id/left6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="left"
+        app:layout_constraintEnd_toStartOf="@+id/up6"
+        app:layout_constraintTop_toBottomOf="@+id/up6" />
 
-            <ImageView
-                android:id="@+id/imageView509"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView510"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView511"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView512"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView513"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView505"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/col7"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:weightSum="11">
-
-            <ImageView
-                android:id="@+id/imageView520"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-
-            <ImageView
-                android:id="@+id/imageView529"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView506"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView507"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView508"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView509"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView510"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView511"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView512"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView513"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView505"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/col8"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:weightSum="11">
-
-            <ImageView
-                android:id="@+id/imageView521"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-
-            <ImageView
-                android:id="@+id/imageView530"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView506"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView507"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView508"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView509"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView510"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView511"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView512"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView513"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView505"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/col9"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:weightSum="11">
-
-            <ImageView
-                android:id="@+id/imageView522"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-
-            <ImageView
-                android:id="@+id/imageView531"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView506"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView507"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView508"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView509"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView510"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView511"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView512"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView513"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView505"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/col10"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:weightSum="11">
-
-            <ImageView
-                android:id="@+id/imageView523"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-
-            <ImageView
-                android:id="@+id/imageView532"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-
-            <ImageView
-                android:id="@+id/imageView506"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-
-            <ImageView
-                android:id="@+id/imageView507"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-
-            <ImageView
-                android:id="@+id/imageView508"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView509"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView510"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vide" />
-
-            <ImageView
-                android:id="@+id/imageView511"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-
-            <ImageView
-                android:id="@+id/imageView512"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-
-            <ImageView
-                android:id="@+id/imageView513"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-
-            <ImageView
-                android:id="@+id/imageView505"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mur" />
-        </LinearLayout>
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/heroRoom2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/gameGrid"
+        app:layout_constraintEnd_toEndOf="@+id/gameGrid"
+        app:layout_constraintStart_toStartOf="@+id/gameGrid"
+        app:layout_constraintTop_toTopOf="@+id/gameGrid"
+        app:srcCompat="@drawable/personnage" />
 </androidx.constraintlayout.widget.ConstraintLayout>

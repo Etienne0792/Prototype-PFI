@@ -1,17 +1,8 @@
 package com.example.prototype_pfi;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
-import java.io.Serializable;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Personnages {
 
@@ -34,7 +25,6 @@ public class Personnages {
         this.activeView = activeView;
         this.pointDeVie = pointDeVie;
         this.currentDirection = currentDirection;
-        this.positionGrid = positionGrid;
     }
 
 

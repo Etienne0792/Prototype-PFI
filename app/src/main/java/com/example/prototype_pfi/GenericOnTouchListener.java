@@ -2,11 +2,11 @@ package com.example.prototype_pfi;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -21,11 +21,11 @@ public class GenericOnTouchListener implements View.OnTouchListener {
     ImageView activeView;
     int gridSize;
     int gridSections;
-    LinearLayout gameGrid;
+    ConstraintLayout gameGrid;
     Personnages hero;
     Intent intent;
 
-    public GenericOnTouchListener(Directions directions, Activity activity, int[][] positionGrid, Personnages hero, int gridSize, int gridSections, LinearLayout gameGrid, Intent intent) {
+    public GenericOnTouchListener(Directions directions, Activity activity, int[][] positionGrid, Personnages hero, int gridSize, int gridSections, ConstraintLayout gameGrid, Intent intent) {
         this.directions = directions;
         this.activity = activity;
         this.positionGrid = positionGrid;

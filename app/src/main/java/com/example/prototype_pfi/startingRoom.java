@@ -4,26 +4,23 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.MotionEvent;
-import android.view.View;
+
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class startingRoom extends AppCompatActivity {
 
     final int GRID_SIZE = 385;
     final int GRID_SECTIONS = 11;
 
-    LinearLayout gameGrid;
+    ConstraintLayout gameGrid;
     Button right;
     Button down;
     Button up;
@@ -57,7 +54,6 @@ public class startingRoom extends AppCompatActivity {
             hp = 10;
             directions = Directions.centre;
         }
-
 
         gameGrid = findViewById(R.id.gameGrid);
         idle = getDrawable(R.drawable.personnage);

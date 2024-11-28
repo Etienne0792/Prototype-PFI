@@ -1,33 +1,26 @@
 package com.example.prototype_pfi;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.MotionEvent;
-import android.view.View;
+
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class room4 extends AppCompatActivity {
 
     final int GRID_SIZE = 385;
     final int GRID_SECTIONS = 11;
 
-    LinearLayout gameGrid;
+    ConstraintLayout gameGrid;
     Drawable idle;
     Drawable pas1;
     Drawable pas2;
@@ -88,7 +81,7 @@ public class room4 extends AppCompatActivity {
 
         right.setOnTouchListener(new GenericOnTouchListener(Directions.droite,this,positionGrid,hero, gridSize, GRID_SECTIONS, gameGrid, new Intent(room4.this, room5.class)));
         left.setOnTouchListener(new GenericOnTouchListener(Directions.gauche,this,positionGrid,hero, gridSize, GRID_SECTIONS, gameGrid, new Intent(room4.this, startingRoom.class)));
-        up.setOnTouchListener(new GenericOnTouchListener(Directions.haut,this,positionGrid,hero, gridSize, GRID_SECTIONS,gameGrid,null));
+        up.setOnTouchListener(new GenericOnTouchListener(Directions.haut,this,positionGrid,hero, gridSize, GRID_SECTIONS,gameGrid,new Intent(room4.this, room1.class)));
         down.setOnTouchListener(new GenericOnTouchListener(Directions.bas,this,positionGrid,hero, gridSize, GRID_SECTIONS,gameGrid,null));
     }
 }

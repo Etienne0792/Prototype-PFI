@@ -1,7 +1,8 @@
 package com.example.prototype_pfi;
 
-import android.widget.LinearLayout;
 import android.widget.Switch;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class roomGeneration {
 
@@ -9,9 +10,9 @@ public class roomGeneration {
     Directions[] entry;
     int gridSections;
     int gridSize;
-    LinearLayout gameGrid;
+    ConstraintLayout gameGrid;
 
-    public roomGeneration(Personnages hero, Directions[] entry, int gridSections, int gridSize, LinearLayout gameGrid){
+    public roomGeneration(Personnages hero, Directions[] entry, int gridSections, int gridSize, ConstraintLayout gameGrid){
         this.hero = hero;
         this.entry = entry;
         this.gridSections = gridSections;
@@ -26,6 +27,7 @@ public class roomGeneration {
                 if (i == 0 || j == 0 || i == positionGrid.length - 1 || j == positionGrid.length - 1) {
                     positionGrid[i][j] = 1;
                 } else {
+                    positionGrid[i][j] = 0;
                     positionGrid[i][j] = 0;
                 }
             }
