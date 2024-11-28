@@ -1,8 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#353535">
+
+    <Button
+        android:id="@+id/up8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="up"
+        app:layout_constraintEnd_toEndOf="@+id/gameGrid"
+        app:layout_constraintStart_toStartOf="@+id/gameGrid"
+        app:layout_constraintTop_toBottomOf="@+id/gameGrid" />
+
+    <Button
+        android:id="@+id/left8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="left"
+        app:layout_constraintEnd_toStartOf="@+id/up8"
+        app:layout_constraintTop_toBottomOf="@+id/up8" />
+
+    <Button
+        android:id="@+id/down8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="down"
+        app:layout_constraintEnd_toStartOf="@+id/right8"
+        app:layout_constraintStart_toEndOf="@+id/left8"
+        app:layout_constraintTop_toBottomOf="@+id/left8" />
+
+    <Button
+        android:id="@+id/right8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="right"
+        app:layout_constraintStart_toEndOf="@+id/up8"
+        app:layout_constraintTop_toBottomOf="@+id/up8" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/gameGrid"
@@ -93,4 +130,16 @@
             app:srcCompat="@drawable/mur" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/heroRoom7"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="#00000000"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/gameGrid"
+        app:layout_constraintEnd_toEndOf="@+id/gameGrid"
+        app:layout_constraintStart_toStartOf="@+id/gameGrid"
+        app:layout_constraintTop_toTopOf="@+id/gameGrid"
+        app:srcCompat="@drawable/personnage" />
 </androidx.constraintlayout.widget.ConstraintLayout>

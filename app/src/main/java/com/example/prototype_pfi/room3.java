@@ -67,6 +67,7 @@ public class room3 extends AppCompatActivity {
         Directions[] sorties = new Directions[]
                 {
                         Directions.droite,
+                        Directions.gauche,
                         Directions.bas
                 };
 

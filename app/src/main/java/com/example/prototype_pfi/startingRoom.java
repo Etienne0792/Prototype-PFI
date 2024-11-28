@@ -77,6 +77,8 @@ public class startingRoom extends AppCompatActivity {
         generation = new roomGeneration(hero, sorties , GRID_SECTIONS, gridSize, gameGrid);
         positionGrid = generation.gridGeneration();
 
+        positionGrid[10][5] = 5;
+
         right = findViewById(R.id.right);
         left = findViewById(R.id.left);
         up = findViewById(R.id.up);
