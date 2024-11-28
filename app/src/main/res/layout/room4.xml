@@ -1,15 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/right2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="right"
+        app:layout_constraintStart_toEndOf="@+id/up2"
+        app:layout_constraintTop_toBottomOf="@+id/up2" />
+
+    <Button
+        android:id="@+id/up2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="up"
+        app:layout_constraintEnd_toEndOf="@+id/gameGrid"
+        app:layout_constraintStart_toStartOf="@+id/gameGrid"
+        app:layout_constraintTop_toBottomOf="@+id/gameGrid" />
+
+    <Button
+        android:id="@+id/left2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="left"
+        app:layout_constraintEnd_toStartOf="@+id/up2"
+        app:layout_constraintTop_toBottomOf="@+id/up2" />
+
+    <Button
+        android:id="@+id/down2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="down"
+        app:layout_constraintEnd_toStartOf="@+id/right2"
+        app:layout_constraintStart_toEndOf="@+id/left2"
+        app:layout_constraintTop_toBottomOf="@+id/left2" />
+
     <LinearLayout
         android:id="@+id/gameGrid"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="36dp"
+        android:layout_width="385dp"
+        android:layout_height="385dp"
         android:background="#7E7E7E"
         android:orientation="horizontal"
         android:weightSum="11"
@@ -1086,4 +1120,31 @@
                 app:srcCompat="@drawable/mur" />
         </LinearLayout>
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/heroRoom4"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/gameGrid"
+        app:layout_constraintEnd_toEndOf="@+id/gameGrid"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/gameGrid"
+        app:srcCompat="@drawable/personnage" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="409dp"
+        android:layout_height="171dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gameGrid">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

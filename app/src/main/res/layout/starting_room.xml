@@ -46,7 +46,6 @@
         android:id="@+id/gameGrid"
         android:layout_width="385dp"
         android:layout_height="385dp"
-        android:layout_marginBottom="32dp"
         android:background="#7E7E7E"
         android:orientation="horizontal"
         android:weightSum="11"
@@ -1160,7 +1159,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/hero"
+        android:id="@+id/heroStart"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:adjustViewBounds="false"

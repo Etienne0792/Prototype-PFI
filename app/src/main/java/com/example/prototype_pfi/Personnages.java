@@ -1,5 +1,6 @@
 package com.example.prototype_pfi;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import java.io.Serializable;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -16,32 +18,32 @@ public class Personnages {
     Drawable idle;
     Drawable pas1;
     Drawable pas2;
-    ImageView activeView;
+    public ImageView activeView;
+    int pointDeVie;
 
     float gridSize;
-    LinearLayout gameGrid;
+    public LinearLayout gameGrid;
     int gridSection;
     public int[][] positionGrid;
+    public Directions currentDirection;
 
-    Personnages(Drawable idle, Drawable pas1, Drawable pas2, ImageView activeView, float gridSize, int gridSection, LinearLayout gameGrid, int[][] positionGrid){
+    Personnages(Drawable idle, Drawable pas1, Drawable pas2, ImageView activeView, int pointDeVie, Directions currentDirection) {
         this.idle = idle;
         this.pas1 = pas1;
         this.pas2 = pas2;
         this.activeView = activeView;
-        this.gridSize = gridSize;
-        this.gameGrid = gameGrid;
-        this.gridSection = gridSection;
+        this.pointDeVie = pointDeVie;
+        this.currentDirection = currentDirection;
         this.positionGrid = positionGrid;
     }
 
 
-
-
-
-
-
-
-
-
-
 }
+
+
+
+
+
+
+
+
