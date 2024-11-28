@@ -23,7 +23,15 @@
         </activity>
         <activity android:name=".startingRoom"></activity>
         <activity android:name=".room1"></activity>
+        <activity android:name=".room2"></activity>
+        <activity android:name=".room3"></activity>
+        <activity android:name=".room4"></activity>
         <activity android:name=".room5"></activity>
+        <activity android:name=".room6"></activity>
+        <activity android:name=".room7"></activity>
+        <activity android:name=".room8"></activity>
+        <activity android:name=".room9"></activity>
+
     </application>
 
 </manifest>
