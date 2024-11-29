@@ -1,10 +1,12 @@
 package com.example.prototype_pfi;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -50,6 +52,8 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                         public void run() {
                             activity.runOnUiThread(
                                     new Runnable() {
+
+                                        @SuppressLint("SetTextI18n")
                                         @Override
                                         public void run() {
                                             activeView.setRotation(0);
@@ -58,23 +62,31 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                                     if (j + 1 < positionGrid.length && positionGrid[i][j] == 2 && positionGrid[i][j + 1] != 1) {
                                                         if (utiliserPas1) {
                                                             activeView.setImageResource(R.drawable.pas1);
-                                                        } else {
+                                                        }
+                                                        else {
                                                             activeView.setImageResource(R.drawable.pas2);
                                                         }
                                                         utiliserPas1 = !utiliserPas1;
-
-                                                        if(intent != null && positionGrid[i][j+1] == 5){
-                                                            intent.putExtra("hp", hero.pointDeVie);
-                                                            intent.putExtra("Directions", Directions.droite);
-                                                            activity.startActivity(intent);
-                                                            activity.finish();
-                                                        }
-
 
                                                         activeView.setX(activeView.getX() + (gridSize / gridSections) / 2);
                                                         if (activeView.getX() + activeView.getWidth() >= gridSize / gridSections * (j + 2)) {
                                                             positionGrid[i][j] = 0;
                                                             positionGrid[i][j + 1] = 2;
+                                                        }
+
+                                                        if(activity.getClass() == room9.class && positionGrid[i][j +1] == 7){
+                                                            hero.asKey = true;
+                                                            TextView keyFound = activity.findViewById(R.id.startMessage);
+                                                            keyFound.setText("Vous avez trouvé la clé !\n"+ "Retourner a votre point de départ\n"+"pour vous échapé.");
+                                                            ImageView chest = activity.findViewById(R.id.chest);
+                                                            chest.setImageResource(R.drawable.open_chest);
+                                                        }
+                                                        else if(intent != null && positionGrid[i][j+1] == 5){
+                                                            intent.putExtra("hp", hero.pointDeVie);
+                                                            intent.putExtra("Directions", Directions.droite);
+                                                            intent.putExtra("asKey",hero.asKey);
+                                                            activity.startActivity(intent);
+                                                            activity.finish();
                                                         }
                                                         return;
                                                     }
@@ -102,6 +114,7 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                         public void run() {
                             activity.runOnUiThread(
                                     new Runnable() {
+                                        @SuppressLint("SetTextI18n")
                                         @Override
                                         public void run() {
                                             for (int i = 0; i < positionGrid.length; i++) {
@@ -114,17 +127,28 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                                             activeView.setImageResource(R.drawable.pas2);
                                                         }
                                                         utiliserPas1 = !utiliserPas1;
-                                                        if(intent != null && positionGrid[i][j - 1] == 3){
-                                                            intent.putExtra("hp", hero.pointDeVie);
-                                                            intent.putExtra("Directions", Directions.gauche);
-                                                            activity.startActivity(intent);
-                                                            activity.finish();
-                                                        }
+
                                                         activeView.setX(activeView.getX() - (gridSize / gridSections) / 2);
                                                         if (activeView.getX() + activeView.getWidth() / 2 <= gridSize / gridSections * j -2) {
                                                             positionGrid[i][j] = 0;
                                                             positionGrid[i][j - 1] = 2;
                                                         }
+
+                                                        if(positionGrid[i][j - 1] == 7){
+                                                            hero.asKey = true;
+                                                            TextView keyFound = activity.findViewById(R.id.startMessage);
+                                                            keyFound.setText("Vous avez trouvé la clé !\n"+ "Retourner a votre point de départ\n"+"pour vous échapé.");
+                                                            ImageView chest = activity.findViewById(R.id.chest);
+                                                            chest.setImageResource(R.drawable.open_chest);
+                                                        }
+                                                        else if(intent != null && positionGrid[i][j - 1] == 3){
+                                                            intent.putExtra("hp", hero.pointDeVie);
+                                                            intent.putExtra("Directions", Directions.gauche);
+                                                            intent.putExtra("asKey",hero.asKey);
+                                                            activity.startActivity(intent);
+                                                            activity.finish();
+                                                        }
+                                                        return;
                                                     }
                                                 }
                                             }
@@ -151,6 +175,7 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                         public void run() {
                             activity.runOnUiThread(
                                     new Runnable() {
+                                        @SuppressLint("SetTextI18n")
                                         @Override
                                         public void run() {
                                             // Rotation pour faire face en haut
@@ -166,19 +191,27 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                                         }
                                                         utiliserPas1 = !utiliserPas1;
 
-                                                        if(intent != null && positionGrid[i - 1][j] == 4){
-                                                            intent.putExtra("hp", hero.pointDeVie);
-                                                            intent.putExtra("Directions", Directions.bas);
-                                                            activity.startActivity(intent);
-                                                            activity.finish();
-                                                        }
-
                                                         activeView.setY(activeView.getY() - (gridSize / gridSections) / 2);
                                                         if (activeView.getY() + activeView.getHeight() / 2 <= gridSize / gridSections * i + gameGrid.getY()) {
                                                             positionGrid[i][j] = 0;
                                                             positionGrid[i - 1][j] = 2;
                                                         }
 
+                                                        if(positionGrid[i - 1][j] == 7){
+                                                            hero.asKey = true;
+                                                            TextView keyFound = activity.findViewById(R.id.startMessage);
+                                                            keyFound.setText("Vous avez trouvé la clé !\n"+ "Retourner a votre point de départ\n"+"pour vous échapé.");
+                                                            ImageView chest = activity.findViewById(R.id.chest);
+                                                            chest.setImageResource(R.drawable.open_chest);
+                                                        }
+                                                        else if(intent != null && positionGrid[i - 1][j] == 4){
+                                                            intent.putExtra("hp", hero.pointDeVie);
+                                                            intent.putExtra("Directions", Directions.bas);
+                                                            intent.putExtra("asKey",hero.asKey);
+                                                            activity.startActivity(intent);
+                                                            activity.finish();
+                                                        }
+                                                        return;
                                                     }
                                                 }
                                             }
@@ -208,6 +241,7 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                         public void run() {
                             activity.runOnUiThread(
                                     new Runnable() {
+                                        @SuppressLint("SetTextI18n")
                                         @Override
                                         public void run() {
                                             activeView.setRotation(90); // Rotation pour faire face en bas
@@ -223,17 +257,25 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                                         }
                                                         utiliserPas1 = !utiliserPas1;
 
-                                                        if(intent != null && positionGrid[i + 1][j] == 6){
-                                                            intent.putExtra("hp", hero.pointDeVie);
-                                                            intent.putExtra("Directions", Directions.haut);
-                                                            activity.startActivity(intent);
-                                                            activity.finish();
-                                                        }
-
                                                         activeView.setY(activeView.getY() + (gridSize / gridSections) / 2);
                                                         if (activeView.getY() + activeView.getHeight() >= gridSize / gridSections * (i + 2) + gameGrid.getY()) {
                                                             positionGrid[i][j] = 0;
                                                             positionGrid[i + 1][j] = 2;
+                                                        }
+
+                                                        if(positionGrid[i + 1][j] == 7){
+                                                            hero.asKey = true;
+                                                            TextView keyFound = activity.findViewById(R.id.startMessage);
+                                                            keyFound.setText("Vous avez trouvé la clé !\n"+ "Retourner a votre point de départ\n"+"pour vous échapé.");
+                                                            ImageView chest = activity.findViewById(R.id.chest);
+                                                            chest.setImageResource(R.drawable.open_chest);
+                                                        }
+                                                        else if(intent != null && positionGrid[i + 1][j] == 6){
+                                                            intent.putExtra("hp", hero.pointDeVie);
+                                                            intent.putExtra("Directions", Directions.haut);
+                                                            intent.putExtra("asKey",hero.asKey);
+                                                            activity.startActivity(intent);
+                                                            activity.finish();
                                                         }
                                                         return;
                                                     }
@@ -242,7 +284,6 @@ public class GenericOnTouchListener implements View.OnTouchListener {
 
                                         }
                                     });
-
                         }
                     };
                     deplacement.schedule(task, 0, 100);

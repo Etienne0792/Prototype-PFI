@@ -32,7 +32,7 @@ public class room6 extends AppCompatActivity {
     int[][] positionGrid;
     int gridSize;
     roomGeneration generation;
-
+boolean asKey;
 
     @SuppressLint("UseCompatLoadingForDrawables")
     @Override
@@ -46,6 +46,7 @@ public class room6 extends AppCompatActivity {
 
         int hp = getIntent().getIntExtra("hp",10);
         Serializable directions = Objects.requireNonNull(getIntent().getExtras()).getSerializable("Directions");
+        asKey = getIntent().getBooleanExtra("asKey",false);
 
         gameGrid = findViewById(R.id.gameGrid);
         idle = getDrawable(R.drawable.personnage);
@@ -53,7 +54,7 @@ public class room6 extends AppCompatActivity {
         pas2 = getDrawable(R.drawable.pas2);
         activeView = findViewById(R.id.heroRoom6);
 
-        hero = new Personnages(idle, pas1, pas2, activeView, hp, (Directions) directions);
+        hero = new Personnages(idle, pas1, pas2, activeView, hp, (Directions) directions,asKey);
     }
 
 

@@ -11,6 +11,7 @@ public class roomGeneration {
     int gridSections;
     int gridSize;
     ConstraintLayout gameGrid;
+    boolean asKey;
 
     public roomGeneration(Personnages hero, Directions[] entry, int gridSections, int gridSize, ConstraintLayout gameGrid){
         this.hero = hero;
@@ -27,7 +28,6 @@ public class roomGeneration {
                 if (i == 0 || j == 0 || i == positionGrid.length - 1 || j == positionGrid.length - 1) {
                     positionGrid[i][j] = 1;
                 } else {
-                    positionGrid[i][j] = 0;
                     positionGrid[i][j] = 0;
                 }
             }
