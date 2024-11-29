@@ -64,7 +64,7 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                                         utiliserPas1 = !utiliserPas1;
 
                                                         if(intent != null && positionGrid[i][j+1] == 5){
-                                                            intent.putExtra("hp", hero.pointDeVie);
+                                                            intent.putExtra("hp", hero.getPointDeVie());
                                                             intent.putExtra("Directions", Directions.droite);
                                                             activity.startActivity(intent);
                                                             activity.finish();
@@ -115,7 +115,7 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                                         }
                                                         utiliserPas1 = !utiliserPas1;
                                                         if(intent != null && positionGrid[i][j - 1] == 3){
-                                                            intent.putExtra("hp", hero.pointDeVie);
+                                                            intent.putExtra("hp", hero.getPointDeVie());
                                                             intent.putExtra("Directions", Directions.gauche);
                                                             activity.startActivity(intent);
                                                             activity.finish();
@@ -167,7 +167,7 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                                         utiliserPas1 = !utiliserPas1;
 
                                                         if(intent != null && positionGrid[i - 1][j] == 4){
-                                                            intent.putExtra("hp", hero.pointDeVie);
+                                                            intent.putExtra("hp", hero.getPointDeVie());
                                                             intent.putExtra("Directions", Directions.bas);
                                                             activity.startActivity(intent);
                                                             activity.finish();
@@ -224,7 +224,7 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                                         utiliserPas1 = !utiliserPas1;
 
                                                         if(intent != null && positionGrid[i + 1][j] == 6){
-                                                            intent.putExtra("hp", hero.pointDeVie);
+                                                            intent.putExtra("hp", hero.getPointDeVie());
                                                             intent.putExtra("Directions", Directions.haut);
                                                             activity.startActivity(intent);
                                                             activity.finish();
