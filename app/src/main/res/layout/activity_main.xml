@@ -8,19 +8,54 @@
     android:background="#D6E1FF"
     tools:context=".MainActivity">
 
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:cropToPadding="true"
+            android:scaleX="1.4"
+            android:scaleY="1.4"
+            app:srcCompat="@drawable/d_cors" />
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/player"
+            android:layout_width="143dp"
+            android:layout_height="454dp"
+            app:srcCompat="@drawable/perso1_1" />
+    </FrameLayout>
+
     <Button
         android:id="@+id/start"
-        android:layout_width="354dp"
-        android:layout_height="68dp"
-        android:layout_marginTop="231dp"
+        android:layout_width="246dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="552dp"
         android:text="Lancer la partie"
         android:textColor="#FFFFFF"
         android:textColorLink="#3F51B5"
         android:textSize="24sp"
         app:backgroundTint="#222A81"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView"
@@ -28,11 +63,58 @@
         android:layout_height="75dp"
         android:background="#222A81"
         android:gravity="center"
-        android:text="Prototype PFI"
+        android:text="L'aventure PFI"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/Pseudo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:hint="Entrer votre pseudo"
+        android:inputType="text"
+        android:textColorHint="#282828"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.19" />
+
+    <Button
+        android:id="@+id/color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#222A81"
+        android:text="Choisi ta couleur"
+        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <FrameLayout
+        android:id="@+id/coeur_grid"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/relativeLayout"
+        app:layout_constraintVertical_bias="0.84000003">
+
+        <ImageView
+            android:id="@+id/coeur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/coeur" />
+    </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
