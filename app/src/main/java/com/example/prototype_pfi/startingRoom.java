@@ -68,9 +68,10 @@ public class startingRoom extends AppCompatActivity {
         pas1 = getDrawable(R.drawable.pas1);
         pas2 = getDrawable(R.drawable.pas2);
         activeView = findViewById(R.id.heroStart);
-        exit.findViewById(R.id.exit);
 
         hero = new Personnages(idle, pas1, pas2, activeView, hp, (Directions) directions, asKey);
+
+        exit = findViewById(R.id.exit);
     }
 
     @SuppressLint({"ClickableViewAccessibility", "SetTextI18n"})
@@ -91,13 +92,16 @@ public class startingRoom extends AppCompatActivity {
                     };
             Message.setText("Vous pouvez vous enfuir !");
             exit.setImageResource(R.drawable.vide);
-            positionGrid[GRID_SECTIONS / 2 - 1][0] = 3;
-            positionGrid[GRID_SECTIONS / 2][0] = 3;
-            positionGrid[GRID_SECTIONS / 2 + 1][0] = 3;
         }
 
         generation = new roomGeneration(hero, sorties , GRID_SECTIONS, gridSize, gameGrid);
         positionGrid = generation.gridGeneration();
+
+        if(hero.asKey){
+            positionGrid[GRID_SECTIONS / 2 - 1][0] = 3;
+            positionGrid[GRID_SECTIONS / 2][0] = 3;
+            positionGrid[GRID_SECTIONS / 2 + 1][0] = 3;
+        }
 
 
         right = findViewById(R.id.right);
