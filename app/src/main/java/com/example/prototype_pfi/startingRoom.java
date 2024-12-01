@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +36,10 @@ public class startingRoom extends AppCompatActivity {
     int gridSize;
     Serializable directions;
     int hp;
+    Directions[] sorties;
+    boolean asKey;
+    TextView Message;
+    ImageView exit;
 
     @SuppressLint({"ClickableViewAccessibility", "UseCompatLoadingForDrawables"})
     @Override
@@ -45,14 +50,17 @@ public class startingRoom extends AppCompatActivity {
 
         float density = getResources().getDisplayMetrics().density;
         gridSize = (int) (GRID_SIZE * density + 0.5f);
+        Message = findViewById(R.id.startMessage);
 
         try{
             hp = getIntent().getIntExtra("hp",10);
             directions = Objects.requireNonNull(getIntent().getExtras()).getSerializable("Directions");
+            asKey = getIntent().getBooleanExtra("asKey",true);
         }
         catch(Exception e){
             hp = 10;
             directions = Directions.centre;
+            asKey = false;
         }
 
         gameGrid = findViewById(R.id.gameGrid);
@@ -61,23 +69,40 @@ public class startingRoom extends AppCompatActivity {
         pas2 = getDrawable(R.drawable.pas2);
         activeView = findViewById(R.id.heroStart);
 
-        hero = new Personnages(idle, pas1, pas2, activeView, hp, (Directions) directions);
+        hero = new Personnages(idle, pas1, pas2, activeView, hp, (Directions) directions, asKey);
+
+        exit = findViewById(R.id.exit);
     }
 
-    @SuppressLint("ClickableViewAccessibility")
+    @SuppressLint({"ClickableViewAccessibility", "SetTextI18n"})
     @Override
     protected void onStart() {
         super.onStart();
 
-        Directions[] sorties = new Directions[]
+        sorties = new Directions[]
                 {
                         Directions.droite
                 };
 
+        if(hero.asKey){
+            sorties = new Directions[]
+                    {
+                            Directions.droite,
+                            Directions.gauche
+                    };
+            Message.setText("Vous pouvez vous enfuir !");
+            exit.setImageResource(R.drawable.vide);
+        }
+
         generation = new roomGeneration(hero, sorties , GRID_SECTIONS, gridSize, gameGrid);
         positionGrid = generation.gridGeneration();
 
-        positionGrid[10][5] = 5;
+        if(hero.asKey){
+            positionGrid[GRID_SECTIONS / 2 - 1][0] = 3;
+            positionGrid[GRID_SECTIONS / 2][0] = 3;
+            positionGrid[GRID_SECTIONS / 2 + 1][0] = 3;
+        }
+
 
         right = findViewById(R.id.right);
         left = findViewById(R.id.left);
@@ -85,7 +110,7 @@ public class startingRoom extends AppCompatActivity {
         down = findViewById(R.id.down);
 
         right.setOnTouchListener(new GenericOnTouchListener(Directions.droite,this,positionGrid,hero, gridSize, GRID_SECTIONS, gameGrid, new Intent(startingRoom.this, room4.class)));
-        left.setOnTouchListener(new GenericOnTouchListener(Directions.gauche,this,positionGrid,hero, gridSize, GRID_SECTIONS, gameGrid, null));
+        left.setOnTouchListener(new GenericOnTouchListener(Directions.gauche,this,positionGrid,hero, gridSize, GRID_SECTIONS, gameGrid, new Intent(startingRoom.this, victoire.class)));
         up.setOnTouchListener(new GenericOnTouchListener(Directions.haut,this,positionGrid,hero, gridSize, GRID_SECTIONS,gameGrid,null));
         down.setOnTouchListener(new GenericOnTouchListener(Directions.bas,this,positionGrid,hero, gridSize, GRID_SECTIONS,gameGrid,null));
 

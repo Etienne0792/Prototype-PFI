@@ -42,18 +42,6 @@
             app:srcCompat="@drawable/mur" />
 
         <ImageView
-            android:id="@+id/imageView28"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:scaleType="fitXY"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.0909"
-            app:srcCompat="@drawable/mur" />
-
-        <ImageView
             android:id="@+id/imageView31"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -63,6 +51,45 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.35"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.0909"
+            app:srcCompat="@drawable/mur" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            app:layout_constraintHeight_percent="0.35"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.0909"
+            app:srcCompat="@drawable/mur" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.35"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintWidth_percent="0.0909"
+            app:srcCompat="@drawable/mur" />
+
+        <ImageView
+            android:id="@+id/exit"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toTopOf="@+id/imageView7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
             app:layout_constraintWidth_percent="0.0909"
             app:srcCompat="@drawable/mur" />
 
@@ -78,6 +105,18 @@
             app:layout_constraintHeight_percent="0.35"
             app:layout_constraintWidth_percent="0.0909"
             app:srcCompat="@drawable/mur" />
+
+        <TextView
+            android:id="@+id/startMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Trouvé la clé pour vous échapper !"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toStartOf="@+id/imageView31"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageView29" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

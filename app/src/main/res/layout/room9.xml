@@ -6,41 +6,6 @@
     android:layout_height="match_parent"
     android:background="#353535">
 
-    <Button
-        android:id="@+id/right10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="right"
-        app:layout_constraintStart_toEndOf="@+id/up10"
-        app:layout_constraintTop_toBottomOf="@+id/up10" />
-
-    <Button
-        android:id="@+id/up10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="up"
-        app:layout_constraintEnd_toEndOf="@+id/gameGrid"
-        app:layout_constraintStart_toStartOf="@+id/gameGrid"
-        app:layout_constraintTop_toBottomOf="@+id/gameGrid" />
-
-    <Button
-        android:id="@+id/left10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="left"
-        app:layout_constraintEnd_toStartOf="@+id/up10"
-        app:layout_constraintTop_toBottomOf="@+id/up10" />
-
-    <Button
-        android:id="@+id/down10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="down"
-        app:layout_constraintEnd_toStartOf="@+id/right10"
-        app:layout_constraintStart_toEndOf="@+id/left10"
-        app:layout_constraintTop_toBottomOf="@+id/left10" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/gameGrid"
         android:layout_width="385dp"
@@ -131,6 +96,52 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <Button
+        android:id="@+id/right10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="right"
+        app:layout_constraintStart_toEndOf="@+id/up10"
+        app:layout_constraintTop_toBottomOf="@+id/up10" />
+
+    <Button
+        android:id="@+id/up10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="up"
+        app:layout_constraintEnd_toEndOf="@+id/gameGrid"
+        app:layout_constraintStart_toStartOf="@+id/gameGrid"
+        app:layout_constraintTop_toBottomOf="@+id/gameGrid" />
+
+    <Button
+        android:id="@+id/left10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="left"
+        app:layout_constraintEnd_toStartOf="@+id/up10"
+        app:layout_constraintTop_toBottomOf="@+id/up10" />
+
+    <Button
+        android:id="@+id/down10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="down"
+        app:layout_constraintEnd_toStartOf="@+id/right10"
+        app:layout_constraintStart_toEndOf="@+id/left10"
+        app:layout_constraintTop_toBottomOf="@+id/left10" />
+
+    <ImageView
+        android:id="@+id/chest"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/gameGrid"
+        app:layout_constraintEnd_toEndOf="@+id/gameGrid"
+        app:layout_constraintStart_toStartOf="@+id/gameGrid"
+        app:layout_constraintTop_toTopOf="@+id/gameGrid"
+        app:srcCompat="@drawable/chest" />
+
     <ImageView
         android:id="@+id/heroRoom9"
         android:layout_width="50dp"
@@ -141,4 +152,16 @@
         app:layout_constraintStart_toStartOf="@+id/gameGrid"
         app:layout_constraintTop_toTopOf="@+id/gameGrid"
         app:srcCompat="@drawable/personnage" />
+
+    <TextView
+        android:id="@+id/startMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/chest"
+        app:layout_constraintEnd_toEndOf="@+id/chest"
+        app:layout_constraintStart_toStartOf="@+id/chest" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

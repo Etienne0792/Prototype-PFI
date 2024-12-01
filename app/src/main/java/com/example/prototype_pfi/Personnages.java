@@ -4,7 +4,9 @@ import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-public class Personnages {
+import java.io.Serializable;
+
+public class Personnages implements Serializable {
 
     // Constante
     static final int MIN_ATTAQUE = 1;
@@ -15,6 +17,8 @@ public class Personnages {
     Drawable pas1;
     Drawable pas2;
     public ImageView activeView;
+
+    public boolean asKey;
     private int pointDeVie;
     private String nom;
     private int attaque;
@@ -42,13 +46,14 @@ public class Personnages {
 
 
     // Constructeur
-    Personnages(Drawable idle, Drawable pas1, Drawable pas2, ImageView activeView, int pointDeVie, Directions currentDirection) {
+    Personnages(Drawable idle, Drawable pas1, Drawable pas2, ImageView activeView, int pointDeVie, Directions currentDirection, boolean asKey) {
         this.idle = idle;
         this.pas1 = pas1;
         this.pas2 = pas2;
         this.activeView = activeView;
         this.pointDeVie = pointDeVie;
         this.currentDirection = currentDirection;
+        this.asKey = asKey;
     }
 
     // Méthode
