@@ -21,9 +21,6 @@ public class room4 extends AppCompatActivity {
     final int GRID_SECTIONS = 11;
 
     ConstraintLayout gameGrid;
-    Drawable idle;
-    Drawable pas1;
-    Drawable pas2;
     Personnages hero;
     ImageView activeView;
     Button right;
@@ -46,17 +43,15 @@ public class room4 extends AppCompatActivity {
         float density = getResources().getDisplayMetrics().density;
         gridSize = (int) (GRID_SIZE * density + 0.5f);
 
-        int hp = getIntent().getIntExtra("hp",10);
-        Serializable directions = Objects.requireNonNull(getIntent().getExtras()).getSerializable("Directions");
-        asKey = getIntent().getBooleanExtra("asKey",false);
+        hero = (Personnages) getIntent().getSerializableExtra("personnage");
+        activeView = findViewById(R.id.heroRoom4);
+        activeView.setImageResource(hero.getIdle());
+        hero.setImageView(activeView);
+
 
         gameGrid = findViewById(R.id.gameGrid);
-        idle = getDrawable(R.drawable.personnage);
-        pas1 = getDrawable(R.drawable.pas1);
-        pas2 = getDrawable(R.drawable.pas2);
-        activeView = findViewById(R.id.heroRoom4);
 
-        hero = new Personnages(idle, pas1, pas2, activeView, hp, (Directions) directions,asKey);
+
     }
 
 

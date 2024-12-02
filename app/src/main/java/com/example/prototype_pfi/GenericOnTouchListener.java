@@ -3,6 +3,8 @@ package com.example.prototype_pfi;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -42,6 +44,8 @@ public class GenericOnTouchListener implements View.OnTouchListener {
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
+
+        // Déplacement vers la droite
         if(directions == Directions.droite){
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
@@ -61,19 +65,13 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                                 for (int j = 0; j < positionGrid.length; j++) {
                                                     if (j + 1 < positionGrid.length && positionGrid[i][j] == 2 && positionGrid[i][j + 1] != 1) {
                                                         if (utiliserPas1) {
-                                                            activeView.setImageResource(R.drawable.pas1);
+                                                            activeView.setImageResource(hero.getPas1());
                                                         }
                                                         else {
-                                                            activeView.setImageResource(R.drawable.pas2);
+                                                            activeView.setImageResource(hero.getPas2());
                                                         }
                                                         utiliserPas1 = !utiliserPas1;
 
-                                                        if(intent != null && positionGrid[i][j+1] == 5){
-                                                            intent.putExtra("hp", hero.getPointDeVie());
-                                                            intent.putExtra("Directions", Directions.droite);
-                                                            activity.startActivity(intent);
-                                                            activity.finish();
-                                                        }
 
                                                         activeView.setX(activeView.getX() + (gridSize / gridSections) / 2);
                                                         if (activeView.getX() + activeView.getWidth() >= gridSize / gridSections * (j + 2)) {
@@ -89,9 +87,9 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                                             chest.setImageResource(R.drawable.open_chest);
                                                         }
                                                         else if(intent != null && positionGrid[i][j+1] == 5){
-                                                            intent.putExtra("hp", hero.pointDeVie);
-                                                            intent.putExtra("Directions", Directions.droite);
-                                                            intent.putExtra("asKey",hero.asKey);
+                                                            hero.setImageView(null);
+                                                            hero.setDirection(directions);
+                                                            intent.putExtra("personnage", hero);
                                                             activity.startActivity(intent);
                                                             activity.finish();
                                                         }
@@ -106,11 +104,13 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                     deplacement.schedule(task, 0, 100);
                     break;
                 case MotionEvent.ACTION_UP:
-                    activeView.setImageResource(R.drawable.personnage);
+                    activeView.setImageResource(hero.getIdle());
                     deplacement.cancel();
                     break;
             }
         }
+
+        // Déplacement vers la gauche
         if(directions == Directions.gauche){
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
@@ -129,19 +129,12 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                                     if (j - 1 >= 0 && positionGrid[i][j] == 2 && positionGrid[i][j - 1] != 1) {
                                                         activeView.setRotation(180);
                                                         if (utiliserPas1) {
-                                                            activeView.setImageResource(R.drawable.pas1);
+                                                            activeView.setImageResource(hero.getPas1());
                                                         } else {
-                                                            activeView.setImageResource(R.drawable.pas2);
+                                                            activeView.setImageResource(hero.getPas2());
                                                         }
                                                         utiliserPas1 = !utiliserPas1;
-                                                      
-                                                        if(intent != null && positionGrid[i][j - 1] == 3){
-                                                            intent.putExtra("hp", hero.getPointDeVie());
-                                                            intent.putExtra("Directions", Directions.gauche);
-                                                            activity.startActivity(intent);
-                                                            activity.finish();
-                                                        }
-                                                      
+
                                                         activeView.setX(activeView.getX() - (gridSize / gridSections) / 2);
                                                         if (activeView.getX() + activeView.getWidth() / 2 <= gridSize / gridSections * j -2) {
                                                             positionGrid[i][j] = 0;
@@ -156,9 +149,9 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                                             chest.setImageResource(R.drawable.open_chest);
                                                         }
                                                         else if(intent != null && positionGrid[i][j - 1] == 3){
-                                                            intent.putExtra("hp", hero.pointDeVie);
-                                                            intent.putExtra("Directions", Directions.gauche);
-                                                            intent.putExtra("asKey",hero.asKey);
+                                                            hero.setImageView(null);
+                                                            hero.setDirection(directions);
+                                                            intent.putExtra("personnage", hero);
                                                             activity.startActivity(intent);
                                                             activity.finish();
                                                         }
@@ -173,11 +166,13 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                     deplacement.schedule(task, 0, 100);
                     break;
                 case MotionEvent.ACTION_UP:
-                    activeView.setImageResource(R.drawable.personnage);
+                    activeView.setImageResource(hero.getIdle());
                     deplacement.cancel();
                     break;
             }
         }
+
+        // Déplacement vers le haut
         if(directions == Directions.haut){
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
@@ -198,19 +193,12 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                                     if (i - 1 >= 0 && positionGrid[i][j] == 2 && positionGrid[i - 1][j] != 1) {
                                                         activeView.setRotation(270);
                                                         if (utiliserPas1) {
-                                                            activeView.setImageResource(R.drawable.pas1);
+                                                            activeView.setImageResource(hero.getPas1());
                                                         } else {
-                                                            activeView.setImageResource(R.drawable.pas2);
+                                                            activeView.setImageResource(hero.getPas2());
                                                             compteur = 0;
                                                         }
                                                         utiliserPas1 = !utiliserPas1;
-
-                                                        if(intent != null && positionGrid[i - 1][j] == 4){
-                                                            intent.putExtra("hp", hero.getPointDeVie());
-                                                            intent.putExtra("Directions", Directions.bas);
-                                                            activity.startActivity(intent);
-                                                            activity.finish();
-                                                        }
 
                                                         activeView.setY(activeView.getY() - (gridSize / gridSections) / 2);
                                                         if (activeView.getY() + activeView.getHeight() / 2 <= gridSize / gridSections * i + gameGrid.getY()) {
@@ -226,9 +214,9 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                                             chest.setImageResource(R.drawable.open_chest);
                                                         }
                                                         else if(intent != null && positionGrid[i - 1][j] == 4){
-                                                            intent.putExtra("hp", hero.pointDeVie);
-                                                            intent.putExtra("Directions", Directions.bas);
-                                                            intent.putExtra("asKey",hero.asKey);
+                                                            hero.setImageView(null);
+                                                            hero.setDirection(Directions.bas);
+                                                            intent.putExtra("personnage", hero);
                                                             activity.startActivity(intent);
                                                             activity.finish();
                                                         }
@@ -245,11 +233,13 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                     deplacement.schedule(task, 0, 100);
                     break;
                 case MotionEvent.ACTION_UP:
-                    activeView.setImageResource(R.drawable.personnage);
+                    activeView.setImageResource(hero.getIdle());
                     deplacement.cancel();
                     break;
             }
         }
+
+        // Déplacement vers le bas
         if(directions == Directions.bas) {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
@@ -271,19 +261,12 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                                     if (i + 1 < positionGrid.length && positionGrid[i][j] == 2 && positionGrid[i + 1][j] != 1) {
                                                         activeView.setRotation(90);
                                                         if (utiliserPas1) {
-                                                            activeView.setImageResource(R.drawable.pas1);
+                                                            activeView.setImageResource(hero.getPas1());
                                                         } else {
-                                                            activeView.setImageResource(R.drawable.pas2);
+                                                            activeView.setImageResource(hero.getPas2());
                                                             compteur = 0;
                                                         }
                                                         utiliserPas1 = !utiliserPas1;
-
-                                                        if(intent != null && positionGrid[i + 1][j] == 6){
-                                                            intent.putExtra("hp", hero.getPointDeVie());
-                                                            intent.putExtra("Directions", Directions.haut);
-                                                            activity.startActivity(intent);
-                                                            activity.finish();
-                                                        }
 
                                                         activeView.setY(activeView.getY() + (gridSize / gridSections) / 2);
                                                         if (activeView.getY() + activeView.getHeight() >= gridSize / gridSections * (i + 2) + gameGrid.getY()) {
@@ -299,9 +282,9 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                                             chest.setImageResource(R.drawable.open_chest);
                                                         }
                                                         else if(intent != null && positionGrid[i + 1][j] == 6){
-                                                            intent.putExtra("hp", hero.pointDeVie);
-                                                            intent.putExtra("Directions", Directions.haut);
-                                                            intent.putExtra("asKey",hero.asKey);
+                                                            hero.setImageView(null);
+                                                            hero.setDirection(Directions.haut);
+                                                            intent.putExtra("personnage", hero);
                                                             activity.startActivity(intent);
                                                             activity.finish();
                                                         }
@@ -317,7 +300,7 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                     deplacement.schedule(task, 0, 100);
                     break;
                 case MotionEvent.ACTION_UP:
-                    activeView.setImageResource(R.drawable.personnage);
+                    activeView.setImageResource(hero.getIdle());
                     deplacement.cancel();
                     break;
             }
@@ -325,6 +308,7 @@ public class GenericOnTouchListener implements View.OnTouchListener {
         return true;
     }
 }
+
 
 
 
