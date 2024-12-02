@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView30"
+            android:id="@+id/murBas"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_gravity="center"
@@ -44,7 +44,7 @@
             app:srcCompat="@drawable/mur" />
 
         <ImageView
-            android:id="@+id/imageView29"
+            android:id="@+id/murHautStartingRoom"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center"
@@ -68,7 +68,7 @@
             app:srcCompat="@drawable/mur" />
 
         <ImageView
-            android:id="@+id/imageView31"
+            android:id="@+id/murDroite"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_gravity="center"
@@ -81,7 +81,7 @@
             app:srcCompat="@drawable/mur" />
 
         <ImageView
-            android:id="@+id/imageView32"
+            android:id="@+id/murDroite"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_gravity="center"

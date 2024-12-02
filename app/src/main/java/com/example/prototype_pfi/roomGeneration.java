@@ -56,7 +56,7 @@ public class roomGeneration {
         }
         switch (hero.currentDirection){
             case droite:
-                positionGrid[gridSections/2][2] = 2;
+                positionGrid[gridSections/2][1] = 2;
                 hero.activeView.setRotation(0);
                 hero.activeView.setX(hero.activeView.getX() - gridSize/2f);
                 break;
@@ -66,14 +66,14 @@ public class roomGeneration {
                 hero.activeView.setX(hero.activeView.getX() + gridSize/2f);
                 break;
             case haut:
-                positionGrid[2][gridSections/2] = 2;
-                hero.activeView.setRotation(90);
-                hero.activeView.setY(hero.activeView.getY() - gridSize/2f);
-                break;
-            case bas:
                 positionGrid[gridSections -2][gridSections/2] = 2;
                 hero.activeView.setRotation(270);
                 hero.activeView.setY(hero.activeView.getY() + gridSize/2f);
+                break;
+            case bas:
+                positionGrid[1][gridSections/2] = 2;
+                hero.activeView.setRotation(90);
+                hero.activeView.setY(hero.activeView.getY() - gridSize/2f);
                 break;
             case centre:
                 positionGrid[gridSections/2][gridSections/2] = 2;
