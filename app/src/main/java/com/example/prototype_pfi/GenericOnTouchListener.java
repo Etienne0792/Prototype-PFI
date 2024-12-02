@@ -87,6 +87,7 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                                             chest.setImageResource(R.drawable.open_chest);
                                                         }
                                                         else if(intent != null && positionGrid[i][j+1] == 5){
+
                                                             hero.setImageView(null);
                                                             hero.setDirection(directions);
                                                             intent.putExtra("personnage", hero);
@@ -149,9 +150,11 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                                             chest.setImageResource(R.drawable.open_chest);
                                                         }
                                                         else if(intent != null && positionGrid[i][j - 1] == 3){
+
                                                             hero.setImageView(null);
                                                             hero.setDirection(directions);
                                                             intent.putExtra("personnage", hero);
+
                                                             activity.startActivity(intent);
                                                             activity.finish();
                                                         }
@@ -214,9 +217,11 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                                             chest.setImageResource(R.drawable.open_chest);
                                                         }
                                                         else if(intent != null && positionGrid[i - 1][j] == 4){
+
                                                             hero.setImageView(null);
                                                             hero.setDirection(Directions.bas);
                                                             intent.putExtra("personnage", hero);
+
                                                             activity.startActivity(intent);
                                                             activity.finish();
                                                         }
@@ -282,9 +287,11 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                                             chest.setImageResource(R.drawable.open_chest);
                                                         }
                                                         else if(intent != null && positionGrid[i + 1][j] == 6){
+
                                                             hero.setImageView(null);
                                                             hero.setDirection(Directions.haut);
                                                             intent.putExtra("personnage", hero);
+
                                                             activity.startActivity(intent);
                                                             activity.finish();
                                                         }
