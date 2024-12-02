@@ -19,7 +19,6 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
     private boolean pBleu = false;
     private boolean pSmile = false;
-
     private ImageView coeur;
     private Bitmap bitmap;
     private int partiUtilise = 0;  // De 0 à 8 pour les 9 parties
@@ -46,12 +45,6 @@ public class MainActivity extends AppCompatActivity {
         coeur = findViewById(R.id.coeur);
         bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.coeur);
         handler.post(animationCoeur);
-
-
-
-
-
-
 
         // changer d'émotion
         ImageView player = findViewById(R.id.player);
@@ -102,11 +95,13 @@ public class MainActivity extends AppCompatActivity {
         EditText pseudo = findViewById(R.id.Pseudo);
         Button start = findViewById(R.id.start);
 
-        //Lancement des rooms
+        //Commencement du jeu
         start.setOnClickListener(view -> {
             String pseudoText = pseudo.getText().toString().trim();
             if (!pseudoText.isEmpty()) {
                 Intent intent = new Intent(MainActivity.this, startingRoom.class);
+                intent.putExtra("pseudo", pseudoText);
+                intent.putExtra("couleurPerso", pBleu);
                 startActivity(intent);
                 finish();
             } else {

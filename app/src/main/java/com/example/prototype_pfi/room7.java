@@ -20,11 +20,10 @@ public class room7 extends AppCompatActivity {
     final int GRID_SECTIONS = 11;
 
     ConstraintLayout gameGrid;
-    Drawable idle;
-    Drawable pas1;
-    Drawable pas2;
     Personnages hero;
     ImageView activeView;
+    Monstre monstre;
+    Drawable[] tabMonstre = new Drawable[3];
     Button right;
     Button down;
     Button up;
@@ -32,7 +31,6 @@ public class room7 extends AppCompatActivity {
     int[][] positionGrid;
     int gridSize;
     roomGeneration generation;
-    boolean asKey;
 
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -45,17 +43,27 @@ public class room7 extends AppCompatActivity {
         float density = getResources().getDisplayMetrics().density;
         gridSize = (int) (GRID_SIZE * density + 0.5f);
 
-        int hp = getIntent().getIntExtra("hp",10);
-        Serializable directions = Objects.requireNonNull(getIntent().getExtras()).getSerializable("Directions");
-        asKey = getIntent().getBooleanExtra("asKey",false);
-
-        gameGrid = findViewById(R.id.gameGrid);
-        idle = getDrawable(R.drawable.personnage);
-        pas1 = getDrawable(R.drawable.pas1);
-        pas2 = getDrawable(R.drawable.pas2);
+        // Dessin hero
+        hero = (Personnages) getIntent().getSerializableExtra("personnage");
         activeView = findViewById(R.id.heroRoom7);
+        hero.setImageView(activeView);
+        activeView.setImageResource(hero.getIdle());
+        gameGrid = findViewById(R.id.gameGrid);
 
-        hero = new Personnages(idle, pas1, pas2, activeView, hp, (Directions) directions,asKey);
+        // dessin monstre
+        tabMonstre[0] = getDrawable(R.drawable.monstre);
+        tabMonstre[1] = getDrawable(R.drawable.monstrepas1);
+        tabMonstre[2] = getDrawable(R.drawable.monstrepas2);
+        ImageView monstre_img = findViewById(R.id.monstreRoom7);
+        monstre = new Monstre(tabMonstre, monstre_img);
+        if (hero.asKey){
+            tabMonstre[0] = getDrawable(R.drawable.monstreattaquer);
+            tabMonstre[1] = getDrawable(R.drawable.monstrepas1attaquer);
+            tabMonstre[2] = getDrawable(R.drawable.monstrepas2attaquer);
+            monstre.setImage(tabMonstre);
+            monstre.setAttaque(2);
+        }
+
     }
 
 
