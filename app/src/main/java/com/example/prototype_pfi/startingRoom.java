@@ -2,20 +2,17 @@ package com.example.prototype_pfi;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 public class startingRoom extends AppCompatActivity {
 
@@ -23,10 +20,10 @@ public class startingRoom extends AppCompatActivity {
     final int GRID_SECTIONS = 11;
 
     ConstraintLayout gameGrid;
-    Button right;
-    Button down;
-    Button up;
-    Button left;
+    ImageButton right;
+    ImageButton down;
+    ImageButton up;
+    ImageButton left;
     int[] perso = new int[3];
     ImageView activeView;
     Personnages hero;
@@ -117,10 +114,10 @@ public class startingRoom extends AppCompatActivity {
             positionGrid[GRID_SECTIONS / 2 + 1][0] = 3;
         }
 
-        right = findViewById(R.id.right);
-        left = findViewById(R.id.left);
-        up = findViewById(R.id.up);
-        down = findViewById(R.id.down);
+        right = findViewById(R.id.right2);
+        left = findViewById(R.id.left2);
+        up = findViewById(R.id.up2);
+        down = findViewById(R.id.down2);
 
         right.setOnTouchListener(new GenericOnTouchListener(Directions.droite,this,positionGrid,hero, gridSize, GRID_SECTIONS, gameGrid, new Intent(startingRoom.this, room4.class)));
         left.setOnTouchListener(new GenericOnTouchListener(Directions.gauche,this,positionGrid,hero, gridSize, GRID_SECTIONS, gameGrid, new Intent(startingRoom.this, victoire.class)));
