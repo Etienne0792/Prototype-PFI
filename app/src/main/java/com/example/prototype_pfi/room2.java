@@ -57,7 +57,7 @@ public class room2 extends AppCompatActivity {
         tabMonstre[1] = getDrawable(R.drawable.monstrepas1);
         tabMonstre[2] = getDrawable(R.drawable.monstrepas2);
         ImageView monstre_img = findViewById(R.id.monstreRoom2);
-        monstre = new Monstre(tabMonstre, monstre_img);
+        monstre = new Monstre(tabMonstre, monstre_img,gameGrid, GRID_SECTIONS, gridSize);
         if (hero.asKey){
             tabMonstre[0] = getDrawable(R.drawable.monstreattaquer);
             tabMonstre[1] = getDrawable(R.drawable.monstrepas1attaquer);
@@ -73,6 +73,8 @@ public class room2 extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        monstre.Deplacement(hero,this).start();
 
         Directions[] sorties = new Directions[]
                 {

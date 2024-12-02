@@ -61,8 +61,8 @@ public class room3 extends AppCompatActivity {
         tabMonstre[2] = getDrawable(R.drawable.monstrepas2);
         ImageView monstre_img = findViewById(R.id.monstreRoom3);
         ImageView monstre_img2 = findViewById(R.id.monstreRoom3_2);
-        monstre1 = new Monstre(tabMonstre, monstre_img);
-        monstre2 = new Monstre(tabMonstre, monstre_img2);
+        monstre1 = new Monstre(tabMonstre, monstre_img,gameGrid, GRID_SECTIONS,gridSize);
+        monstre2 = new Monstre(tabMonstre, monstre_img2,gameGrid,GRID_SECTIONS,gridSize);
         if (hero.asKey){
             tabMonstre[0] = getDrawable(R.drawable.monstreattaquer);
             tabMonstre[1] = getDrawable(R.drawable.monstrepas1attaquer);
@@ -80,6 +80,9 @@ public class room3 extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        monstre1.Deplacement(hero,this).start();
+        monstre2.Deplacement(hero,this).start();
 
         Directions[] sorties = new Directions[]
                 {
