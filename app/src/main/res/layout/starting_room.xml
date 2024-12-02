@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView30"
+            android:id="@+id/murBas"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center"
@@ -30,7 +30,7 @@
             app:srcCompat="@drawable/mur" />
 
         <ImageView
-            android:id="@+id/imageView29"
+            android:id="@+id/murHautStartingRoom"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center"
@@ -42,7 +42,7 @@
             app:srcCompat="@drawable/mur" />
 
         <ImageView
-            android:id="@+id/imageView31"
+            android:id="@+id/murDroite"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_gravity="center"
@@ -55,7 +55,20 @@
             app:srcCompat="@drawable/mur" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/murDroite2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.35"
+            app:layout_constraintWidth_percent="0.0909"
+            app:srcCompat="@drawable/mur" />
+
+        <ImageView
+            android:id="@+id/murGauche"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_gravity="center"
@@ -89,20 +102,7 @@
             android:scaleType="fitXY"
             app:layout_constraintBottom_toTopOf="@+id/imageView7"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
-            app:layout_constraintWidth_percent="0.0909"
-            app:srcCompat="@drawable/mur" />
-
-        <ImageView
-            android:id="@+id/imageView32"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:scaleType="fitXY"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.35"
+            app:layout_constraintTop_toBottomOf="@+id/murGauche"
             app:layout_constraintWidth_percent="0.0909"
             app:srcCompat="@drawable/mur" />
 
@@ -110,13 +110,28 @@
             android:id="@+id/startMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:text="Trouvé la clé pour vous échapper !"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toStartOf="@+id/imageView31"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/imageView29" />
+            app:layout_constraintEnd_toStartOf="@+id/murDroite"
+            app:layout_constraintStart_toEndOf="@+id/murGauche"
+            app:layout_constraintTop_toBottomOf="@+id/murHautStartingRoom" />
+
+        <ImageView
+            android:id="@+id/sortieDroite"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/vide" />
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/vide"
+            tools:layout_editor_absoluteX="63dp"
+            tools:layout_editor_absoluteY="142dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
