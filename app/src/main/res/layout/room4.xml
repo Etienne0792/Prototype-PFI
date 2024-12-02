@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView30"
+            android:id="@+id/murBas"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_gravity="center"
@@ -45,7 +45,7 @@
             app:srcCompat="@drawable/mur" />
 
         <ImageView
-            android:id="@+id/imageView29"
+            android:id="@+id/murHautStartingRoom"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_gravity="center"
@@ -97,7 +97,7 @@
             app:srcCompat="@drawable/mur" />
 
         <ImageView
-            android:id="@+id/imageView31"
+            android:id="@+id/murDroite"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_gravity="center"
@@ -121,6 +121,32 @@
             app:layout_constraintHeight_percent="0.35"
             app:layout_constraintWidth_percent="0.0909"
             app:srcCompat="@drawable/mur" />
+
+        <ImageView
+            android:id="@+id/monstreRoom4"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="50dp"
+            android:rotation="180"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.841"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.14"
+            app:srcCompat="@drawable/monstre" />
+
+        <ImageView
+            android:id="@+id/sortieGauche"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/imageView2"
+            app:layout_constraintEnd_toEndOf="@+id/imageView28"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView28"
+            app:srcCompat="@drawable/vide" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,6 +1,7 @@
 package com.example.prototype_pfi;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -31,6 +32,9 @@ public class room4 extends AppCompatActivity {
     int gridSize;
     roomGeneration generation;
     boolean asKey;
+    Drawable[] tabMonstre = new Drawable[3];
+    Monstre monstre;
+    Thread Monstres;
 
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -51,6 +55,19 @@ public class room4 extends AppCompatActivity {
 
         gameGrid = findViewById(R.id.gameGrid);
 
+        // dessin monstre
+        tabMonstre[0] = getDrawable(R.drawable.monstre);
+        tabMonstre[1] = getDrawable(R.drawable.monstrepas1);
+        tabMonstre[2] = getDrawable(R.drawable.monstrepas2);
+        ImageView monstre_img = findViewById(R.id.monstreRoom4);
+        monstre = new Monstre(tabMonstre, monstre_img, gameGrid, GRID_SECTIONS,gridSize);
+        if (hero.asKey){
+            tabMonstre[0] = getDrawable(R.drawable.monstreattaquer);
+            tabMonstre[1] = getDrawable(R.drawable.monstrepas1attaquer);
+            tabMonstre[2] = getDrawable(R.drawable.monstrepas2attaquer);
+            monstre.setImage(tabMonstre);
+            monstre.setAttaque(2);
+        }
 
     }
 
@@ -59,6 +76,8 @@ public class room4 extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+       monstre.Deplacement(hero,this).start();
 
         Directions[] sorties = new Directions[]
                 {
@@ -81,4 +100,5 @@ public class room4 extends AppCompatActivity {
         up.setOnTouchListener(new GenericOnTouchListener(Directions.haut,this,positionGrid,hero, gridSize, GRID_SECTIONS,gameGrid,new Intent(room4.this, room1.class)));
         down.setOnTouchListener(new GenericOnTouchListener(Directions.bas,this,positionGrid,hero, gridSize, GRID_SECTIONS,gameGrid,new Intent(room4.this, room7.class)));
     }
+
 }

@@ -65,7 +65,7 @@
             app:srcCompat="@drawable/mur" />
 
         <ImageView
-            android:id="@+id/imageView29"
+            android:id="@+id/murHautStartingRoom"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_gravity="center"
@@ -117,7 +117,7 @@
             app:srcCompat="@drawable/mur" />
 
         <ImageView
-            android:id="@+id/imageView31"
+            android:id="@+id/murDroite"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_gravity="center"
@@ -149,9 +149,10 @@
             android:rotation="-90"
             app:layout_constraintBottom_toBottomOf="@+id/gameGrid"
             app:layout_constraintEnd_toEndOf="@+id/gameGrid"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="@+id/gameGrid"
             app:layout_constraintTop_toTopOf="@+id/gameGrid"
-            app:layout_constraintVertical_bias="0.77"
+            app:layout_constraintVertical_bias="0.749"
             app:srcCompat="@drawable/monstre" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
