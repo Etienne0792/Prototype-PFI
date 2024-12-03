@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import android.widget.Button;
@@ -35,7 +36,7 @@ public class room4 extends AppCompatActivity {
     boolean asKey;
     Drawable[] tabMonstre = new Drawable[3];
     Monstre monstre;
-    Thread Monstres;
+    MediaPlayer piece4Player;
 
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -45,6 +46,8 @@ public class room4 extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.room4);
 
+        piece4Player = MediaPlayer.create(this, R.raw.mega_enemy);
+
         float density = getResources().getDisplayMetrics().density;
         gridSize = (int) (GRID_SIZE * density + 0.5f);
 
@@ -52,7 +55,6 @@ public class room4 extends AppCompatActivity {
         activeView = findViewById(R.id.heroRoom4);
         activeView.setImageResource(hero.getIdle());
         hero.setImageView(activeView);
-
 
         gameGrid = findViewById(R.id.gameGrid);
 
@@ -77,6 +79,8 @@ public class room4 extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        piece4Player.setLooping(true);
+        piece4Player.start();
 
        monstre.Deplacement(hero,this).start();
 
@@ -101,5 +105,14 @@ public class room4 extends AppCompatActivity {
         up.setOnTouchListener(new GenericOnTouchListener(Directions.haut,this,positionGrid,hero, gridSize, GRID_SECTIONS,gameGrid,new Intent(room4.this, room1.class)));
         down.setOnTouchListener(new GenericOnTouchListener(Directions.bas,this,positionGrid,hero, gridSize, GRID_SECTIONS,gameGrid,new Intent(room4.this, room7.class)));
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (piece4Player != null) {
+            piece4Player.release();
+            piece4Player = null;
+        }
+    };
 
 }

@@ -3,6 +3,7 @@ package com.example.prototype_pfi;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -35,6 +36,7 @@ public class room3 extends AppCompatActivity {
     int[][] positionGrid;
     int gridSize;
     roomGeneration generation;
+    MediaPlayer piece4Player;
 
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -43,6 +45,8 @@ public class room3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.room3);
+
+        piece4Player = MediaPlayer.create(this, R.raw.mega_enemy);
 
         float density = getResources().getDisplayMetrics().density;
         gridSize = (int) (GRID_SIZE * density + 0.5f);
@@ -81,6 +85,8 @@ public class room3 extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        piece4Player.setLooping(true);
+        piece4Player.start();
 
         monstre1.Deplacement(hero,this).start();
         monstre2.Deplacement(hero,this).start();
@@ -105,6 +111,15 @@ public class room3 extends AppCompatActivity {
         up.setOnTouchListener(new GenericOnTouchListener(Directions.haut,this,positionGrid,hero, gridSize, GRID_SECTIONS,gameGrid,null));
         down.setOnTouchListener(new GenericOnTouchListener(Directions.bas,this,positionGrid,hero, gridSize, GRID_SECTIONS,gameGrid,new Intent(room3.this, room6.class)));
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (piece4Player != null) {
+            piece4Player.release();
+            piece4Player = null;
+        }
+    };
 
 
 }
