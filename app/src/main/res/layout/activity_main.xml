@@ -37,7 +37,7 @@
             android:id="@+id/player"
             android:layout_width="143dp"
             android:layout_height="454dp"
-            app:srcCompat="@drawable/perso1_1" />
+            app:srcCompat="@drawable/perso2_1" />
     </FrameLayout>
 
     <Button
@@ -99,22 +99,41 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3" />
 
+    <TextView
+        android:id="@+id/vie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:shadowColor="#121212"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:shadowRadius="5"
+        android:text="15"
+        android:textColor="#B6B6B6"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.58"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout"
+        app:layout_constraintVertical_bias="0.7" />
+
     <FrameLayout
         android:id="@+id/coeur_grid"
         android:layout_width="50dp"
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.41"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/relativeLayout"
-        app:layout_constraintVertical_bias="0.84000003">
+        app:layout_constraintVertical_bias="0.82">
 
         <ImageView
             android:id="@+id/coeur"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/coeur" />
+
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

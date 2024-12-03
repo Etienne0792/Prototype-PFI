@@ -32,6 +32,7 @@
         <activity android:name=".room8"></activity>
         <activity android:name=".room9"></activity>
         <activity android:name=".victoire"></activity>
+        <activity android:name=".defaite"></activity>
 
     </application>
 

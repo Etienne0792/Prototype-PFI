@@ -1,6 +1,7 @@
 package com.example.prototype_pfi;
 
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public interface IPersonnage {
     static final int MIN_ATTAQUE = 1;
@@ -14,7 +15,12 @@ public interface IPersonnage {
     void setDefense(int defense);
     public ImageView getImageView();
     public void setImageView(ImageView activeView);
+    public void setImageView(int drawableId);
 
     public boolean mort();
-    public void attaquer(IPersonnage cible, ImageView cibleAttaquer);
+    public void attaquer(IPersonnage cible, TextView vieAffichage);
+
+    public int getIdle();
+    public int getIdleAtt();
+
 }

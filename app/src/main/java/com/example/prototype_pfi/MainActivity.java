@@ -18,7 +18,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
-    private boolean pBleu = false;
+    private boolean pBleu = true;
     private boolean pSmile = false;
     private ImageView coeur;
     private Bitmap bitmap;
@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, startingRoom.class);
                 intent.putExtra("pseudo", pseudoText);
                 intent.putExtra("couleurPerso", pBleu);
+                intent.putExtra("smilePerso", pSmile);
                 startActivity(intent);
                 finish();
             } else {

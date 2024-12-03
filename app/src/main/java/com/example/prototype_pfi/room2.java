@@ -2,20 +2,19 @@ package com.example.prototype_pfi;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-
+import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
-import java.io.Serializable;
-import java.sql.Array;
-import java.util.Objects;
 
 public class room2 extends AppCompatActivity {
 
@@ -26,7 +25,7 @@ public class room2 extends AppCompatActivity {
     ConstraintLayout gameGrid;
     Personnages hero;
     Monstre monstre;
-    Drawable[] tabMonstre = new Drawable[3];
+    Drawable[] tabMonstre = new Drawable[4];
     ImageView activeView;
     ImageButton right;
     ImageButton down;
@@ -35,7 +34,15 @@ public class room2 extends AppCompatActivity {
     int[][] positionGrid;
     int gridSize;
     roomGeneration generation;
+
+    private TextView vie;
+    private ImageView coeur;
+    private Bitmap bitmap;
+    private int partiUtilise = 0;  // De 0 à 8 pour les 9 parties
+    private Handler handler = new Handler();
+
     MediaPlayer piece4Player;
+
 
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -44,6 +51,8 @@ public class room2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.room2);
+        vie = findViewById(R.id.vie2);
+
 
         piece4Player = MediaPlayer.create(this, R.raw.mega_enemy);
 
@@ -52,15 +61,19 @@ public class room2 extends AppCompatActivity {
 
         // dessin hero
         hero = (Personnages) getIntent().getSerializableExtra("personnage");
+        vie.setText(String.valueOf(hero.getPointDeVie()));
         activeView = findViewById(R.id.heroRoom2);
         activeView.setImageResource(hero.getIdle());
         hero.setImageView(activeView);
         gameGrid = findViewById(R.id.gameGrid);
+        ImageView visage = findViewById(R.id.visage2);
+        visage.setImageResource(hero.getVisage());
 
         // dessin monstre
         tabMonstre[0] = getDrawable(R.drawable.monstre);
         tabMonstre[1] = getDrawable(R.drawable.monstrepas1);
         tabMonstre[2] = getDrawable(R.drawable.monstrepas2);
+        tabMonstre[3] = getDrawable(R.drawable.monstredegat);
         ImageView monstre_img = findViewById(R.id.monstreRoom2);
         monstre = new Monstre(tabMonstre, monstre_img,gameGrid, GRID_SECTIONS, gridSize);
         if (hero.asKey){
@@ -71,17 +84,22 @@ public class room2 extends AppCompatActivity {
             monstre.setAttaque(2);
         }
 
-    }
+        //Coeur "animation"
+        coeur = findViewById(R.id.coeur_2);
+        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.coeur);
+        handler.post(animationCoeur);
+    };
 
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onStart() {
         super.onStart();
+
+        monstre.Deplacement(hero,this,vie).start();
+
         piece4Player.setLooping(true);
         piece4Player.start();
-
-        monstre.Deplacement(hero,this).start();
 
         Directions[] sorties = new Directions[]
                 {
@@ -107,9 +125,35 @@ public class room2 extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        if (piece4Player != null) {
+
+        // Arrêter le coeur
+        handler.removeCallbacks(animationCoeur);
+      // Arrêter music
+      if (piece4Player != null) {
             piece4Player.release();
             piece4Player = null;
+    }
+
+    //Changer image coeur
+    private Runnable animationCoeur = new Runnable() {
+        @Override
+        public void run() {
+            int ran = partiUtilise / 3;
+            int col = partiUtilise % 3;
+
+            // Nécéssite l'utilisation d'un bitmap pour séparer l'image en 9 parties
+            int largeur = bitmap.getWidth() / 3;
+            int Hauteur = bitmap.getHeight() / 3;
+            Bitmap partBitmap = Bitmap.createBitmap(bitmap, col * largeur, ran * Hauteur, largeur, Hauteur);
+            coeur.setImageBitmap(partBitmap);
+            // Passer à la prochaine partie
+            partiUtilise++;
+            if (partiUtilise > 8) {
+                partiUtilise = 0;  // Recommencer à partir de la première partie
+            }
+
+            // Répéter la tâche toutes les 100 millisecondes
+            handler.postDelayed(this, 100);  // 100 ms entre chaque changement de partie
         }
     };
 }
