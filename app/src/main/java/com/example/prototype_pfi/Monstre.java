@@ -29,6 +29,7 @@ public class Monstre implements Serializable, IPersonnage {
         private int pointDeVie = 5;
         private int attaque = 1;
         private int defense = 0;
+        private int speed = 1;
 
         float gridSize;
         public ConstraintLayout gameGrid;
@@ -37,6 +38,9 @@ public class Monstre implements Serializable, IPersonnage {
         public Directions currentDirection;
 
         // Get & Set
+        public int getSpeed() { return pointDeVie; }
+        public void setSpeed(int speed) { this.speed = speed; }
+
         public int getPointDeVie() { return pointDeVie; }
         public void setPointDeVie(int pointDeVie) { this.pointDeVie = Math.max(pointDeVie, 0); }
 
@@ -59,7 +63,13 @@ public class Monstre implements Serializable, IPersonnage {
                 this.activeView = activeView;
         }
         public void setImageView(int drawableId){
-                activeView.setImageResource(drawableId);
+                try{
+                        activeView.setImageResource(drawableId);
+                }
+                catch(Exception e){
+                        e.printStackTrace();
+                }
+
         }
         public int getIdle(){ return R.drawable.monstre; }
         public int getIdleAtt(){ return R.drawable.monstredegat; }
@@ -108,13 +118,12 @@ public class Monstre implements Serializable, IPersonnage {
                                 boolean utiliserPas1 = true;
                                 @Override
                                 public void run() {
-                                        while (!hero.mort()) {
+                                        while (!Monstre.this.mort() && !hero.mort()) {
                                                 try {
                                                         if(hero.activeView != null){
                                                                 activity.runOnUiThread(new Runnable() {
                                                                         @Override
                                                                         public void run() {
-
                                                                                 if (utiliserPas1) {
                                                                                         activeView.setImageDrawable(monstrePas1);
                                                                                 }
@@ -125,16 +134,16 @@ public class Monstre implements Serializable, IPersonnage {
 
                                                                                 if (activeView.getX() > hero.activeView.getX() + (float) hero.activeView.getWidth() / 2) {
                                                                                         activeView.setRotation(180);
-                                                                                        activeView.setX(activeView.getX() - (gridSize / gridSection) / 3);
+                                                                                        activeView.setX(activeView.getX() - (gridSize / gridSection));
                                                                                 } else if (activeView.getX() < hero.activeView.getX() - (float) hero.activeView.getWidth() / 2) {
                                                                                         activeView.setRotation(0);
-                                                                                        activeView.setX(activeView.getX() + (gridSize / gridSection) / 3);
-                                                                                } else if (activeView.getY() > hero.activeView.getY() - gameGrid.getY() + (float) hero.activeView.getHeight() / 2) {
+                                                                                        activeView.setX(activeView.getX() + (gridSize / gridSection));
+                                                                                } else if (activeView.getY() > hero.activeView.getY() + (float) hero.activeView.getHeight() / 2) {
                                                                                         activeView.setRotation(270);
-                                                                                        activeView.setY(activeView.getY() - (gridSize / gridSection) / 3);
-                                                                                } else if (activeView.getY() < hero.activeView.getY() - gameGrid.getY() - (float) hero.activeView.getHeight() / 2) {
+                                                                                        activeView.setY( activeView.getY() - (gridSize / gridSection));
+                                                                                } else if (activeView.getY() < hero.activeView.getY() - (float) hero.activeView.getHeight() / 2) {
                                                                                         activeView.setRotation(90);
-                                                                                        activeView.setY(activeView.getY() + (gridSize / gridSection) / 3);
+                                                                                        activeView.setY(activeView.getY() + (gridSize / gridSection));
                                                                                 }
                                                                                 else{
                                                                                         activeView.setImageDrawable(idle);
@@ -143,22 +152,17 @@ public class Monstre implements Serializable, IPersonnage {
                                                                         }
                                                                 });
                                                         }
-                                                        Thread.sleep(250);
+                                                        Thread.sleep(350/speed);
                                                 } catch (Exception e) {
                                                         e.printStackTrace();
                                                 }
                                         }
-                                        if (hero.mort()){
+                                        if(hero.mort()){
                                                 Intent intent = new Intent(activity, Defaite.class);
-                                                intent.putExtra("pseudo", hero.getNom());
                                                 activity.startActivity(intent);
                                                 activity.finish();
                                         }
                                 }
                         });
                 }
-
-
-
-
 }

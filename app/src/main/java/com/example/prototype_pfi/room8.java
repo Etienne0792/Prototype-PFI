@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -25,10 +26,10 @@ public class room8 extends AppCompatActivity {
     ImageView activeView;
     Monstre monstre;
     Drawable[] tabMonstre = new Drawable[4];
-    Button right;
-    Button down;
-    Button up;
-    Button left;
+    ImageButton right;
+    ImageButton down;
+    ImageButton up;
+    ImageButton left;
     int[][] positionGrid;
     int gridSize;
     roomGeneration generation;
@@ -38,6 +39,10 @@ public class room8 extends AppCompatActivity {
     private int partiUtilise = 0;  // De 0 à 8 pour les 9 parties
     private Handler handler = new Handler();
     MediaPlayer piece4Player;
+
+    ImageButton attaque;
+    ImageView monstre_img;
+    Thread deplacementMonstre;
 
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -66,7 +71,7 @@ public class room8 extends AppCompatActivity {
         tabMonstre[1] = getDrawable(R.drawable.monstrepas1);
         tabMonstre[2] = getDrawable(R.drawable.monstrepas2);
         tabMonstre[3] = getDrawable(R.drawable.monstredegat);
-        ImageView monstre_img = findViewById(R.id.monstreRoom8);
+        monstre_img = findViewById(R.id.monstreRoom8);
         monstre = new Monstre(tabMonstre, monstre_img,gameGrid, GRID_SECTIONS,gridSize);
         if (hero.asKey){
             tabMonstre[0] = getDrawable(R.drawable.monstreattaquer);
@@ -74,6 +79,7 @@ public class room8 extends AppCompatActivity {
             tabMonstre[2] = getDrawable(R.drawable.monstrepas2attaquer);
             monstre.setImage(tabMonstre);
             monstre.setAttaque(2);
+            monstre.setSpeed(2);
         }
 
         //Coeur "animation"
@@ -89,7 +95,8 @@ public class room8 extends AppCompatActivity {
         piece4Player.setLooping(true);
         piece4Player.start();
 
-        monstre.Deplacement(hero,this, vie).start();
+        deplacementMonstre = monstre.Deplacement(hero,this, vie);
+        deplacementMonstre.start();
 
         Directions[] sorties = new Directions[]
                 {
@@ -100,6 +107,21 @@ public class room8 extends AppCompatActivity {
 
         generation = new roomGeneration(hero, sorties , GRID_SECTIONS, gridSize, gameGrid);
         positionGrid = generation.gridGeneration();
+
+        attaque = findViewById(R.id.attaqueRoom8);
+        attaque.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!monstre.mort()){
+                    hero.attaquer(monstre,vie);
+                }
+                else if(monstre.mort() && deplacementMonstre != null){
+                    deplacementMonstre.interrupt();
+                    deplacementMonstre = null;
+                    monstre_img.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
 
         right = findViewById(R.id.right9);
         left = findViewById(R.id.left9);

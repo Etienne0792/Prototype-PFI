@@ -10,9 +10,7 @@
         android:id="@+id/gameGrid"
         android:layout_width="385dp"
         android:layout_height="385dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginEnd="13dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="75dp"
         android:background="#7E7E7E"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -124,22 +122,6 @@
             app:srcCompat="@drawable/mur" />
 
         <ImageView
-            android:id="@+id/monstreRoom4"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="50dp"
-            android:rotation="180"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.841"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.14"
-            app:srcCompat="@drawable/monstre" />
-
-        <ImageView
             android:id="@+id/sortieGauche"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -166,7 +148,7 @@
         android:id="@+id/up2"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:background="#00FFFFFF"
         android:rotation="270"
         android:scaleType="fitCenter"
@@ -199,6 +181,7 @@
         app:layout_constraintTop_toBottomOf="@+id/up2"
         app:srcCompat="@drawable/arrow" />
 
+
     <ImageButton
         android:id="@+id/attaqueRoom4"
         android:layout_width="120dp"
@@ -212,18 +195,6 @@
         app:layout_constraintStart_toEndOf="@+id/right2"
         app:layout_constraintTop_toBottomOf="@+id/gameGrid"
         app:srcCompat="@drawable/attaque" />
-
-
-    <ImageView
-        android:id="@+id/heroRoom4"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/gameGrid"
-        app:layout_constraintEnd_toEndOf="@+id/gameGrid"
-        app:layout_constraintStart_toStartOf="@+id/gameGrid"
-        app:layout_constraintTop_toTopOf="@+id/gameGrid"
-        app:srcCompat="@drawable/personnage" />
 
     <ImageView
         android:id="@+id/coeur_4"
@@ -268,5 +239,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/visage" />
+
+    <ImageView
+        android:id="@+id/monstreRoom4"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:rotation="180"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/gameGrid"
+        app:layout_constraintEnd_toEndOf="@+id/gameGrid"
+        app:layout_constraintHorizontal_bias="0.76"
+        app:layout_constraintStart_toStartOf="@+id/gameGrid"
+        app:layout_constraintTop_toTopOf="@+id/gameGrid"
+        app:layout_constraintVertical_bias="0.19"
+        app:srcCompat="@drawable/monstre" />
+
+    <ImageView
+        android:id="@+id/heroRoom4"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/gameGrid"
+        app:layout_constraintEnd_toEndOf="@+id/gameGrid"
+        app:layout_constraintStart_toStartOf="@+id/gameGrid"
+        app:layout_constraintTop_toTopOf="@+id/gameGrid"
+        app:srcCompat="@drawable/personnage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,10 +7,10 @@
     android:background="#353535">
 
     <ImageButton
-        android:id="@+id/up10"
+        android:id="@+id/attaqueRoom10"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:background="#00FFFFFF"
         android:rotation="270"
         android:scaleType="fitCenter"
@@ -27,8 +27,8 @@
         android:background="#00FFFFFF"
         android:rotation="0"
         android:scaleType="fitCenter"
-        app:layout_constraintStart_toEndOf="@+id/up10"
-        app:layout_constraintTop_toBottomOf="@+id/up10"
+        app:layout_constraintStart_toEndOf="@+id/attaqueRoom10"
+        app:layout_constraintTop_toBottomOf="@+id/attaqueRoom10"
         app:srcCompat="@drawable/arrow" />
 
     <ImageButton
@@ -38,8 +38,8 @@
         android:background="#00FFFFFF"
         android:rotation="180"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toStartOf="@+id/up10"
-        app:layout_constraintTop_toBottomOf="@+id/up10"
+        app:layout_constraintEnd_toStartOf="@+id/attaqueRoom10"
+        app:layout_constraintTop_toBottomOf="@+id/attaqueRoom10"
         app:srcCompat="@drawable/arrow" />
 
     <ImageButton
@@ -72,7 +72,7 @@
         android:id="@+id/gameGrid"
         android:layout_width="385dp"
         android:layout_height="385dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="75dp"
         android:background="#7E7E7E"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -170,17 +170,6 @@
         app:layout_constraintTop_toTopOf="@+id/gameGrid"
         app:srcCompat="@drawable/chest" />
 
-    <ImageView
-        android:id="@+id/heroRoom9"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/gameGrid"
-        app:layout_constraintEnd_toEndOf="@+id/gameGrid"
-        app:layout_constraintStart_toStartOf="@+id/gameGrid"
-        app:layout_constraintTop_toTopOf="@+id/gameGrid"
-        app:srcCompat="@drawable/personnage" />
-
     <TextView
         android:id="@+id/startMessage"
         android:layout_width="wrap_content"
@@ -235,5 +224,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/visage" />
+
+    <ImageView
+        android:id="@+id/heroRoom9"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/gameGrid"
+        app:layout_constraintEnd_toEndOf="@+id/gameGrid"
+        app:layout_constraintStart_toStartOf="@+id/gameGrid"
+        app:layout_constraintTop_toTopOf="@+id/gameGrid"
+        app:srcCompat="@drawable/personnage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

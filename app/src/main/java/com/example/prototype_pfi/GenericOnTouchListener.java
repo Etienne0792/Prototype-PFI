@@ -62,35 +62,40 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                             for (int i = 0; i < positionGrid.length; i++) {
                                                 for (int j = 0; j < positionGrid.length; j++) {
                                                     if (j + 1 < positionGrid.length && positionGrid[i][j] == 2 && positionGrid[i][j + 1] != 1) {
-                                                        activeView.setRotation(0);
-                                                        if (utiliserPas1) {
-                                                            activeView.setImageResource(hero.getPas1());
-                                                        }
-                                                        else {
-                                                            activeView.setImageResource(hero.getPas2());
-                                                        }
-                                                        utiliserPas1 = !utiliserPas1;
+                                                        try{
+                                                            activeView.setRotation(0);
+                                                            if (utiliserPas1) {
+                                                                activeView.setImageResource(hero.getPas1());
+                                                            }
+                                                            else {
+                                                                activeView.setImageResource(hero.getPas2());
+                                                            }
+                                                            utiliserPas1 = !utiliserPas1;
 
 
-                                                        activeView.setX(activeView.getX() + (gridSize / gridSections) / 2);
-                                                        if (activeView.getX() + activeView.getWidth() >= gridSize / gridSections * (j + 2)) {
-                                                            positionGrid[i][j] = 0;
-                                                            positionGrid[i][j + 1] = 2;
-                                                        }
+                                                            activeView.setX(activeView.getX() + (gridSize / gridSections) / 2);
+                                                            if (activeView.getX() + activeView.getWidth() >= gridSize / gridSections * (j + 2)) {
+                                                                positionGrid[i][j] = 0;
+                                                                positionGrid[i][j + 1] = 2;
+                                                            }
 
-                                                        if(activity.getClass() == room9.class && positionGrid[i][j +1] == 7){
-                                                            hero.asKey = true;
-                                                            TextView keyFound = activity.findViewById(R.id.startMessage);
-                                                            keyFound.setText("Vous avez trouvé la clé !\n"+ "Retourner a votre point de départ\n"+"pour vous échapé.");
-                                                            ImageView chest = activity.findViewById(R.id.chest);
-                                                            chest.setImageResource(R.drawable.open_chest);
+                                                            if(activity.getClass() == room9.class && positionGrid[i][j +1] == 7){
+                                                                hero.asKey = true;
+                                                                TextView keyFound = activity.findViewById(R.id.startMessage);
+                                                                keyFound.setText("Vous avez trouvé la clé !\n"+ "Retourner a votre point de départ\n"+"pour vous échapé.");
+                                                                ImageView chest = activity.findViewById(R.id.chest);
+                                                                chest.setImageResource(R.drawable.open_chest);
+                                                            }
+                                                            else if(hero.activeView.getX() > gameGrid.getX() + gameGrid.getWidth() - hero.activeView.getWidth()){
+                                                                hero.setImageView(null);
+                                                                hero.setDirection(directions);
+                                                                intent.putExtra("personnage", hero);
+                                                                activity.startActivity(intent);
+                                                                activity.finish();
+                                                            }
                                                         }
-                                                        else if(hero.activeView.getX() > gameGrid.getX() + gameGrid.getWidth() - hero.activeView.getWidth()){
-                                                            hero.setImageView(null);
-                                                            hero.setDirection(directions);
-                                                            intent.putExtra("personnage", hero);
-                                                            activity.startActivity(intent);
-                                                            activity.finish();
+                                                        catch(Exception e){
+                                                            e.printStackTrace();
                                                         }
                                                         return;
                                                     }
@@ -126,35 +131,39 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                             for (int i = 0; i < positionGrid.length; i++) {
                                                 for (int j = 0; j < positionGrid.length; j++) {
                                                     if (j - 1 >= 0 && positionGrid[i][j] == 2 && positionGrid[i][j - 1] != 1) {
-                                                        activeView.setRotation(180);
-                                                        if (utiliserPas1) {
-                                                            activeView.setImageResource(hero.getPas1());
-                                                        } else {
-                                                            activeView.setImageResource(hero.getPas2());
-                                                        }
-                                                        utiliserPas1 = !utiliserPas1;
+                                                        try{
+                                                            activeView.setRotation(180);
+                                                            if (utiliserPas1) {
+                                                                activeView.setImageResource(hero.getPas1());
+                                                            } else {
+                                                                activeView.setImageResource(hero.getPas2());
+                                                            }
+                                                            utiliserPas1 = !utiliserPas1;
 
-                                                        activeView.setX(activeView.getX() - (gridSize / gridSections) / 2);
-                                                        if (activeView.getX() + activeView.getWidth() / 2 <= gridSize / gridSections * j -2) {
-                                                            positionGrid[i][j] = 0;
-                                                            positionGrid[i][j - 1] = 2;
-                                                        }
+                                                            activeView.setX(activeView.getX() - (gridSize / gridSections) / 2);
+                                                            if (activeView.getX() + activeView.getWidth() / 2 <= gridSize / gridSections * j -2) {
+                                                                positionGrid[i][j] = 0;
+                                                                positionGrid[i][j - 1] = 2;
+                                                            }
 
-                                                        if(positionGrid[i][j - 1] == 7){
-                                                            hero.asKey = true;
-                                                            TextView keyFound = activity.findViewById(R.id.startMessage);
-                                                            keyFound.setText("Vous avez trouvé la clé !\n"+ "Retourner a votre point de départ\n"+"pour vous échapé.");
-                                                            ImageView chest = activity.findViewById(R.id.chest);
-                                                            chest.setImageResource(R.drawable.open_chest);
+                                                            if(positionGrid[i][j - 1] == 7){
+                                                                hero.asKey = true;
+                                                                TextView keyFound = activity.findViewById(R.id.startMessage);
+                                                                keyFound.setText("Vous avez trouvé la clé !\n"+ "Retourner a votre point de départ\n"+"pour vous échapé.");
+                                                                ImageView chest = activity.findViewById(R.id.chest);
+                                                                chest.setImageResource(R.drawable.open_chest);
+                                                            }
+                                                            else if(hero.activeView.getX() < gameGrid.getX()){
+                                                                hero.setImageView(null);
+                                                                hero.setDirection(directions);
+                                                                intent.putExtra("personnage", hero);
+                                                                activity.startActivity(intent);
+                                                                activity.finish();
+                                                            }
                                                         }
-                                                        else if(hero.activeView.getX() < gameGrid.getX()){
-                                                            hero.setImageView(null);
-                                                            hero.setDirection(directions);
-                                                            intent.putExtra("personnage", hero);
-                                                            activity.startActivity(intent);
-                                                            activity.finish();
+                                                        catch(Exception e){
+                                                            e.printStackTrace();
                                                         }
-
                                                         return;
                                                     }
                                                 }
@@ -191,34 +200,39 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                             for (int i = 0; i < positionGrid.length; i++) {
                                                 for (int j = 0; j < positionGrid.length; j++) {
                                                     if (i - 1 >= 0 && positionGrid[i][j] == 2 && positionGrid[i - 1][j] != 1) {
-                                                        activeView.setRotation(270);
-                                                        if (utiliserPas1) {
-                                                            activeView.setImageResource(hero.getPas1());
-                                                        } else {
-                                                            activeView.setImageResource(hero.getPas2());
-                                                            compteur = 0;
-                                                        }
-                                                        utiliserPas1 = !utiliserPas1;
+                                                        try{
+                                                            activeView.setRotation(270);
+                                                            if (utiliserPas1) {
+                                                                activeView.setImageResource(hero.getPas1());
+                                                            } else {
+                                                                activeView.setImageResource(hero.getPas2());
+                                                                compteur = 0;
+                                                            }
+                                                            utiliserPas1 = !utiliserPas1;
 
-                                                        activeView.setY(activeView.getY() - (gridSize / gridSections) / 2);
-                                                        if (activeView.getY() + activeView.getHeight() / 2 <= gridSize / gridSections * i + gameGrid.getY()) {
-                                                            positionGrid[i][j] = 0;
-                                                            positionGrid[i - 1][j] = 2;
-                                                        }
+                                                            activeView.setY(activeView.getY() - (gridSize / gridSections) / 2);
+                                                            if (activeView.getY() + activeView.getHeight() <= gridSize / gridSections * i + gameGrid.getY()) {
+                                                                positionGrid[i][j] = 0;
+                                                                positionGrid[i - 1][j] = 2;
+                                                            }
 
-                                                        if(positionGrid[i - 1][j] == 7){
-                                                            hero.asKey = true;
-                                                            TextView keyFound = activity.findViewById(R.id.startMessage);
-                                                            keyFound.setText("Vous avez trouvé la clé !\n"+ "Retourner a votre point de départ\n"+"pour vous échapé.");
-                                                            ImageView chest = activity.findViewById(R.id.chest);
-                                                            chest.setImageResource(R.drawable.open_chest);
+                                                            if(positionGrid[i - 1][j] == 7){
+                                                                hero.asKey = true;
+                                                                TextView keyFound = activity.findViewById(R.id.startMessage);
+                                                                keyFound.setText("Vous avez trouvé la clé !\n"+ "Retourner a votre point de départ\n"+"pour vous échapé.");
+                                                                ImageView chest = activity.findViewById(R.id.chest);
+                                                                chest.setImageResource(R.drawable.open_chest);
+                                                            }
+                                                            else if(hero.activeView.getY() < gameGrid.getY()){
+                                                                hero.setImageView(null);
+                                                                hero.setDirection(directions);
+                                                                intent.putExtra("personnage", hero);
+                                                                activity.startActivity(intent);
+                                                                activity.finish();
+                                                            }
                                                         }
-                                                        else if(hero.activeView.getY() < gameGrid.getY()){
-                                                            hero.setImageView(null);
-                                                            hero.setDirection(directions);
-                                                            intent.putExtra("personnage", hero);
-                                                            activity.startActivity(intent);
-                                                            activity.finish();
+                                                        catch(Exception e){
+                                                            e.printStackTrace();
                                                         }
                                                         return;
                                                     }
@@ -259,35 +273,41 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                             for (int i = 0; i < positionGrid.length; i++) {
                                                 for (int j = 0; j < positionGrid.length; j++) {
                                                     if (i + 1 < positionGrid.length && positionGrid[i][j] == 2 && positionGrid[i + 1][j] != 1) {
-                                                        activeView.setRotation(90);
-                                                        if (utiliserPas1) {
-                                                            activeView.setImageResource(hero.getPas1());
-                                                        } else {
-                                                            activeView.setImageResource(hero.getPas2());
-                                                            compteur = 0;
-                                                        }
-                                                        utiliserPas1 = !utiliserPas1;
+                                                        try{
+                                                            activeView.setRotation(90);
+                                                            if (utiliserPas1) {
+                                                                activeView.setImageResource(hero.getPas1());
+                                                            } else {
+                                                                activeView.setImageResource(hero.getPas2());
+                                                                compteur = 0;
+                                                            }
+                                                            utiliserPas1 = !utiliserPas1;
 
-                                                        activeView.setY(activeView.getY() + (gridSize / gridSections) / 2);
-                                                        if (activeView.getY() + activeView.getHeight() >= gridSize / gridSections * (i + 2) + gameGrid.getY()) {
-                                                            positionGrid[i][j] = 0;
-                                                            positionGrid[i + 1][j] = 2;
+                                                            activeView.setY(activeView.getY() + (gridSize / gridSections) / 2);
+                                                            if (activeView.getY() + activeView.getHeight() >= gridSize / gridSections * (i + 2) + gameGrid.getY()) {
+                                                                positionGrid[i][j] = 0;
+                                                                positionGrid[i + 1][j] = 2;
+                                                            }
+
+                                                            if(positionGrid[i + 1][j] == 7){
+                                                                hero.asKey = true;
+                                                                TextView keyFound = activity.findViewById(R.id.startMessage);
+                                                                keyFound.setText("Vous avez trouvé la clé !\n"+ "Retourner a votre point de départ\n"+"pour vous échapé.");
+                                                                ImageView chest = activity.findViewById(R.id.chest);
+                                                                chest.setImageResource(R.drawable.open_chest);
+                                                            }
+                                                            else if(hero.activeView.getY() > gameGrid.getY() + gameGrid.getHeight() - hero.activeView.getHeight()){
+                                                                hero.setImageView(null);
+                                                                hero.setDirection(directions);
+                                                                intent.putExtra("personnage", hero);
+                                                                activity.startActivity(intent);
+                                                                activity.finish();
+                                                            }
+                                                        }
+                                                        catch(Exception e){
+                                                            e.printStackTrace();
                                                         }
 
-                                                        if(positionGrid[i + 1][j] == 7){
-                                                            hero.asKey = true;
-                                                            TextView keyFound = activity.findViewById(R.id.startMessage);
-                                                            keyFound.setText("Vous avez trouvé la clé !\n"+ "Retourner a votre point de départ\n"+"pour vous échapé.");
-                                                            ImageView chest = activity.findViewById(R.id.chest);
-                                                            chest.setImageResource(R.drawable.open_chest);
-                                                        }
-                                                        else if(hero.activeView.getY() > gameGrid.getY() + gameGrid.getHeight() - hero.activeView.getHeight()){
-                                                            hero.setImageView(null);
-                                                            hero.setDirection(directions);
-                                                            intent.putExtra("personnage", hero);
-                                                            activity.startActivity(intent);
-                                                            activity.finish();
-                                                        }
                                                         return;
                                                     }
                                                 }
@@ -308,11 +328,3 @@ public class GenericOnTouchListener implements View.OnTouchListener {
         return true;
     }
 }
-
-
-
-
-
-
-
-

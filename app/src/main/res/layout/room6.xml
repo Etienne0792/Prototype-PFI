@@ -10,7 +10,7 @@
         android:id="@+id/up4"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:background="#00FFFFFF"
         android:rotation="270"
         android:scaleType="fitCenter"
@@ -55,7 +55,7 @@
         app:srcCompat="@drawable/arrow" />
 
     <ImageButton
-        android:id="@+id/imageButton6"
+        android:id="@+id/attaqueRoom6"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginTop="50dp"
@@ -72,7 +72,7 @@
         android:id="@+id/gameGrid"
         android:layout_width="385dp"
         android:layout_height="385dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="75dp"
         android:background="#7E7E7E"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -169,43 +169,8 @@
             app:layout_constraintWidth_percent="0.0909"
             app:srcCompat="@drawable/mur" />
 
-        <ImageView
-            android:id="@+id/monstreRoom6"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.749"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.37"
-            app:srcCompat="@drawable/monstre" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/heroRoom6"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/gameGrid"
-        app:layout_constraintEnd_toEndOf="@+id/gameGrid"
-        app:layout_constraintStart_toStartOf="@+id/gameGrid"
-        app:layout_constraintTop_toTopOf="@+id/gameGrid"
-        app:srcCompat="@drawable/personnage" />
-
-
-    <ImageView
-        android:id="@+id/monstreRoom6"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:rotation="180"
-        app:layout_constraintBottom_toBottomOf="@+id/gameGrid"
-        app:layout_constraintEnd_toEndOf="@+id/gameGrid"
-        app:layout_constraintHorizontal_bias="0.75"
-        app:layout_constraintStart_toStartOf="@+id/gameGrid"
-        app:layout_constraintTop_toTopOf="@+id/gameGrid"
-        app:srcCompat="@drawable/monstre" />
 
     <ImageView
         android:id="@+id/coeur_6"
@@ -250,5 +215,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/visage" />
+
+    <ImageView
+        android:id="@+id/monstreRoom6"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/gameGrid"
+        app:layout_constraintEnd_toEndOf="@+id/gameGrid"
+        app:layout_constraintHorizontal_bias="0.33"
+        app:layout_constraintStart_toStartOf="@+id/gameGrid"
+        app:layout_constraintTop_toTopOf="@+id/gameGrid"
+        app:layout_constraintVertical_bias="0.57"
+        app:srcCompat="@drawable/monstre" />
+
+    <ImageView
+        android:id="@+id/monstreRoom6_2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/gameGrid"
+        app:layout_constraintEnd_toEndOf="@+id/gameGrid"
+        app:layout_constraintHorizontal_bias="0.78"
+        app:layout_constraintStart_toStartOf="@+id/gameGrid"
+        app:layout_constraintTop_toTopOf="@+id/gameGrid"
+        app:layout_constraintVertical_bias="0.26999998"
+        app:srcCompat="@drawable/monstre" />
+
+    <ImageView
+        android:id="@+id/heroRoom6"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/gameGrid"
+        app:layout_constraintEnd_toEndOf="@+id/gameGrid"
+        app:layout_constraintStart_toStartOf="@+id/gameGrid"
+        app:layout_constraintTop_toTopOf="@+id/gameGrid"
+        app:srcCompat="@drawable/personnage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

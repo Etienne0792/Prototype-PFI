@@ -17,42 +17,53 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+/**
+ * Activité principale de l'application. Gère l'affichage initial,
+ * la personnalisation du personnage et le lancement du jeu.
+ */
 public class MainActivity extends AppCompatActivity {
-    private boolean pBleu = true;
-    private boolean pSmile = false;
-    private ImageView coeur;
-    private Bitmap bitmap;
-    private int partiUtilise = 0;  // De 0 à 8 pour les 9 parties
-    private Handler handler = new Handler();
-    MediaPlayer piece4Player;
+    private boolean pBleu = true; // Indique si le personnage est bleu (true) ou rouge (false)
+    private boolean pSmile; // Indique si le personnage sourit (true) ou non (false)
+    private ImageView coeur; // ImageView pour afficher l'animation du coeur
+    private Bitmap bitmap; // Bitmap pour stocker l'image du coeur
+    private int partiUtilise; // Indique la partie de l'image du coeur à afficher
+    private Handler handler; // Handler pour gérer l'animation du coeur
+    MediaPlayer piece4Player; // MediaPlayer pour la musique de fond
 
-
+    /**
+     * Méthode appelée à la création de l'activité. Initialise les éléments de l'interface,
+     * charge les images, démarre l'animation du coeur et gère les interactions utilisateur.
+     *
+     * @param savedInstanceState Bundle contenant l'état précédent de l'activité (si existant)
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        EdgeToEdge.enable(this); // Active le mode Edge-to-Edge pour l'affichage
+        setContentView(R.layout.activity_main); // Définit le layout de l'activité
+
+        // Configuration des marges pour l'affichage Edge-to-Edge
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        piece4Player = MediaPlayer.create(this, R.raw.mega_3title);
+        piece4Player = MediaPlayer.create(this, R.raw.mega_3title); // Initialise le MediaPlayer
 
-        // Charger les images
+        // Charger les images des personnages
         int persoRouge = getResources().getIdentifier("perso1_1","drawable",getPackageName());
         int persoBleu = getResources().getIdentifier("perso2_1","drawable",getPackageName());
         int persoRougeSouri = getResources().getIdentifier("perso1_1_1","drawable",getPackageName());
         int persoBleuSouri = getResources().getIdentifier("perso2_1_1","drawable",getPackageName());
 
-
-        //Coeur "animation"
+        // Initialisation de l'animation du coeur
         coeur = findViewById(R.id.coeur);
         bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.coeur);
+        handler = new Handler();
         handler.post(animationCoeur);
 
-        // changer d'émotion
+        // Gestion du clic sur l'image du personnage pour changer d'émotion
         ImageView player = findViewById(R.id.player);
         player.setOnClickListener(view -> {
             if(pSmile){
@@ -75,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Changement de personnage
+        // Gestion du clic sur le bouton pour changer de couleur de personnage
         Button color = findViewById(R.id.color);
         color.setOnClickListener(view -> {
             if(pBleu){
@@ -97,11 +108,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        //pseudo
+
+        // Gestion du clic sur le bouton "Start" pour lancer le jeu
         EditText pseudo = findViewById(R.id.Pseudo);
         Button start = findViewById(R.id.start);
-
-        //Commencement du jeu
         start.setOnClickListener(view -> {
             String pseudoText = pseudo.getText().toString().trim();
             if (!pseudoText.isEmpty()) {
@@ -117,6 +127,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Méthode appelée au démarrage de l'activité. Démarre la musique de fond.
+     */
     @Override
     protected void onStart() {
         super.onStart();
@@ -124,42 +137,47 @@ public class MainActivity extends AppCompatActivity {
         piece4Player.start();
     }
 
+    /**
+     * Méthode appelée à la mise en pause de l'activité. Arrête l'animation du coeur et la musique.
+     */
     @Override
     protected void onPause() {
         super.onPause();
-        // Arrêter le coeur
-        handler.removeCallbacks(animationCoeur);
+        handler.removeCallbacks(animationCoeur); // Arrêt de l'animation
         if (piece4Player != null) {
-            piece4Player.release();
+            piece4Player.release(); // Libération du MediaPlayer
             piece4Player = null;
         }
     }
 
-    //Changer image coeur
+    /**
+     * Runnable pour l'animation du coeur. Change l'image affichée dans l'ImageView
+     * pour créer l'animation.
+     */
     private Runnable animationCoeur = new Runnable() {
         @Override
         public void run() {
             int ran = partiUtilise / 3;
             int col = partiUtilise % 3;
 
-            // Nécéssite l'utilisation d'un bitmap pour séparer l'image en 9 parties
+            // Calcul des coordonnées de la partie de l'image à afficher
             int largeur = bitmap.getWidth() / 3;
             int Hauteur = bitmap.getHeight() / 3;
 
-            // Créer un sous-ensemble de l'image pour la partie actuelle
+            // Création d'un sous-ensemble de l'image pour la partie actuelle
             Bitmap partBitmap = Bitmap.createBitmap(bitmap, col * largeur, ran * Hauteur, largeur, Hauteur);
 
-            // Afficher la partie de l'image dans l'ImageView
+            // Affichage de la partie de l'image dans l'ImageView
             coeur.setImageBitmap(partBitmap);
 
-            // Passer à la prochaine partie
+            // Passage à la partie suivante de l'image
             partiUtilise++;
             if (partiUtilise > 8) {
-                partiUtilise = 0;  // Recommencer à partir de la première partie
+                partiUtilise = 0;
             }
 
-            // Répéter la tâche toutes les 100 millisecondes
-            handler.postDelayed(this, 100);  // 100 ms entre chaque changement de partie
+            // Répétition de la tâche après un délai de 100ms
+            handler.postDelayed(this, 100);
         }
     };
 }
