@@ -25,10 +25,10 @@ public class room8 extends AppCompatActivity {
     ImageView activeView;
     Monstre monstre;
     Drawable[] tabMonstre = new Drawable[4];
-    Button right;
-    Button down;
-    Button up;
-    Button left;
+    ImageButton right;
+    ImageButton down;
+    ImageButton up;
+    ImageButton left;
     int[][] positionGrid;
     int gridSize;
     roomGeneration generation;

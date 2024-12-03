@@ -14,11 +14,6 @@ import java.io.Serializable;
 import java.util.Random;
 
 public class Monstre implements Serializable, IPersonnage {
-
-        // Constante
-        static final int MIN_ATTAQUE = 1;
-        static final int MIN_DEFENSE = 1;
-
         // Propriété
         Drawable idle;;
         Drawable monstrePas1;
@@ -41,10 +36,10 @@ public class Monstre implements Serializable, IPersonnage {
         public void setPointDeVie(int pointDeVie) { this.pointDeVie = Math.max(pointDeVie, 0); }
 
         public int getAttaque() { return attaque; }
-        public void setAttaque(int attaque) {this.attaque = Math.max(attaque, MIN_ATTAQUE);}
+        public void setAttaque(int attaque) {this.attaque = attaque;}
 
         public int getDefense() { return defense; }
-        public void setDefense(int defense) { this.defense = Math.max(defense, MIN_DEFENSE); }
+        public void setDefense(int defense) { this.defense = defense; }
 
         public void setImage(Drawable[] monstre){
                 this.idle = monstre[0];
@@ -84,7 +79,7 @@ public class Monstre implements Serializable, IPersonnage {
         }
 
         private int degats;
-        @Override
+
         public void attaquer(IPersonnage cible, TextView vieAffichage){
                 degats = attaque;
                 if (degats > 0){
@@ -95,9 +90,12 @@ public class Monstre implements Serializable, IPersonnage {
                         handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                        cible.setPointDeVie(cible.getPointDeVie() - degats);
-                                        cible.setImageView(cible.getIdle());
-                                        vieAffichage.setText(String.valueOf(cible.getPointDeVie()));
+                                        if(cible != null){
+                                                cible.setPointDeVie(cible.getPointDeVie() - degats);
+                                                cible.setImageView(cible.getIdle());
+                                                vieAffichage.setText(String.valueOf(cible.getPointDeVie()));
+                                        }
+
                                 }
                         }, 500);
                 }
@@ -125,20 +123,21 @@ public class Monstre implements Serializable, IPersonnage {
 
                                                                                 if (activeView.getX() > hero.activeView.getX() + (float) hero.activeView.getWidth() / 2) {
                                                                                         activeView.setRotation(180);
-                                                                                        activeView.setX(activeView.getX() - (gridSize / gridSection) / 3);
+                                                                                        activeView.setX(activeView.getX() - (gridSize / gridSection));
                                                                                 } else if (activeView.getX() < hero.activeView.getX() - (float) hero.activeView.getWidth() / 2) {
                                                                                         activeView.setRotation(0);
-                                                                                        activeView.setX(activeView.getX() + (gridSize / gridSection) / 3);
+                                                                                        activeView.setX(activeView.getX() + (gridSize / gridSection));
                                                                                 } else if (activeView.getY() > hero.activeView.getY() - gameGrid.getY() + (float) hero.activeView.getHeight() / 2) {
                                                                                         activeView.setRotation(270);
-                                                                                        activeView.setY(activeView.getY() - (gridSize / gridSection) / 3);
+                                                                                        activeView.setY(activeView.getY() - (gridSize / gridSection));
                                                                                 } else if (activeView.getY() < hero.activeView.getY() - gameGrid.getY() - (float) hero.activeView.getHeight() / 2) {
                                                                                         activeView.setRotation(90);
-                                                                                        activeView.setY(activeView.getY() + (gridSize / gridSection) / 3);
+                                                                                        activeView.setY(activeView.getY() + (gridSize / gridSection));
                                                                                 }
                                                                                 else{
                                                                                         activeView.setImageDrawable(idle);
                                                                                         attaquer(hero, vieAffichage);
+                                                                                        //hero.attaquer(Monstre.this,vieAffichage);
                                                                                 }
                                                                         }
                                                                 });

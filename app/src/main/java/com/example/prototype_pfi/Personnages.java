@@ -65,7 +65,13 @@ public class Personnages implements Serializable, IPersonnage {
     }
     public int getIdleAtt(){ return idleAttId; }
     public void setImageView(int drawableId){
-        activeView.setImageResource(drawableId);
+        try{
+            this.activeView.setImageResource(drawableId);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
     }
     public int getVisage(){ return visage; }
     public void setDirection(Directions direction){
@@ -111,6 +117,9 @@ public class Personnages implements Serializable, IPersonnage {
                 }, 500);
             }
             if (cible.mort()){
+                cible.setImageView(R.drawable.vide);
+                cible.setAttaque(0);
+                cible.setAttaque(0);
                 attaque += 1;
             }
         }

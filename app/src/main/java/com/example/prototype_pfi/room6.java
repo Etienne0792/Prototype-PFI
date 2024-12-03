@@ -26,6 +26,7 @@ public class room6 extends AppCompatActivity {
     Personnages hero;
     ImageView activeView;
     Monstre monstre;
+    Monstre monstre1;
 
     Drawable[] tabMonstre = new Drawable[4];
     ImageButton right;
@@ -71,13 +72,18 @@ public class room6 extends AppCompatActivity {
         tabMonstre[2] = getDrawable(R.drawable.monstrepas2);
         tabMonstre[3] = getDrawable(R.drawable.monstredegat);
         ImageView monstre_img = findViewById(R.id.monstreRoom6);
+        ImageView monstre_img1 = findViewById(R.id.monstreRoom6_1);
+
         monstre = new Monstre(tabMonstre, monstre_img,gameGrid,GRID_SECTIONS,gridSize);
+        monstre1 = new Monstre(tabMonstre, monstre_img1,gameGrid,GRID_SECTIONS,gridSize);
         if (hero.asKey){
             tabMonstre[0] = getDrawable(R.drawable.monstreattaquer);
             tabMonstre[1] = getDrawable(R.drawable.monstrepas1attaquer);
             tabMonstre[2] = getDrawable(R.drawable.monstrepas2attaquer);
             monstre.setImage(tabMonstre);
             monstre.setAttaque(2);
+            monstre1.setImage(tabMonstre);
+            monstre1.setAttaque(2);
         }
 
         //Coeur "animation"
@@ -94,6 +100,7 @@ public class room6 extends AppCompatActivity {
         piece4Player.start();
 
         monstre.Deplacement(hero,this, vie).start();
+        monstre1.Deplacement(hero,this, vie).start();
 
         Directions[] sorties = new Directions[]
                 {
