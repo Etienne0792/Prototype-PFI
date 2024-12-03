@@ -242,7 +242,7 @@
         app:srcCompat="@drawable/arrow" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/attaqueRoom4"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginTop="50dp"

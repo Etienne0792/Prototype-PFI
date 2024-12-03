@@ -117,6 +117,8 @@ public class room1 extends AppCompatActivity {
 
             // Répéter la tâche toutes les 100 millisecondes
             handler.postDelayed(this, 100);  // 100 ms entre chaque changement de partie
+        }
+    };
 
     @Override
     protected void onPause() {

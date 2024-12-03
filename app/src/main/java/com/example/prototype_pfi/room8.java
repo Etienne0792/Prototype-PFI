@@ -37,14 +37,6 @@ public class room8 extends AppCompatActivity {
     private Bitmap bitmap;
     private int partiUtilise = 0;  // De 0 à 8 pour les 9 parties
     private Handler handler = new Handler();
-    Drawable[] tabMonstre = new Drawable[3];
-    ImageButton right;
-    ImageButton down;
-    ImageButton up;
-    ImageButton left;
-    int[][] positionGrid;
-    int gridSize;
-    roomGeneration generation;
     MediaPlayer piece4Player;
 
 

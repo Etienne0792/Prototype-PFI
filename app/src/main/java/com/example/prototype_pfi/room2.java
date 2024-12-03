@@ -130,8 +130,9 @@ public class room2 extends AppCompatActivity {
         handler.removeCallbacks(animationCoeur);
       // Arrêter music
       if (piece4Player != null) {
-            piece4Player.release();
-            piece4Player = null;
+          piece4Player.release();
+          piece4Player = null;
+      }
     }
 
     //Changer image coeur

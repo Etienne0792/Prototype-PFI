@@ -99,6 +99,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3" />
 
+    <ImageView
+        android:id="@+id/coeur"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="200dp"
+        app:layout_constraintBottom_toTopOf="@+id/start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout"
+        app:srcCompat="@drawable/coeur" />
+
     <TextView
         android:id="@+id/vie"
         android:layout_width="wrap_content"
@@ -110,29 +121,20 @@
         android:text="15"
         android:textColor="#B6B6B6"
         android:textSize="50sp"
-        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.58"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/frameLayout"
-        app:layout_constraintVertical_bias="0.7" />
+        app:layout_constraintBottom_toBottomOf="@+id/coeur"
+        app:layout_constraintEnd_toEndOf="@+id/coeur"
+        app:layout_constraintStart_toStartOf="@+id/coeur"
+        app:layout_constraintTop_toTopOf="@+id/coeur" />
 
     <FrameLayout
         android:id="@+id/coeur_grid"
         android:layout_width="50dp"
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.41"
+        app:layout_constraintEnd_toStartOf="@+id/vie"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/relativeLayout"
         app:layout_constraintVertical_bias="0.82">
-
-        <ImageView
-            android:id="@+id/coeur"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/coeur" />
 
     </FrameLayout>
 

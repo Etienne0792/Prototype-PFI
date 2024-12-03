@@ -24,16 +24,11 @@ public class startingRoom extends AppCompatActivity {
     final int HP = 15;
 
     ConstraintLayout gameGrid;
-    Button right;
-    Button down;
-    Button up;
-    Button left;
-    int[] perso = new int[5];
     ImageButton right;
     ImageButton down;
     ImageButton up;
     ImageButton left;
-    int[] perso = new int[3];
+    int[] perso = new int[5];
     ImageView activeView;
     Personnages hero;
     roomGeneration generation;

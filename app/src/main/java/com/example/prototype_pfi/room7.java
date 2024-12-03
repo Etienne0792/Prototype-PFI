@@ -26,10 +26,10 @@ public class room7 extends AppCompatActivity {
     ImageView activeView;
     Monstre monstre;
     Drawable[] tabMonstre = new Drawable[4];
-    Button right;
-    Button down;
-    Button up;
-    Button left;
+    ImageButton right;
+    ImageButton down;
+    ImageButton up;
+    ImageButton left;
     int[][] positionGrid;
     int gridSize;
     roomGeneration generation;
@@ -38,14 +38,6 @@ public class room7 extends AppCompatActivity {
     private Bitmap bitmap;
     private int partiUtilise = 0;  // De 0 à 8 pour les 9 parties
     private Handler handler = new Handler();
-    Drawable[] tabMonstre = new Drawable[3];
-    ImageButton right;
-    ImageButton down;
-    ImageButton up;
-    ImageButton left;
-    int[][] positionGrid;
-    int gridSize;
-    roomGeneration generation;
     MediaPlayer piece4Player;
 
 

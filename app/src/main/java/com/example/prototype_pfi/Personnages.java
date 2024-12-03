@@ -95,26 +95,26 @@ public class Personnages implements Serializable, IPersonnage {
 
     private int degats;
     public void attaquer(IPersonnage cible, TextView vieAffichage){
-        Random rand = new Random();
-        degats = rand.nextInt(attaque + 1);
-        degats -= cible.getDefense();
-        degats = Math.max(degats, 0);
-        if (degats > 0){
+        if(cible != null){
+            degats = attaque;
+            if (degats > 0){
 
-            cible.setImageView(cible.getIdleAtt());
+                cible.setImageView(cible.getIdleAtt());
 
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    cible.setImageView(cible.getIdle());
-                    cible.setPointDeVie(cible.getPointDeVie() - degats);
-                }
-            }, 500);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        cible.setImageView(cible.getIdle());
+                        cible.setPointDeVie(cible.getPointDeVie() - degats);
+                    }
+                }, 500);
+            }
+            if (cible.mort()){
+                attaque += 1;
+            }
         }
-        if (cible.mort()){
-            attaque += 1;
-        }
+
     }
 
 }
