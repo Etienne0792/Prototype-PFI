@@ -4,12 +4,14 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -22,10 +24,10 @@ public class room5 extends AppCompatActivity {
     ConstraintLayout gameGrid;
     Personnages hero;
     ImageView activeView;
-    Button right;
-    Button down;
-    Button up;
-    Button left;
+    ImageButton right;
+    ImageButton down;
+    ImageButton up;
+    ImageButton left;
     int[][] positionGrid;
     int gridSize;
     roomGeneration generation;
@@ -34,6 +36,8 @@ public class room5 extends AppCompatActivity {
     private Bitmap bitmap;
     private int partiUtilise = 0;  // De 0 à 8 pour les 9 parties
     private Handler handler = new Handler();
+    MediaPlayer piece4Player;
+
 
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -42,6 +46,7 @@ public class room5 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.room5);
+        piece4Player = MediaPlayer.create(this, R.raw.mega_dungeon);
         float density = getResources().getDisplayMetrics().density;
         gridSize = (int) (GRID_SIZE * density + 0.5f);
         vie = findViewById(R.id.vie5);
@@ -66,6 +71,8 @@ public class room5 extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        piece4Player.setLooping(true);
+        piece4Player.start();
 
         Directions[] sorties = new Directions[]
                 {
@@ -94,6 +101,11 @@ public class room5 extends AppCompatActivity {
         super.onPause();
         // Arrêter le coeur
         handler.removeCallbacks(animationCoeur);
+        // Arrêter la music
+        if (piece4Player != null) {
+            piece4Player.release();
+            piece4Player = null;
+        }
     }
 
     //Changer image coeur
@@ -102,7 +114,6 @@ public class room5 extends AppCompatActivity {
         public void run() {
             int ran = partiUtilise / 3;
             int col = partiUtilise % 3;
-
             // Nécéssite l'utilisation d'un bitmap pour séparer l'image en 9 parties
             int largeur = bitmap.getWidth() / 3;
             int Hauteur = bitmap.getHeight() / 3;
@@ -113,7 +124,6 @@ public class room5 extends AppCompatActivity {
             if (partiUtilise > 8) {
                 partiUtilise = 0;  // Recommencer à partir de la première partie
             }
-
             // Répéter la tâche toutes les 100 millisecondes
             handler.postDelayed(this, 100);  // 100 ms entre chaque changement de partie
         }

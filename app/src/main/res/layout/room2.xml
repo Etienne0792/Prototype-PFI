@@ -6,10 +6,73 @@
     android:layout_height="match_parent"
     android:background="#353535">
 
+    <ImageButton
+        android:id="@+id/up6"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="24dp"
+        android:background="#00FFFFFF"
+        android:rotation="270"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="@+id/gameGrid"
+        app:layout_constraintHorizontal_bias="0.22"
+        app:layout_constraintStart_toStartOf="@+id/gameGrid"
+        app:layout_constraintTop_toBottomOf="@+id/gameGrid"
+        app:srcCompat="@drawable/arrow" />
+
+    <ImageButton
+        android:id="@+id/left6"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="#00FFFFFF"
+        android:rotation="180"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toStartOf="@+id/up6"
+        app:layout_constraintTop_toBottomOf="@+id/up6"
+        app:srcCompat="@drawable/arrow" />
+
+    <ImageButton
+        android:id="@+id/down6"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="#00FFFFFF"
+        android:rotation="90"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toStartOf="@+id/right6"
+        app:layout_constraintStart_toEndOf="@+id/left6"
+        app:layout_constraintTop_toBottomOf="@+id/left6"
+        app:srcCompat="@drawable/arrow" />
+
+    <ImageButton
+        android:id="@+id/right6"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="#00FFFFFF"
+        android:rotation="0"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toEndOf="@+id/up6"
+        app:layout_constraintTop_toBottomOf="@+id/up6"
+        app:srcCompat="@drawable/arrow" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="25dp"
+        android:background="#00FFFFFF"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="@+id/gameGrid"
+        app:layout_constraintHorizontal_bias="0.958"
+        app:layout_constraintStart_toEndOf="@+id/right2"
+        app:layout_constraintTop_toBottomOf="@+id/gameGrid"
+        app:srcCompat="@drawable/attaque" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/gameGrid"
         android:layout_width="385dp"
         android:layout_height="385dp"
+        android:layout_marginBottom="100dp"
         android:background="#7E7E7E"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -106,42 +169,20 @@
             app:layout_constraintWidth_percent="0.0909"
             app:srcCompat="@drawable/mur" />
 
+        <ImageView
+            android:id="@+id/monstreRoom2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:rotation="90"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.797"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/murHautStartingRoom"
+            app:layout_constraintVertical_bias="0.202"
+            app:srcCompat="@drawable/monstre" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Button
-        android:id="@+id/up6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="up"
-        app:layout_constraintEnd_toEndOf="@+id/gameGrid"
-        app:layout_constraintStart_toStartOf="@+id/gameGrid"
-        app:layout_constraintTop_toBottomOf="@+id/gameGrid" />
-
-    <Button
-        android:id="@+id/down6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="down"
-        app:layout_constraintEnd_toStartOf="@+id/right6"
-        app:layout_constraintStart_toEndOf="@+id/left6"
-        app:layout_constraintTop_toBottomOf="@+id/left6" />
-
-    <Button
-        android:id="@+id/right6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="right"
-        app:layout_constraintStart_toEndOf="@+id/up6"
-        app:layout_constraintTop_toBottomOf="@+id/up6" />
-
-    <Button
-        android:id="@+id/left6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="left"
-        app:layout_constraintEnd_toStartOf="@+id/up6"
-        app:layout_constraintTop_toBottomOf="@+id/up6" />
 
     <ImageView
         android:id="@+id/heroRoom2"
@@ -153,6 +194,7 @@
         app:layout_constraintStart_toStartOf="@+id/gameGrid"
         app:layout_constraintTop_toTopOf="@+id/gameGrid"
         app:srcCompat="@drawable/personnage" />
+
 
     <ImageView
         android:id="@+id/monstreRoom2"

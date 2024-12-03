@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,6 +26,7 @@ public class room6 extends AppCompatActivity {
     Personnages hero;
     ImageView activeView;
     Monstre monstre;
+
     Drawable[] tabMonstre = new Drawable[4];
     Button right;
     Button down;
@@ -38,6 +41,17 @@ public class room6 extends AppCompatActivity {
     private int partiUtilise = 0;  // De 0 à 8 pour les 9 parties
     private Handler handler = new Handler();
 
+    Drawable[] tabMonstre = new Drawable[3];
+    ImageButton right;
+    ImageButton down;
+    ImageButton up;
+    ImageButton left;
+    int[][] positionGrid;
+    int gridSize;
+    roomGeneration generation;
+    MediaPlayer piece4Player;
+
+
     @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +59,7 @@ public class room6 extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.room6);
         vie = findViewById(R.id.vie6);
+        piece4Player = MediaPlayer.create(this, R.raw.mega_enemy);
         float density = getResources().getDisplayMetrics().density;
         gridSize = (int) (GRID_SIZE * density + 0.5f);
 
@@ -65,7 +80,6 @@ public class room6 extends AppCompatActivity {
         tabMonstre[3] = getDrawable(R.drawable.monstredegat);
         ImageView monstre_img = findViewById(R.id.monstreRoom6);
         monstre = new Monstre(tabMonstre, monstre_img,gameGrid,GRID_SECTIONS,gridSize);
-
         if (hero.asKey){
             tabMonstre[0] = getDrawable(R.drawable.monstreattaquer);
             tabMonstre[1] = getDrawable(R.drawable.monstrepas1attaquer);
@@ -84,6 +98,8 @@ public class room6 extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        piece4Player.setLooping(true);
+        piece4Player.start();
 
         monstre.Deplacement(hero,this, vie).start();
 
@@ -113,6 +129,11 @@ public class room6 extends AppCompatActivity {
         super.onPause();
         // Arrêter le coeur
         handler.removeCallbacks(animationCoeur);
+        // Arrêter la music
+        if (piece4Player != null) {
+            piece4Player.release();
+            piece4Player = null;
+        }
     }
 
     //Changer image coeur
@@ -132,7 +153,6 @@ public class room6 extends AppCompatActivity {
             if (partiUtilise > 8) {
                 partiUtilise = 0;  // Recommencer à partir de la première partie
             }
-
             // Répéter la tâche toutes les 100 millisecondes
             handler.postDelayed(this, 100);  // 100 ms entre chaque changement de partie
         }

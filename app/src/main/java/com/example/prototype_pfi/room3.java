@@ -5,12 +5,13 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -28,18 +29,21 @@ public class room3 extends AppCompatActivity {
     Monstre monstre2;
     Drawable[] tabMonstre = new Drawable[4];
     ImageView activeView;
-    Button right;
-    Button down;
-    Button up;
-    Button left;
+    ImageButton right;
+    ImageButton down;
+    ImageButton up;
+    ImageButton left;
     int[][] positionGrid;
     int gridSize;
     roomGeneration generation;
+
     private TextView vie;
     private ImageView coeur;
     private Bitmap bitmap;
     private int partiUtilise = 0;  // De 0 à 8 pour les 9 parties
     private Handler handler = new Handler();
+    MediaPlayer piece4Player;
+
 
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -48,7 +52,10 @@ public class room3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.room3);
+
         vie = findViewById(R.id.vie3);
+        piece4Player = MediaPlayer.create(this, R.raw.mega_enemy);
+
         float density = getResources().getDisplayMetrics().density;
         gridSize = (int) (GRID_SIZE * density + 0.5f);
 
@@ -93,6 +100,8 @@ public class room3 extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        piece4Player.setLooping(true);
+        piece4Player.start();
 
         monstre1.Deplacement(hero,this, vie).start();
         monstre2.Deplacement(hero,this, vie).start();
@@ -123,6 +132,11 @@ public class room3 extends AppCompatActivity {
         super.onPause();
         // Arrêter le coeur
         handler.removeCallbacks(animationCoeur);
+        // Arrêter music 
+        if (piece4Player != null) {
+            piece4Player.release();
+            piece4Player = null;
+        }
     }
 
     //Changer image coeur

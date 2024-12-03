@@ -5,16 +5,16 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-
 import android.os.Handler;
 import android.widget.Button;
+import android.media.MediaPlayer;
+import android.os.Bundle;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
 import java.io.Serializable;
 
 public class startingRoom extends AppCompatActivity {
@@ -29,6 +29,11 @@ public class startingRoom extends AppCompatActivity {
     Button up;
     Button left;
     int[] perso = new int[5];
+    ImageButton right;
+    ImageButton down;
+    ImageButton up;
+    ImageButton left;
+    int[] perso = new int[3];
     ImageView activeView;
     Personnages hero;
     roomGeneration generation;
@@ -45,6 +50,8 @@ public class startingRoom extends AppCompatActivity {
     private int partiUtilise = 0;  // De 0 à 8 pour les 9 parties
     private Handler handler = new Handler();
     ImageView exit;
+    MediaPlayer piece4Player;
+    boolean isPlaying = false;
 
     @SuppressLint({"ClickableViewAccessibility", "UseCompatLoadingForDrawables"})
     @Override
@@ -55,6 +62,8 @@ public class startingRoom extends AppCompatActivity {
         float density = getResources().getDisplayMetrics().density;
         gridSize = (int) (GRID_SIZE * density + 0.5f);
         Message = findViewById(R.id.startMessage);
+
+        piece4Player = MediaPlayer.create(this, R.raw.mega_dungeon);
 
         try{
 
@@ -109,6 +118,9 @@ public class startingRoom extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        piece4Player.setLooping(true);
+        piece4Player.start();
+
         sorties = new Directions[] { Directions.droite };
         if(hero.asKey){
             sorties = new Directions[]
@@ -129,10 +141,10 @@ public class startingRoom extends AppCompatActivity {
             positionGrid[GRID_SECTIONS / 2 + 1][0] = 3;
         }
 
-        right = findViewById(R.id.right);
-        left = findViewById(R.id.left);
-        up = findViewById(R.id.up);
-        down = findViewById(R.id.down);
+        right = findViewById(R.id.right2);
+        left = findViewById(R.id.left2);
+        up = findViewById(R.id.up2);
+        down = findViewById(R.id.down2);
 
         right.setOnTouchListener(new GenericOnTouchListener(Directions.droite,this,positionGrid,hero, gridSize, GRID_SECTIONS, gameGrid, new Intent(startingRoom.this, room4.class)));
         left.setOnTouchListener(new GenericOnTouchListener(Directions.gauche,this,positionGrid,hero, gridSize, GRID_SECTIONS, gameGrid, new Intent(startingRoom.this, victoire.class)));
@@ -146,12 +158,6 @@ public class startingRoom extends AppCompatActivity {
         handler.post(animationCoeur);
     };
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        // Arrêter le coeur
-        handler.removeCallbacks(animationCoeur);
-    }
 
     //Changer image coeur
     private Runnable animationCoeur = new Runnable() {
@@ -175,4 +181,18 @@ public class startingRoom extends AppCompatActivity {
             handler.postDelayed(this, 100);  // 100 ms entre chaque changement de partie
         }
     };
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (piece4Player != null) {
+            piece4Player.release();
+            piece4Player = null;
+        }
+        // Arrêter le coeur
+        handler.removeCallbacks(animationCoeur);
+    };
+
+
+
 }

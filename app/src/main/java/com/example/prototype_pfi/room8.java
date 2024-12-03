@@ -5,12 +5,13 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -36,6 +37,15 @@ public class room8 extends AppCompatActivity {
     private Bitmap bitmap;
     private int partiUtilise = 0;  // De 0 à 8 pour les 9 parties
     private Handler handler = new Handler();
+    Drawable[] tabMonstre = new Drawable[3];
+    ImageButton right;
+    ImageButton down;
+    ImageButton up;
+    ImageButton left;
+    int[][] positionGrid;
+    int gridSize;
+    roomGeneration generation;
+    MediaPlayer piece4Player;
 
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -45,6 +55,7 @@ public class room8 extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.room8);
         vie = findViewById(R.id.vie8);
+        piece4Player = MediaPlayer.create(this, R.raw.mega_enemy);
         float density = getResources().getDisplayMetrics().density;
         gridSize = (int) (GRID_SIZE * density + 0.5f);
 
@@ -83,6 +94,8 @@ public class room8 extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        piece4Player.setLooping(true);
+        piece4Player.start();
 
         monstre.Deplacement(hero,this, vie).start();
 
@@ -110,8 +123,14 @@ public class room8 extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+
         // Arrêter le coeur
         handler.removeCallbacks(animationCoeur);
+        // Arrêter music 
+        if (piece4Player != null) {
+            piece4Player.release();
+            piece4Player = null;
+        }
     }
 
     //Changer image coeur
