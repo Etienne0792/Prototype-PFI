@@ -21,6 +21,8 @@ public class victoire extends AppCompatActivity {
     Button rejouer;
     TextView message;
     VideoView gagner;
+    MediaPlayer piece4Player;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +33,8 @@ public class victoire extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        piece4Player = MediaPlayer.create(this, R.raw.mega_3title);
 
         rejouer = findViewById(R.id.button);
         message = findViewById(R.id.textView2);
@@ -55,11 +59,20 @@ public class victoire extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
-
+        piece4Player.setLooping(true);
+        piece4Player.start();
         gagneMusique = R.raw.mega_clear;
         gagnePlayer = MediaPlayer.create(victoire.this, gagneMusique);
         gagnePlayer.start();
     }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (piece4Player != null) {
+            piece4Player.release();
+            piece4Player = null;
+        }
+    };
     @Override
     protected void onDestroy(){
         if (gagnePlayer != null) {

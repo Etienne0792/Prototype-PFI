@@ -3,6 +3,7 @@ package com.example.prototype_pfi;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Button;
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private Bitmap bitmap;
     private int partiUtilise = 0;  // De 0 à 8 pour les 9 parties
     private Handler handler = new Handler();
+    MediaPlayer piece4Player;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        piece4Player = MediaPlayer.create(this, R.raw.mega_3title);
+
         // Charger les images
         int persoRouge = getResources().getIdentifier("perso1_1","drawable",getPackageName());
         int persoBleu = getResources().getIdentifier("perso2_1","drawable",getPackageName());
@@ -111,10 +117,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        piece4Player.setLooping(true);
+        piece4Player.start();
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
         // Arrêter le coeur
         handler.removeCallbacks(animationCoeur);
+        if (piece4Player != null) {
+            piece4Player.release();
+            piece4Player = null;
+        }
     }
 
     //Changer image coeur

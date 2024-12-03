@@ -2,6 +2,7 @@ package com.example.prototype_pfi;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import android.widget.ImageButton;
@@ -36,6 +37,8 @@ public class startingRoom extends AppCompatActivity {
     boolean asKey = false;
     TextView Message;
     ImageView exit;
+    MediaPlayer piece4Player;
+    boolean isPlaying = false;
 
     @SuppressLint({"ClickableViewAccessibility", "UseCompatLoadingForDrawables"})
     @Override
@@ -47,15 +50,14 @@ public class startingRoom extends AppCompatActivity {
         gridSize = (int) (GRID_SIZE * density + 0.5f);
         Message = findViewById(R.id.startMessage);
 
+        piece4Player = MediaPlayer.create(this, R.raw.mega_dungeon);
+
         try{
 
             hero = (Personnages) getIntent().getSerializableExtra("personnage");
             activeView = findViewById(R.id.heroStart);
             activeView.setImageResource(hero.getIdle());
             hero.setImageView(activeView);
-            //hp = getIntent().getIntExtra("hp",10);
-            //directions = Objects.requireNonNull(getIntent().getExtras()).getSerializable("Directions");
-            //asKey = getIntent().getBooleanExtra("asKey",true);
         }
         catch(Exception e){
             boolean persoBleu = getIntent().getBooleanExtra("couleurPerso", false);
@@ -93,6 +95,9 @@ public class startingRoom extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        piece4Player.setLooping(true);
+        piece4Player.start();
+
         sorties = new Directions[] { Directions.droite };
 
         if(hero.asKey){
@@ -125,4 +130,16 @@ public class startingRoom extends AppCompatActivity {
         down.setOnTouchListener(new GenericOnTouchListener(Directions.bas,this,positionGrid,hero, gridSize, GRID_SECTIONS,gameGrid,null));
 
     };
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (piece4Player != null) {
+            piece4Player.release();
+            piece4Player = null;
+        }
+    };
+
+
+
 }
