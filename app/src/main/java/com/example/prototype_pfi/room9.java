@@ -45,13 +45,16 @@ public class room9 extends AppCompatActivity {
         float density = getResources().getDisplayMetrics().density;
         gridSize = (int) (GRID_SIZE * density + 0.5f);
 
+        // Dessin héro
         hero = (Personnages) getIntent().getSerializableExtra("personnage");
         vie.setText(String.valueOf(hero.getPointDeVie()));
         activeView = findViewById(R.id.heroRoom9);
         activeView.setImageResource(hero.getIdle());
         hero.setImageView(activeView);
-
         gameGrid = findViewById(R.id.gameGrid);
+        ImageView visage = findViewById(R.id.visage9);
+        visage.setImageResource(hero.getVisage());
+
 
         //Coeur "animation"
         coeur = findViewById(R.id.coeur_9);

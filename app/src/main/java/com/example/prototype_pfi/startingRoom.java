@@ -28,7 +28,7 @@ public class startingRoom extends AppCompatActivity {
     Button down;
     Button up;
     Button left;
-    int[] perso = new int[4];
+    int[] perso = new int[5];
     ImageView activeView;
     Personnages hero;
     roomGeneration generation;
@@ -65,7 +65,9 @@ public class startingRoom extends AppCompatActivity {
         }
         catch(Exception e){
             boolean persoBleu = getIntent().getBooleanExtra("couleurPerso", false);
+            boolean sourire = getIntent().getBooleanExtra("smilePerso", false);
             String pseudo = getIntent().getStringExtra("pseudo");
+
             if (persoBleu){
                 perso[0] = R.drawable.personnage;
                 perso[1] = R.drawable.pas1;
@@ -78,19 +80,27 @@ public class startingRoom extends AppCompatActivity {
                 perso[2] = R.drawable.pas2_rouge;
                 perso[3] = R.drawable.personnage_rougedegat;
             }
+            if(sourire){
+                perso[4] = R.drawable.sourire;
+            }
+            else{
+                perso[4] = R.drawable.visage;
+            }
             activeView = (ImageView) findViewById(R.id.heroStart);
             if (activeView != null) {
                 activeView.setImageResource(perso[0]);
             }
             directions = Directions.centre;
             asKey = false;
-            hero = new Personnages(pseudo, perso[0], perso[1], perso[2], perso[3], activeView, HP, (Directions) directions, asKey);
+            hero = new Personnages(pseudo, perso[0], perso[1], perso[2], perso[3], perso[4], activeView, HP, (Directions) directions, asKey);
         }
 
         vie = findViewById(R.id.vieStart);
         vie.setText(String.valueOf(hero.getPointDeVie()));
         gameGrid = findViewById(R.id.gameGrid);
         activeView = findViewById(R.id.heroStart);
+        ImageView visage = findViewById(R.id.visageStart);
+        visage.setImageResource(hero.getVisage());
         exit = findViewById(R.id.exit);
     }
 

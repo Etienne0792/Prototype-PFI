@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, startingRoom.class);
                 intent.putExtra("pseudo", pseudoText);
                 intent.putExtra("couleurPerso", pBleu);
+                intent.putExtra("smilePerso", pSmile);
                 startActivity(intent);
                 finish();
             } else {

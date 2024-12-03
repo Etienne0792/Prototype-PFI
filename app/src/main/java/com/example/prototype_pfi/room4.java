@@ -56,8 +56,8 @@ public class room4 extends AppCompatActivity {
         activeView = findViewById(R.id.heroRoom4);
         activeView.setImageResource(hero.getIdle());
         hero.setImageView(activeView);
-
-
+        ImageView visage = findViewById(R.id.visage4);
+        visage.setImageResource(hero.getVisage());
         gameGrid = findViewById(R.id.gameGrid);
 
         // dessin monstre

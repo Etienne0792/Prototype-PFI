@@ -20,6 +20,7 @@ public class Personnages implements Serializable, IPersonnage {
     private int pas1Id;
     private int pas2Id;
     private int idleAttId;
+    private int visage;
     public ImageView activeView;
 
     public boolean asKey;
@@ -66,6 +67,7 @@ public class Personnages implements Serializable, IPersonnage {
     public void setImageView(int drawableId){
         activeView.setImageResource(drawableId);
     }
+    public int getVisage(){ return visage; }
     public void setDirection(Directions direction){
         this.currentDirection = direction;
     }
@@ -73,12 +75,13 @@ public class Personnages implements Serializable, IPersonnage {
 
 
     // Constructeur
-    Personnages(String nom, int idle, int pas1, int pas2, int idleAtt, ImageView activeView, int pointDeVie, Directions currentDirection, boolean asKey) {
+    Personnages(String nom, int idle, int pas1, int pas2, int idleAtt, int visage, ImageView activeView, int pointDeVie, Directions currentDirection, boolean asKey) {
         this.nom = nom;
         this.idleId = idle;
         this.pas1Id = pas1;
         this.pas2Id = pas2;
         this.idleAttId = idleAtt;
+        this.visage = visage;
         this.activeView = activeView;
         setPointDeVie(pointDeVie);
         this.currentDirection = currentDirection;
@@ -112,10 +115,6 @@ public class Personnages implements Serializable, IPersonnage {
         if (cible.mort()){
             attaque += 1;
         }
-    }
-
-    public void AfficherCoeur(){
-
     }
 
 }

@@ -53,6 +53,8 @@ public class room5 extends AppCompatActivity {
         activeView.setImageResource(hero.getIdle());
         hero.setImageView(activeView);
         gameGrid = findViewById(R.id.gameGrid);
+        ImageView visage = findViewById(R.id.visage5);
+        visage.setImageResource(hero.getVisage());
 
         //Coeur "animation"
         coeur = findViewById(R.id.coeur_5);

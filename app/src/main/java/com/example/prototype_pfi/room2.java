@@ -57,6 +57,8 @@ public class room2 extends AppCompatActivity {
         activeView.setImageResource(hero.getIdle());
         hero.setImageView(activeView);
         gameGrid = findViewById(R.id.gameGrid);
+        ImageView visage = findViewById(R.id.visage2);
+        visage.setImageResource(hero.getVisage());
 
         // dessin monstre
         tabMonstre[0] = getDrawable(R.drawable.monstre);

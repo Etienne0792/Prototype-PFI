@@ -53,6 +53,8 @@ public class room1 extends AppCompatActivity {
         activeView = findViewById(R.id.heroRoom1);
         activeView.setImageResource(hero.getIdle());
         hero.setImageView(activeView);
+        ImageView visage = findViewById(R.id.visage1);
+        visage.setImageResource(hero.getVisage());
         gameGrid = findViewById(R.id.gameGrid);
 }
 
