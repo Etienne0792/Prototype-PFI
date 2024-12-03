@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -34,6 +35,9 @@ public class room2 extends AppCompatActivity {
     int[][] positionGrid;
     int gridSize;
     roomGeneration generation;
+    ImageButton attaque;
+    Thread deplacementMonstre;
+    ImageView monstre_img;
 
     private TextView vie;
     private ImageView coeur;
@@ -74,7 +78,7 @@ public class room2 extends AppCompatActivity {
         tabMonstre[1] = getDrawable(R.drawable.monstrepas1);
         tabMonstre[2] = getDrawable(R.drawable.monstrepas2);
         tabMonstre[3] = getDrawable(R.drawable.monstredegat);
-        ImageView monstre_img = findViewById(R.id.monstreRoom2);
+        monstre_img = findViewById(R.id.monstreRoom2);
         monstre = new Monstre(tabMonstre, monstre_img,gameGrid, GRID_SECTIONS, gridSize);
         if (hero.asKey){
             tabMonstre[0] = getDrawable(R.drawable.monstreattaquer);
@@ -82,6 +86,7 @@ public class room2 extends AppCompatActivity {
             tabMonstre[2] = getDrawable(R.drawable.monstrepas2attaquer);
             monstre.setImage(tabMonstre);
             monstre.setAttaque(2);
+            monstre.setSpeed(2);
         }
 
         //Coeur "animation"
@@ -96,7 +101,8 @@ public class room2 extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        monstre.Deplacement(hero,this,vie).start();
+        deplacementMonstre = monstre.Deplacement(hero,this,vie);
+        deplacementMonstre.start();
 
         piece4Player.setLooping(true);
         piece4Player.start();
@@ -110,6 +116,21 @@ public class room2 extends AppCompatActivity {
 
         generation = new roomGeneration(hero, sorties , GRID_SECTIONS, gridSize, gameGrid);
         positionGrid = generation.gridGeneration();
+
+        attaque = findViewById(R.id.attaqueRoom2);
+        attaque.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!monstre.mort()){
+                    hero.attaquer(monstre,vie);
+                }
+                else if(monstre.mort() && deplacementMonstre != null){
+                    deplacementMonstre.interrupt();
+                    deplacementMonstre = null;
+                    monstre_img.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
 
         right = findViewById(R.id.right6);
         left = findViewById(R.id.left6);

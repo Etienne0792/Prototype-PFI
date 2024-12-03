@@ -48,12 +48,26 @@ public class Personnages implements Serializable, IPersonnage {
     public int getDefense() { return defense; }
     public void setDefense(int defense) { this.defense = Math.max(defense, MIN_DEFENSE); }
 
+
+
+
+
+
+
     public ImageView getImageView(){
         return activeView;
     }
     public void setImageView(ImageView activeView){
-        this.activeView = activeView;
+        try{
+            this.activeView = activeView;
+        }
+        catch (Exception e) { e.printStackTrace(); }
     }
+
+
+
+
+
     public int getIdle(){
         return idleId;
     }
@@ -65,7 +79,13 @@ public class Personnages implements Serializable, IPersonnage {
     }
     public int getIdleAtt(){ return idleAttId; }
     public void setImageView(int drawableId){
-        activeView.setImageResource(drawableId);
+        try{
+            activeView.setImageResource(drawableId);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
     }
     public int getVisage(){ return visage; }
     public void setDirection(Directions direction){
@@ -95,9 +115,8 @@ public class Personnages implements Serializable, IPersonnage {
 
     private int degats;
     public void attaquer(IPersonnage cible, TextView vieAffichage){
-        if(cible != null){
+        if(cible != null && estProche(cible)){
             degats = attaque;
-            if (degats > 0){
 
                 cible.setImageView(cible.getIdleAtt());
 
@@ -106,15 +125,32 @@ public class Personnages implements Serializable, IPersonnage {
                     @Override
                     public void run() {
                         cible.setImageView(cible.getIdle());
-                        cible.setPointDeVie(cible.getPointDeVie() - degats);
+                        cible.setPointDeVie(cible.getPointDeVie()-attaque);
                     }
                 }, 500);
-            }
+
             if (cible.mort()){
                 attaque += 1;
             }
         }
 
+    }
+
+    public boolean estProche(IPersonnage cible){
+        boolean procheX = false;
+        boolean procheY = false;
+        if(cible.getImageView().getX() + cible.getImageView().getWidth() > activeView.getX() && cible.getImageView().getX() - cible.getImageView().getWidth() < activeView.getX()){
+            procheX = true;
+        }
+        if(cible.getImageView().getY() +  cible.getImageView().getHeight() > activeView.getY() && cible.getImageView().getY()  - cible.getImageView().getWidth() < activeView.getY()){
+            procheY = true;
+        }
+        if(procheX && procheY){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
 }

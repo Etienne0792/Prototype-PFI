@@ -11,7 +11,7 @@
         android:id="@+id/up5"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:background="#00FFFFFF"
         android:rotation="270"
         android:scaleType="fitCenter"
@@ -56,7 +56,7 @@
         app:srcCompat="@drawable/arrow" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/attaqueRoom1"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginTop="50dp"
@@ -73,7 +73,7 @@
         android:id="@+id/gameGrid"
         android:layout_width="385dp"
         android:layout_height="385dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="75dp"
         android:background="#7E7E7E"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
