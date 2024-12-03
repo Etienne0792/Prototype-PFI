@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,10 +22,10 @@ public class room9 extends AppCompatActivity {
 
     ConstraintLayout gameGrid;
     Personnages hero;
-    Button right;
-    Button down;
-    Button up;
-    Button left;
+    ImageButton right;
+    ImageButton down;
+    ImageButton up;
+    ImageButton left;
     ImageView activeView;
     int[][] positionGrid;
     int gridSize;
