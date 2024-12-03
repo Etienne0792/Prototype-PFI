@@ -1,10 +1,12 @@
 package com.example.prototype_pfi;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -21,6 +23,7 @@ public class Monstre implements Serializable, IPersonnage {
         Drawable idle;;
         Drawable monstrePas1;
         Drawable monstrePas2;
+        Drawable idleAttaque;
         public ImageView activeView;
 
         private int pointDeVie = 5;
@@ -55,6 +58,11 @@ public class Monstre implements Serializable, IPersonnage {
         public void setImageView(ImageView activeView){
                 this.activeView = activeView;
         }
+        public void setImageView(int drawableId){
+                activeView.setImageResource(drawableId);
+        }
+        public int getIdle(){ return R.drawable.monstre; }
+        public int getIdleAtt(){ return R.drawable.monstredegat; }
 
 
 
@@ -63,6 +71,7 @@ public class Monstre implements Serializable, IPersonnage {
             this.idle = monstre[0];
             this.monstrePas1 = monstre[1];
             this.monstrePas2 = monstre[2];
+            this.idleAttaque = monstre[3];
             this.activeView = activeView;
             this.gridSection = gridSection;
             this.gridSize = gridSize;
@@ -74,32 +83,35 @@ public class Monstre implements Serializable, IPersonnage {
             return pointDeVie <= 0;
         }
 
+        private int degats;
         @Override
-        public void attaquer(IPersonnage cible, ImageView cibleAttaquer){
+        public void attaquer(IPersonnage cible, TextView vieAffichage){
                 Random rand = new Random();
-                int degats = rand.nextInt(attaque + 1);
+                degats = rand.nextInt(attaque + 1);
                 degats -= cible.getDefense();
                 degats = Math.max(degats, 0);
-                cible.setPointDeVie(cible.getPointDeVie() - degats);
                 if (degats > 0){
-                        ImageView avantAttaque = cible.getImageView();
-                        cible.setImageView(cibleAttaquer);
+
+                        cible.setImageView(cible.getIdleAtt());
+
                         Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                        cible.setImageView(avantAttaque);
+                                        cible.setPointDeVie(cible.getPointDeVie() - degats);
+                                        cible.setImageView(cible.getIdle());
+                                        vieAffichage.setText(String.valueOf(cible.getPointDeVie()));
                                 }
                         }, 500);
                 }
         }
 
-        public Thread Deplacement(Personnages hero, Activity activity) {
+        public Thread Deplacement(Personnages hero, Activity activity, TextView vieAffichage) {
                 return new Thread(new Runnable() {
                         boolean utiliserPas1 = true;
                         @Override
                         public void run() {
-                                while (true) {
+                                while (!hero.mort()) {
                                         try {
                                                 if(hero.activeView != null){
                                                         activity.runOnUiThread(new Runnable() {
@@ -129,7 +141,7 @@ public class Monstre implements Serializable, IPersonnage {
                                                                         }
                                                                         else{
                                                                                 activeView.setImageDrawable(idle);
-                                                                                attaquer(hero,hero.activeView);
+                                                                                attaquer(hero, vieAffichage);
                                                                         }
                                                                 }
                                                         });
@@ -138,6 +150,12 @@ public class Monstre implements Serializable, IPersonnage {
                                         } catch (Exception e) {
                                                 e.printStackTrace();
                                         }
+                                }
+                                if (hero.mort()){
+                                        Intent intent = new Intent(activity, MainActivity.class);
+                                        intent.putExtra("pseudo", hero.getNom());
+                                        activity.startActivity(intent);
+                                        activity.finish();
                                 }
                         }
                 });

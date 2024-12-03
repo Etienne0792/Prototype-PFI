@@ -2,17 +2,18 @@ package com.example.prototype_pfi;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
-import java.io.Serializable;
-import java.util.Objects;
 
 public class room3 extends AppCompatActivity {
 
@@ -25,7 +26,7 @@ public class room3 extends AppCompatActivity {
     Personnages hero;
     Monstre monstre1;
     Monstre monstre2;
-    Drawable[] tabMonstre = new Drawable[3];
+    Drawable[] tabMonstre = new Drawable[4];
     ImageView activeView;
     Button right;
     Button down;
@@ -34,6 +35,11 @@ public class room3 extends AppCompatActivity {
     int[][] positionGrid;
     int gridSize;
     roomGeneration generation;
+    private TextView vie;
+    private ImageView coeur;
+    private Bitmap bitmap;
+    private int partiUtilise = 0;  // De 0 à 8 pour les 9 parties
+    private Handler handler = new Handler();
 
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -42,12 +48,13 @@ public class room3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.room3);
-
+        vie = findViewById(R.id.vie3);
         float density = getResources().getDisplayMetrics().density;
         gridSize = (int) (GRID_SIZE * density + 0.5f);
 
         // Dessin hero
         hero = (Personnages) getIntent().getSerializableExtra("personnage");
+        vie.setText(String.valueOf(hero.getPointDeVie()));
         activeView = findViewById(R.id.heroRoom3);
         activeView.setImageResource(hero.getIdle());
         hero.setImageView(activeView);
@@ -59,6 +66,7 @@ public class room3 extends AppCompatActivity {
         tabMonstre[0] = getDrawable(R.drawable.monstre);
         tabMonstre[1] = getDrawable(R.drawable.monstrepas1);
         tabMonstre[2] = getDrawable(R.drawable.monstrepas2);
+        tabMonstre[3] = getDrawable(R.drawable.monstredegat);
         ImageView monstre_img = findViewById(R.id.monstreRoom3);
         ImageView monstre_img2 = findViewById(R.id.monstreRoom3_2);
         monstre1 = new Monstre(tabMonstre, monstre_img,gameGrid, GRID_SECTIONS,gridSize);
@@ -73,7 +81,11 @@ public class room3 extends AppCompatActivity {
             monstre2.setAttaque(2);
         }
 
-    }
+        //Coeur "animation"
+        coeur = findViewById(R.id.coeur_3);
+        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.coeur);
+        handler.post(animationCoeur);
+    };
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -81,8 +93,8 @@ public class room3 extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        monstre1.Deplacement(hero,this).start();
-        monstre2.Deplacement(hero,this).start();
+        monstre1.Deplacement(hero,this, vie).start();
+        monstre2.Deplacement(hero,this, vie).start();
 
         Directions[] sorties = new Directions[]
                 {
@@ -104,6 +116,36 @@ public class room3 extends AppCompatActivity {
         up.setOnTouchListener(new GenericOnTouchListener(Directions.haut,this,positionGrid,hero, gridSize, GRID_SECTIONS,gameGrid,null));
         down.setOnTouchListener(new GenericOnTouchListener(Directions.bas,this,positionGrid,hero, gridSize, GRID_SECTIONS,gameGrid,new Intent(room3.this, room6.class)));
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Arrêter le coeur
+        handler.removeCallbacks(animationCoeur);
+    }
+
+    //Changer image coeur
+    private Runnable animationCoeur = new Runnable() {
+        @Override
+        public void run() {
+            int ran = partiUtilise / 3;
+            int col = partiUtilise % 3;
+
+            // Nécéssite l'utilisation d'un bitmap pour séparer l'image en 9 parties
+            int largeur = bitmap.getWidth() / 3;
+            int Hauteur = bitmap.getHeight() / 3;
+            Bitmap partBitmap = Bitmap.createBitmap(bitmap, col * largeur, ran * Hauteur, largeur, Hauteur);
+            coeur.setImageBitmap(partBitmap);
+            // Passer à la prochaine partie
+            partiUtilise++;
+            if (partiUtilise > 8) {
+                partiUtilise = 0;  // Recommencer à partir de la première partie
+            }
+
+            // Répéter la tâche toutes les 100 millisecondes
+            handler.postDelayed(this, 100);  // 100 ms entre chaque changement de partie
+        }
+    };
 
 
 }

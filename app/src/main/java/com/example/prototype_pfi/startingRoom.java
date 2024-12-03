@@ -2,9 +2,11 @@ package com.example.prototype_pfi;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
+import android.os.Handler;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,22 +14,21 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 public class startingRoom extends AppCompatActivity {
 
     final int GRID_SIZE = 385;
     final int GRID_SECTIONS = 11;
+    final int HP = 15;
 
     ConstraintLayout gameGrid;
     Button right;
     Button down;
     Button up;
     Button left;
-    int[] perso = new int[3];
+    int[] perso = new int[4];
     ImageView activeView;
     Personnages hero;
     roomGeneration generation;
@@ -38,6 +39,11 @@ public class startingRoom extends AppCompatActivity {
     Directions[] sorties;
     boolean asKey = false;
     TextView Message;
+    private TextView vie;
+    private ImageView coeur;
+    private Bitmap bitmap;
+    private int partiUtilise = 0;  // De 0 à 8 pour les 9 parties
+    private Handler handler = new Handler();
     ImageView exit;
 
     @SuppressLint({"ClickableViewAccessibility", "UseCompatLoadingForDrawables"})
@@ -56,9 +62,6 @@ public class startingRoom extends AppCompatActivity {
             activeView = findViewById(R.id.heroStart);
             activeView.setImageResource(hero.getIdle());
             hero.setImageView(activeView);
-            //hp = getIntent().getIntExtra("hp",10);
-            //directions = Objects.requireNonNull(getIntent().getExtras()).getSerializable("Directions");
-            //asKey = getIntent().getBooleanExtra("asKey",true);
         }
         catch(Exception e){
             boolean persoBleu = getIntent().getBooleanExtra("couleurPerso", false);
@@ -67,25 +70,25 @@ public class startingRoom extends AppCompatActivity {
                 perso[0] = R.drawable.personnage;
                 perso[1] = R.drawable.pas1;
                 perso[2] = R.drawable.pas2;
+                perso[3] = R.drawable.personnagedegat;
             }
             else{
                 perso[0] = R.drawable.personnage_rouge;
                 perso[1] = R.drawable.pas1_rouge;
                 perso[2] = R.drawable.pas2_rouge;
+                perso[3] = R.drawable.personnage_rougedegat;
             }
             activeView = (ImageView) findViewById(R.id.heroStart);
             if (activeView != null) {
                 activeView.setImageResource(perso[0]);
             }
-            hp = 10;
             directions = Directions.centre;
             asKey = false;
-            hero = new Personnages(pseudo, perso[0], perso[1], perso[2], activeView, hp, (Directions) directions, asKey);
-
-            //hp = 10;
-            //directions = Directions.centre;
+            hero = new Personnages(pseudo, perso[0], perso[1], perso[2], perso[3], activeView, HP, (Directions) directions, asKey);
         }
 
+        vie = findViewById(R.id.vieStart);
+        vie.setText(String.valueOf(hero.getPointDeVie()));
         gameGrid = findViewById(R.id.gameGrid);
         activeView = findViewById(R.id.heroStart);
         exit = findViewById(R.id.exit);
@@ -97,7 +100,6 @@ public class startingRoom extends AppCompatActivity {
         super.onStart();
 
         sorties = new Directions[] { Directions.droite };
-
         if(hero.asKey){
             sorties = new Directions[]
                     {
@@ -127,5 +129,40 @@ public class startingRoom extends AppCompatActivity {
         up.setOnTouchListener(new GenericOnTouchListener(Directions.haut,this,positionGrid,hero, gridSize, GRID_SECTIONS,gameGrid,null));
         down.setOnTouchListener(new GenericOnTouchListener(Directions.bas,this,positionGrid,hero, gridSize, GRID_SECTIONS,gameGrid,null));
 
+
+        //Coeur "animation"
+        coeur = findViewById(R.id.coeur_start);
+        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.coeur);
+        handler.post(animationCoeur);
+    };
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Arrêter le coeur
+        handler.removeCallbacks(animationCoeur);
+    }
+
+    //Changer image coeur
+    private Runnable animationCoeur = new Runnable() {
+        @Override
+        public void run() {
+            int ran = partiUtilise / 3;
+            int col = partiUtilise % 3;
+
+            // Nécéssite l'utilisation d'un bitmap pour séparer l'image en 9 parties
+            int largeur = bitmap.getWidth() / 3;
+            int Hauteur = bitmap.getHeight() / 3;
+            Bitmap partBitmap = Bitmap.createBitmap(bitmap, col * largeur, ran * Hauteur, largeur, Hauteur);
+            coeur.setImageBitmap(partBitmap);
+            // Passer à la prochaine partie
+            partiUtilise++;
+            if (partiUtilise > 8) {
+                partiUtilise = 0;  // Recommencer à partir de la première partie
+            }
+
+            // Répéter la tâche toutes les 100 millisecondes
+            handler.postDelayed(this, 100);  // 100 ms entre chaque changement de partie
+        }
     };
 }

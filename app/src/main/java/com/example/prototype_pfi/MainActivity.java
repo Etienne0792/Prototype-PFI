@@ -17,7 +17,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
-    private boolean pBleu = false;
+    private boolean pBleu = true;
     private boolean pSmile = false;
     private ImageView coeur;
     private Bitmap bitmap;

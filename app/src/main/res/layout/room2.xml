@@ -166,4 +166,37 @@
         app:layout_constraintTop_toTopOf="@+id/gameGrid"
         app:layout_constraintVertical_bias="0.19"
         app:srcCompat="@drawable/monstre" />
+
+    <ImageView
+        android:id="@+id/coeur_2"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toTopOf="@+id/gameGrid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.677"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.485"
+        app:srcCompat="@drawable/coeur" />
+
+    <TextView
+        android:id="@+id/vie2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="center_vertical"
+        android:gravity="center|center_horizontal"
+        android:shadowColor="#0F0F0F"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:shadowRadius="5"
+        android:text="10"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#DED2D2"
+        android:textSize="70sp"
+        app:layout_constraintBottom_toTopOf="@+id/gameGrid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.093"
+        app:layout_constraintStart_toEndOf="@+id/coeur_2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.45" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,20 +1,20 @@
 package com.example.prototype_pfi;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import android.os.Handler;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
-import java.io.Serializable;
-import java.util.Objects;
 
 public class room4 extends AppCompatActivity {
 
@@ -31,10 +31,13 @@ public class room4 extends AppCompatActivity {
     int[][] positionGrid;
     int gridSize;
     roomGeneration generation;
-    boolean asKey;
-    Drawable[] tabMonstre = new Drawable[3];
+    Drawable[] tabMonstre = new Drawable[4];
     Monstre monstre;
-    Thread Monstres;
+    private TextView vie;
+    private ImageView coeur;
+    private Bitmap bitmap;
+    private int partiUtilise = 0;  // De 0 à 8 pour les 9 parties
+    private Handler handler = new Handler();
 
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -43,11 +46,13 @@ public class room4 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.room4);
-
+        vie = findViewById(R.id.vie4);
         float density = getResources().getDisplayMetrics().density;
         gridSize = (int) (GRID_SIZE * density + 0.5f);
 
+        // dessin hero
         hero = (Personnages) getIntent().getSerializableExtra("personnage");
+        vie.setText(String.valueOf(hero.getPointDeVie()));
         activeView = findViewById(R.id.heroRoom4);
         activeView.setImageResource(hero.getIdle());
         hero.setImageView(activeView);
@@ -59,6 +64,7 @@ public class room4 extends AppCompatActivity {
         tabMonstre[0] = getDrawable(R.drawable.monstre);
         tabMonstre[1] = getDrawable(R.drawable.monstrepas1);
         tabMonstre[2] = getDrawable(R.drawable.monstrepas2);
+        tabMonstre[3] = getDrawable(R.drawable.monstredegat);
         ImageView monstre_img = findViewById(R.id.monstreRoom4);
         monstre = new Monstre(tabMonstre, monstre_img, gameGrid, GRID_SECTIONS,gridSize);
         if (hero.asKey){
@@ -69,15 +75,18 @@ public class room4 extends AppCompatActivity {
             monstre.setAttaque(2);
         }
 
-    }
-
+        //Coeur "animation"
+        coeur = findViewById(R.id.coeur_4);
+        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.coeur);
+        handler.post(animationCoeur);
+    };
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onStart() {
         super.onStart();
 
-       monstre.Deplacement(hero,this).start();
+       monstre.Deplacement(hero,this, vie).start();
 
         Directions[] sorties = new Directions[]
                 {
@@ -100,5 +109,35 @@ public class room4 extends AppCompatActivity {
         up.setOnTouchListener(new GenericOnTouchListener(Directions.haut,this,positionGrid,hero, gridSize, GRID_SECTIONS,gameGrid,new Intent(room4.this, room1.class)));
         down.setOnTouchListener(new GenericOnTouchListener(Directions.bas,this,positionGrid,hero, gridSize, GRID_SECTIONS,gameGrid,new Intent(room4.this, room7.class)));
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Arrêter le coeur
+        handler.removeCallbacks(animationCoeur);
+    }
+
+    //Changer image coeur
+    private Runnable animationCoeur = new Runnable() {
+        @Override
+        public void run() {
+            int ran = partiUtilise / 3;
+            int col = partiUtilise % 3;
+
+            // Nécéssite l'utilisation d'un bitmap pour séparer l'image en 9 parties
+            int largeur = bitmap.getWidth() / 3;
+            int Hauteur = bitmap.getHeight() / 3;
+            Bitmap partBitmap = Bitmap.createBitmap(bitmap, col * largeur, ran * Hauteur, largeur, Hauteur);
+            coeur.setImageBitmap(partBitmap);
+            // Passer à la prochaine partie
+            partiUtilise++;
+            if (partiUtilise > 8) {
+                partiUtilise = 0;  // Recommencer à partir de la première partie
+            }
+
+            // Répéter la tâche toutes les 100 millisecondes
+            handler.postDelayed(this, 100);  // 100 ms entre chaque changement de partie
+        }
+    };
 
 }
