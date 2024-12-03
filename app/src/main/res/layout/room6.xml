@@ -169,6 +169,18 @@
             app:layout_constraintWidth_percent="0.0909"
             app:srcCompat="@drawable/mur" />
 
+        <ImageView
+            android:id="@+id/monstreRoom6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.749"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.37"
+            app:srcCompat="@drawable/monstre" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
@@ -182,15 +194,4 @@
         app:layout_constraintTop_toTopOf="@+id/gameGrid"
         app:srcCompat="@drawable/personnage" />
 
-    <ImageView
-        android:id="@+id/monstreRoom6"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:rotation="180"
-        app:layout_constraintBottom_toBottomOf="@+id/gameGrid"
-        app:layout_constraintEnd_toEndOf="@+id/gameGrid"
-        app:layout_constraintHorizontal_bias="0.75"
-        app:layout_constraintStart_toStartOf="@+id/gameGrid"
-        app:layout_constraintTop_toTopOf="@+id/gameGrid"
-        app:srcCompat="@drawable/monstre" />
 </androidx.constraintlayout.widget.ConstraintLayout>

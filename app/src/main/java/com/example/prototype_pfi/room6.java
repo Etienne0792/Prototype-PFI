@@ -56,7 +56,6 @@ public class room6 extends AppCompatActivity {
         tabMonstre[2] = getDrawable(R.drawable.monstrepas2);
         ImageView monstre_img = findViewById(R.id.monstreRoom6);
         monstre = new Monstre(tabMonstre, monstre_img,gameGrid,GRID_SECTIONS,gridSize);
-
         if (hero.asKey){
             tabMonstre[0] = getDrawable(R.drawable.monstreattaquer);
             tabMonstre[1] = getDrawable(R.drawable.monstrepas1attaquer);
