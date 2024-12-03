@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
@@ -24,10 +25,10 @@ public class room6 extends AppCompatActivity {
     ImageView activeView;
     Monstre monstre;
     Drawable[] tabMonstre = new Drawable[3];
-    Button right;
-    Button down;
-    Button up;
-    Button left;
+    ImageButton right;
+    ImageButton down;
+    ImageButton up;
+    ImageButton left;
     int[][] positionGrid;
     int gridSize;
     roomGeneration generation;
