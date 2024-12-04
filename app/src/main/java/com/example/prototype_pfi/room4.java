@@ -82,7 +82,7 @@ public class room4 extends AppCompatActivity {
         tabMonstre[2] = getDrawable(R.drawable.monstrepas2);
         tabMonstre[3] = getDrawable(R.drawable.monstredegat);
         monstre_img = findViewById(R.id.monstreRoom4);
-        monstre = new Monstre(tabMonstre, monstre_img, gameGrid, GRID_SECTIONS,gridSize);
+        monstre = new Monstre(tabMonstre, monstre_img, GRID_SECTIONS,gridSize);
         deplacementMonstre = monstre.Deplacement(hero,this, vie);
         if (hero.asKey){
             tabMonstre[0] = getDrawable(R.drawable.monstreattaquer);

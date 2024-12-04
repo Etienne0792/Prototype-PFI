@@ -32,7 +32,6 @@ public class Monstre implements Serializable, IPersonnage {
         private int speed = 1;
 
         float gridSize;
-        public ConstraintLayout gameGrid;
         int gridSection;
         public int[][] positionGrid;
         public Directions currentDirection;
@@ -77,7 +76,7 @@ public class Monstre implements Serializable, IPersonnage {
 
 
         // Constructeur
-        Monstre(Drawable[] monstre, ImageView activeView, ConstraintLayout gameGrid, int gridSection, int gridSize) {
+        Monstre(Drawable[] monstre, ImageView activeView, int gridSection, int gridSize) {
             this.idle = monstre[0];
             this.monstrePas1 = monstre[1];
             this.monstrePas2 = monstre[2];
@@ -85,7 +84,6 @@ public class Monstre implements Serializable, IPersonnage {
             this.activeView = activeView;
             this.gridSection = gridSection;
             this.gridSize = gridSize;
-            this.gameGrid = gameGrid;
         }
 
         // Méthode
