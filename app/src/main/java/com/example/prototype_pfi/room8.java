@@ -17,6 +17,12 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+/**
+ * Activité représentant la huitième salle du jeu.
+ * Cette salle contient un monstres que le joueur doit combattre.
+ *
+ * @author Étienne La Rochelle
+ */
 public class room8 extends AppCompatActivity {
 
     // Constantes pour la taille de la grille, le nombre de sections et les points de vie initiaux

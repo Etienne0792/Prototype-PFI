@@ -15,6 +15,12 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+/**
+ * Activité représentant la neuvième salle du jeu.
+ * Cette salle contient un coffre que le joueur doit trouver.
+ *
+ * @author Étienne La Rochelle
+ */
 public class room9 extends AppCompatActivity {
 
     // Constantes pour la taille de la grille, le nombre de sections et les points de vie initiaux

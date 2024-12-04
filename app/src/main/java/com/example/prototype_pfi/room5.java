@@ -16,6 +16,11 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+/**
+ * Activité représentant la cinquième salle du jeu.
+ *
+ * @author Étienne La Rochelle
+ */
 public class room5 extends AppCompatActivity {
 
     // Constantes pour la taille de la grille, le nombre de sections et les points de vie initiaux

@@ -15,6 +15,11 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Classe qui gère les événements tactiles pour déplacer le personnage dans les différentes directions.
+ *
+ * author Étienne La Rochelle
+ */
 public class GenericOnTouchListener implements View.OnTouchListener {
 
     Directions directions;
@@ -28,6 +33,17 @@ public class GenericOnTouchListener implements View.OnTouchListener {
     Personnages hero;
     Intent intent;
 
+    /**
+     * Constructeur de la classe GenericOnTouchListener.
+     *
+     * @param directions    Direction du mouvement.
+     * @param activity      Activité courante.
+     * @param positionGrid  Grille de jeu.
+     * @param hero          Objet Personnages.
+     * @param gridSize      Taille de la grille.
+     * @param gridSections  Nombre de sections dans la grille.
+     * @param intent        Intent pour passer à l'activité suivante.
+     */
     public GenericOnTouchListener(Directions directions, Activity activity, int[][] positionGrid, Personnages hero, int gridSize, int gridSections, Intent intent) {
         this.directions = directions;
         this.activity = activity;
@@ -40,6 +56,13 @@ public class GenericOnTouchListener implements View.OnTouchListener {
         this.gameGrid = activity.findViewById(R.id.gameGrid);
     }
 
+    /**
+     * Gère les événements tactiles pour déplacer le personnage.
+     *
+     * @param v     La vue sur laquelle l'événement tactile s'est produit.
+     * @param event L'objet MotionEvent contenant les détails de l'événement tactile.
+     * @return true si l'événement tactile a été géré, false sinon.
+     */
     @Override
     public boolean onTouch(View v, MotionEvent event) {
 

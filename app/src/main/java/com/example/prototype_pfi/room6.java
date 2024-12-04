@@ -18,6 +18,12 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+/**
+ * Activité représentant la sixième salle du jeu.
+ * Cette salle contient deux monstres que le joueur doit combattre.
+ *
+ * @author Étienne La Rochelle
+ */
 public class room6 extends AppCompatActivity {
 
     // Constantes pour la taille de la grille, le nombre de sections et les points de vie initiaux

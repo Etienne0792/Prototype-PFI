@@ -20,15 +20,17 @@ import androidx.core.view.WindowInsetsCompat;
 /**
  * Activité principale de l'application. Gère l'affichage initial,
  * la personnalisation du personnage et le lancement du jeu.
+ *
+ * @author Daphnée Bastien
  */
 public class MainActivity extends AppCompatActivity {
-    private boolean pBleu = true; // Indique si le personnage est bleu (true) ou rouge (false)
-    private boolean pSmile; // Indique si le personnage sourit (true) ou non (false)
-    private ImageView coeur; // ImageView pour afficher l'animation du coeur
-    private Bitmap bitmap; // Bitmap pour stocker l'image du coeur
-    private int partiUtilise; // Indique la partie de l'image du coeur à afficher
-    private Handler handler; // Handler pour gérer l'animation du coeur
-    MediaPlayer piece4Player; // MediaPlayer pour la musique de fond
+    private boolean pBleu = true;
+    private boolean pSmile;
+    private ImageView coeur;
+    private Bitmap bitmap;
+    private int partiUtilise;
+    private Handler handler;
+    MediaPlayer piece4Player;
 
     /**
      * Méthode appelée à la création de l'activité. Initialise les éléments de l'interface,
@@ -39,17 +41,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this); // Active le mode Edge-to-Edge pour l'affichage
-        setContentView(R.layout.activity_main); // Définit le layout de l'activité
-
-        // Configuration des marges pour l'affichage Edge-to-Edge
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        piece4Player = MediaPlayer.create(this, R.raw.mega_3title); // Initialise le MediaPlayer
+        piece4Player = MediaPlayer.create(this, R.raw.mega_3title);
 
         // Charger les images des personnages
         int persoRouge = getResources().getIdentifier("perso1_1","drawable",getPackageName());

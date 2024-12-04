@@ -18,6 +18,12 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+/**
+ * Activité représentant la quatrième salle du jeu.
+ * Cette salle contient deux monstres que le joueur doit combattre.
+ *
+ * @author Étienne La Rochelle
+ */
 public class room4 extends AppCompatActivity {
 
     // Constantes pour la taille de la grille, le nombre de sections et les points de vie initiaux
@@ -147,7 +153,7 @@ public class room4 extends AppCompatActivity {
                 if(!monstre.mort()){
                     hero.attaquer(monstre,vie);
                 }
-                else if(monstre.mort() && deplacementMonstre != null){
+                if(monstre.mort() && deplacementMonstre != null){
                     deplacementMonstre.interrupt();
                     deplacementMonstre = null;
                     monstre_img.setVisibility(View.INVISIBLE);
