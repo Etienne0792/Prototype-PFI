@@ -77,7 +77,7 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                                                 positionGrid[i][j + 1] = 2;
                                                             }
 
-                                                            if(activity.getClass() == room9.class && positionGrid[i][j +1] == 7){
+                                                            if(activity.getClass() == room9.class && positionGrid[i][j +1] == 3){
                                                                 hero.asKey = true;
                                                                 TextView keyFound = activity.findViewById(R.id.startMessage);
                                                                 keyFound.setText("Vous avez trouvé la clé !\n"+ "Retourner a votre point de départ\n"+"pour vous échapé.");
@@ -144,7 +144,7 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                                                 positionGrid[i][j - 1] = 2;
                                                             }
 
-                                                            if(positionGrid[i][j - 1] == 7){
+                                                            if(activity.getClass() == room9.class && positionGrid[i][j -1] == 3){
                                                                 hero.asKey = true;
                                                                 TextView keyFound = activity.findViewById(R.id.startMessage);
                                                                 keyFound.setText("Vous avez trouvé la clé !\n"+ "Retourner a votre point de départ\n"+"pour vous échapé.");
@@ -214,7 +214,7 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                                                 positionGrid[i - 1][j] = 2;
                                                             }
 
-                                                            if(positionGrid[i - 1][j] == 7){
+                                                            if(activity.getClass() == room9.class && positionGrid[i - 1][j] == 3){
                                                                 hero.asKey = true;
                                                                 TextView keyFound = activity.findViewById(R.id.startMessage);
                                                                 keyFound.setText("Vous avez trouvé la clé !\n"+ "Retourner a votre point de départ\n"+"pour vous échapé.");
@@ -287,7 +287,7 @@ public class GenericOnTouchListener implements View.OnTouchListener {
                                                                 positionGrid[i + 1][j] = 2;
                                                             }
 
-                                                            if(positionGrid[i + 1][j] == 7){
+                                                            if(activity.getClass() == room9.class && positionGrid[i + 1][j] == 3){
                                                                 hero.asKey = true;
                                                                 TextView keyFound = activity.findViewById(R.id.startMessage);
                                                                 keyFound.setText("Vous avez trouvé la clé !\n"+ "Retourner a votre point de départ\n"+"pour vous échapé.");

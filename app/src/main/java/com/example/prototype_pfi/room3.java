@@ -56,9 +56,6 @@ public class room3 extends AppCompatActivity {
     ImageView monstre_img1;
     ImageView monstre_img2;
 
-
-
-
     @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +68,7 @@ public class room3 extends AppCompatActivity {
         gridSize = (int) (GRID_SIZE * density + 0.5f);
 
         // Debut de la musique
-        musicPlayer = MediaPlayer.create(this, R.raw.mega_dungeon);
+        musicPlayer = MediaPlayer.create(this, R.raw.mega_enemy);
 
         // création du personnage
         hero = (Personnages) getIntent().getSerializableExtra("personnage");

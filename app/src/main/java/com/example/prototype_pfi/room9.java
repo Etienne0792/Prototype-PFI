@@ -16,26 +16,33 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class room9 extends AppCompatActivity {
+
+    // Constantes pour la taille de la grille, le nombre de sections et les points de vie initiaux
     final int GRID_SIZE = 385;
     final int GRID_SECTIONS = 11;
 
-    ConstraintLayout gameGrid;
-    Personnages hero;
+    // Déclaration des variables de l'interface
+    ImageView coeur;
+    Bitmap bitmap;
+    TextView vie;
+    Handler handler;
+    Runnable coeurAnim;
     ImageButton right;
     ImageButton down;
     ImageButton up;
     ImageButton left;
+
+    // Déclaration des vriables utilise a la création du hero
+    Personnages hero;
     ImageView activeView;
+
+    // Déclaration des variables utilises a la grille de jeu
     int[][] positionGrid;
     int gridSize;
-    roomGeneration generation;
-    private TextView vie;
-    private ImageView coeur;
-    private Bitmap bitmap;
-    private int partiUtilise = 0;  // De 0 à 8 pour les 9 parties
-    private Handler handler = new Handler();
-    MediaPlayer piece4Player;
+    float density;
 
+    // Déclaration du mediaPlayer pour la musique
+    MediaPlayer musicPlayer;
 
     @SuppressLint("UseCompatLoadingForDrawables")
     @Override
@@ -43,88 +50,81 @@ public class room9 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.room9);
-        vie = findViewById(R.id.vie9);
-        piece4Player = MediaPlayer.create(this, R.raw.mega_dungeon);
-        float density = getResources().getDisplayMetrics().density;
+
+        // Calculer la taille de la grille en pixels
+        density = getResources().getDisplayMetrics().density;
         gridSize = (int) (GRID_SIZE * density + 0.5f);
 
-        // Dessin héro
+        // Debut de la musique
+        musicPlayer = MediaPlayer.create(this, R.raw.mega_dungeon);
+
+        //création du personnage
         hero = (Personnages) getIntent().getSerializableExtra("personnage");
-        vie.setText(String.valueOf(hero.getPointDeVie()));
+        vie = findViewById(R.id.vie9);
         activeView = findViewById(R.id.heroRoom9);
         activeView.setImageResource(hero.getIdle());
         hero.setImageView(activeView);
-        gameGrid = findViewById(R.id.gameGrid);
         ImageView visage = findViewById(R.id.visage9);
         visage.setImageResource(hero.getVisage());
 
-
-        //Coeur "animation"
-        coeur = findViewById(R.id.coeur_9);
-        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.coeur);
-        handler.post(animationCoeur);
-    };
-
-    @SuppressLint("ClickableViewAccessibility")
-    @Override
-    protected void onStart() {
-        super.onStart();
-        piece4Player.setLooping(true);
-        piece4Player.start();
-
-        Directions[] sorties = new Directions[]
-                {
-                        Directions.gauche,
-                        Directions.haut
-                };
-
-        generation = new roomGeneration(hero, sorties , GRID_SECTIONS, gridSize);
-        positionGrid = generation.gridGeneration();
-        positionGrid[GRID_SECTIONS/2][GRID_SECTIONS/2] = 7;
+        // initialisation de l'interface
+        visage.setImageResource(hero.getVisage());
+        vie.setText(String.valueOf(hero.getPointDeVie()));
 
         right = findViewById(R.id.right10);
         left = findViewById(R.id.left10);
         up = findViewById(R.id.attaqueRoom10);
         down = findViewById(R.id.down10);
 
+        handler = new Handler();
+        coeur = findViewById(R.id.coeur_9);
+        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.coeur);
+        coeurAnim = new CoeurAnim().animation(bitmap, coeur, handler);
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        // début de la musique
+        musicPlayer.setLooping(true);
+        musicPlayer.start();
+
+        // Définir les sortie de la salle
+        Directions[] sorties = new Directions[]
+                {
+                        Directions.gauche,
+                        Directions.haut
+                };
+
+        // Générer la grille de jeu
+        positionGrid = new roomGeneration(hero, sorties, GRID_SECTIONS, gridSize).gridGeneration();
+
+        // Placer le coffre sur la grille de jeu
+        positionGrid[GRID_SECTIONS/2][GRID_SECTIONS/2] = 3;
+
+        // Définir les actions des bouton directionels
         right.setOnTouchListener(new GenericOnTouchListener(Directions.droite,this,positionGrid,hero, gridSize, GRID_SECTIONS, null));
         left.setOnTouchListener(new GenericOnTouchListener(Directions.gauche,this,positionGrid,hero, gridSize, GRID_SECTIONS, new Intent(room9.this, room8.class)));
         up.setOnTouchListener(new GenericOnTouchListener(Directions.haut,this,positionGrid,hero, gridSize, GRID_SECTIONS,new Intent(room9.this, room6.class)));
         down.setOnTouchListener(new GenericOnTouchListener(Directions.bas,this,positionGrid,hero, gridSize, GRID_SECTIONS,null));
+
+        // Démarrer l'animation du coeur
+        handler.post(coeurAnim);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        // Arrêter le coeur
-        handler.removeCallbacks(animationCoeur);
-        // Arrêter music
-         if (piece4Player != null) {
-            piece4Player.release();
-            piece4Player = null;
-         }
-    }
 
-    //Changer image coeur
-    private Runnable animationCoeur = new Runnable() {
-        @Override
-        public void run() {
-            int ran = partiUtilise / 3;
-            int col = partiUtilise % 3;
-
-            // Nécéssite l'utilisation d'un bitmap pour séparer l'image en 9 parties
-            int largeur = bitmap.getWidth() / 3;
-            int Hauteur = bitmap.getHeight() / 3;
-            Bitmap partBitmap = Bitmap.createBitmap(bitmap, col * largeur, ran * Hauteur, largeur, Hauteur);
-            coeur.setImageBitmap(partBitmap);
-            // Passer à la prochaine partie
-            partiUtilise++;
-            if (partiUtilise > 8) {
-                partiUtilise = 0;  // Recommencer à partir de la première partie
-            }
-
-            // Répéter la tâche toutes les 100 millisecondes
-            handler.postDelayed(this, 100);  // 100 ms entre chaque changement de partie
+        // Arrêter la musique
+        if (musicPlayer != null) {
+            musicPlayer.release();
+            musicPlayer = null;
         }
-    };
+
+        // Arrêter l'animation du coeur
+        handler.removeCallbacks(coeurAnim);
+    }
 }
