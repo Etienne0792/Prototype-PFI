@@ -114,7 +114,7 @@ public class room2 extends AppCompatActivity {
                         Directions.bas
                 };
 
-        generation = new roomGeneration(hero, sorties , GRID_SECTIONS, gridSize, gameGrid);
+        generation = new roomGeneration(hero, sorties , GRID_SECTIONS, gridSize);
         positionGrid = generation.gridGeneration();
 
         attaque = findViewById(R.id.attaqueRoom2);
@@ -137,10 +137,10 @@ public class room2 extends AppCompatActivity {
         up = findViewById(R.id.up6);
         down = findViewById(R.id.down6);
 
-        right.setOnTouchListener(new GenericOnTouchListener(Directions.droite,this,positionGrid,hero, gridSize, GRID_SECTIONS, gameGrid, new Intent(room2.this, room3.class)));
-        left.setOnTouchListener(new GenericOnTouchListener(Directions.gauche,this,positionGrid,hero, gridSize, GRID_SECTIONS, gameGrid, new Intent(room2.this, room1.class)));
-        up.setOnTouchListener(new GenericOnTouchListener(Directions.haut,this,positionGrid,hero, gridSize, GRID_SECTIONS,gameGrid,null));
-        down.setOnTouchListener(new GenericOnTouchListener(Directions.bas,this,positionGrid,hero, gridSize, GRID_SECTIONS,gameGrid,new Intent(room2.this, room5.class)));
+        right.setOnTouchListener(new GenericOnTouchListener(Directions.droite,this,positionGrid,hero, gridSize, GRID_SECTIONS, new Intent(room2.this, room3.class)));
+        left.setOnTouchListener(new GenericOnTouchListener(Directions.gauche,this,positionGrid,hero, gridSize, GRID_SECTIONS, new Intent(room2.this, room1.class)));
+        up.setOnTouchListener(new GenericOnTouchListener(Directions.haut,this,positionGrid,hero, gridSize, GRID_SECTIONS,null));
+        down.setOnTouchListener(new GenericOnTouchListener(Directions.bas,this,positionGrid,hero, gridSize, GRID_SECTIONS,new Intent(room2.this, room5.class)));
     }
 
     @Override

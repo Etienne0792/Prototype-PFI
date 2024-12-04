@@ -126,14 +126,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/vide" />
 
-        <ImageView
-            android:id="@+id/imageView9"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            app:srcCompat="@drawable/vide"
-            tools:layout_editor_absoluteX="63dp"
-            tools:layout_editor_absoluteY="142dp" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView

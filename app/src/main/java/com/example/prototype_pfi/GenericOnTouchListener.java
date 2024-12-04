@@ -17,11 +17,10 @@ import java.util.TimerTask;
 
 public class GenericOnTouchListener implements View.OnTouchListener {
 
-    private final Directions directions;
+    Directions directions;
     Timer deplacement;
     Activity activity;
     int[][] positionGrid;
-    int[][] positionGridCopy;
     ImageView activeView;
     int gridSize;
     int gridSections;
@@ -29,17 +28,16 @@ public class GenericOnTouchListener implements View.OnTouchListener {
     Personnages hero;
     Intent intent;
 
-    public GenericOnTouchListener(Directions directions, Activity activity, int[][] positionGrid, Personnages hero, int gridSize, int gridSections, ConstraintLayout gameGrid, Intent intent) {
+    public GenericOnTouchListener(Directions directions, Activity activity, int[][] positionGrid, Personnages hero, int gridSize, int gridSections, Intent intent) {
         this.directions = directions;
         this.activity = activity;
         this.positionGrid = positionGrid;
+        this.hero = hero;
         this.activeView = hero.activeView;
         this.gridSize = gridSize;
         this.gridSections = gridSections;
-        this.gameGrid = gameGrid;
-        this.hero = hero;
         this.intent = intent;
-        positionGridCopy = positionGrid;
+        this.gameGrid = activity.findViewById(R.id.gameGrid);
     }
 
     @Override
